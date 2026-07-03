@@ -48,51 +48,26 @@
 <body class="text-slate-800 antialiased selection:bg-indigo-200">
     <div id="toast-container" class="fixed bottom-4 right-4 z-[9999] flex flex-col gap-2 pointer-events-none"></div>
 
+    <!-- PANTALLA LOGIN -->
     <div id="screen-login" class="fixed inset-0 z-40 login-bg flex flex-col items-center justify-center p-4">
-        <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute -top-[30%] -left-[10%] w-[70%] h-[70%] rounded-full bg-blue-600/20 blur-[100px]"></div>
-            <div class="absolute bottom-[10%] -right-[10%] w-[60%] h-[60%] rounded-full bg-indigo-600/20 blur-[100px]"></div>
-        </div>
+        <div class="absolute inset-0 overflow-hidden pointer-events-none"><div class="absolute -top-[30%] -left-[10%] w-[70%] h-[70%] rounded-full bg-blue-600/20 blur-[100px]"></div><div class="absolute bottom-[10%] -right-[10%] w-[60%] h-[60%] rounded-full bg-indigo-600/20 blur-[100px]"></div></div>
         <div class="w-full max-w-sm glass-dark border border-slate-700/50 rounded-3xl shadow-2xl p-8 relative z-10 fade-in">
-            <div class="text-center mb-8">
-                <div class="w-20 h-20 mx-auto bg-gradient-to-tr from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/30 mb-5"><i class="fas fa-fingerprint text-4xl text-white"></i></div>
-                <h1 class="text-2xl font-black text-white tracking-tight mb-1">Acceso Seguro</h1>
-                <p class="text-slate-400 text-xs font-medium uppercase tracking-widest">Plataforma Integral</p>
-            </div>
+            <div class="text-center mb-8"><div class="w-20 h-20 mx-auto bg-gradient-to-tr from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/30 mb-5"><i class="fas fa-fingerprint text-4xl text-white"></i></div><h1 class="text-2xl font-black text-white tracking-tight mb-1">Acceso Seguro</h1><p class="text-slate-400 text-xs font-medium uppercase tracking-widest">Plataforma Integral</p></div>
             <form id="login-form" class="space-y-5">
-                <div>
-                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Usuario / ID</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500"><i class="fas fa-user-shield"></i></div>
-                        <input type="text" id="login-user" required placeholder="Usuario..." class="block w-full pl-10 pr-4 py-3.5 bg-slate-800/50 border border-slate-700 rounded-xl text-sm font-bold text-slate-200 outline-none focus:border-indigo-500">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Clave</label>
-                    <div class="relative flex items-center">
-                        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500"><i class="fas fa-lock"></i></div>
-                        <input type="password" id="login-pass" required placeholder="••••••••" class="block w-full pl-10 pr-10 py-3.5 bg-slate-800/50 border border-slate-700 rounded-xl text-sm font-bold text-slate-200 outline-none focus:border-indigo-500">
-                        <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-500 hover:text-slate-300"><i class="fas fa-eye" id="eye-icon"></i></button>
-                    </div>
-                </div>
+                <div><label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Usuario / ID</label><div class="relative"><div class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500"><i class="fas fa-user-shield"></i></div><input type="text" id="login-user" required placeholder="Usuario..." class="block w-full pl-10 pr-4 py-3.5 bg-slate-800/50 border border-slate-700 rounded-xl text-sm font-bold text-slate-200 outline-none focus:border-indigo-500"></div></div>
+                <div><label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Clave</label><div class="relative flex items-center"><div class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500"><i class="fas fa-lock"></i></div><input type="password" id="login-pass" required placeholder="••••••••" class="block w-full pl-10 pr-10 py-3.5 bg-slate-800/50 border border-slate-700 rounded-xl text-sm font-bold text-slate-200 outline-none focus:border-indigo-500"><button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-500 hover:text-slate-300"><i class="fas fa-eye" id="eye-icon"></i></button></div></div>
                 <button type="submit" class="w-full py-3.5 mt-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-sm font-bold rounded-xl shadow-lg transition-transform active:scale-[0.98]">Ingresar</button>
             </form>
         </div>
     </div>
 
+    <!-- PANTALLA PRINCIPAL -->
     <div id="screen-app" class="hidden min-h-screen flex flex-col">
         <nav class="bg-[#0f172a] border-b border-slate-800 sticky top-0 z-30 shadow-sm text-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
-                    <div class="flex items-center gap-3">
-                        <button onclick="toggleMenu()" class="text-white hover:text-indigo-400 focus:outline-none p-2 rounded-lg text-2xl mr-2"><i class="fas fa-bars"></i></button>
-                        <div id="nav-icon" class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-lg shadow-md"><i class="fas fa-shield-alt"></i></div>
-                        <div><h1 class="text-base font-black text-white leading-tight">Sepybet</h1><p id="user-display" class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Cargando...</p></div>
-                    </div>
-                    <div class="flex items-center gap-2 sm:gap-3">
-                        <button id="btn-superadmin" onclick="openSuperAdminSwitcher()" class="hidden px-3 py-1.5 rounded-lg bg-slate-700 text-white hover:bg-slate-600 text-xs font-bold transition-colors shadow-md"><i class="fas fa-users-cog mr-1"></i> Auditoría</button>
-                        <button onclick="logout()" class="w-10 h-10 rounded-xl bg-slate-800 text-slate-300 hover:bg-rose-600 hover:text-white flex items-center justify-center transition-colors cursor-pointer" title="Cerrar Sesión"><i class="fas fa-sign-out-alt"></i></button>
-                    </div>
+                    <div class="flex items-center gap-3"><button onclick="toggleMenu()" class="text-white hover:text-indigo-400 focus:outline-none p-2 rounded-lg text-2xl mr-2"><i class="fas fa-bars"></i></button><div id="nav-icon" class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-lg shadow-md"><i class="fas fa-shield-alt"></i></div><div><h1 class="text-base font-black text-white leading-tight">Sepybet</h1><p id="user-display" class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Cargando...</p></div></div>
+                    <div class="flex items-center gap-2 sm:gap-3"><button id="btn-superadmin" onclick="openSuperAdminSwitcher()" class="hidden px-3 py-1.5 rounded-lg bg-slate-700 text-white hover:bg-slate-600 text-xs font-bold transition-colors shadow-md"><i class="fas fa-users-cog mr-1"></i> Auditoría</button><button onclick="logout()" class="w-10 h-10 rounded-xl bg-slate-800 text-slate-300 hover:bg-rose-600 hover:text-white flex items-center justify-center transition-colors cursor-pointer" title="Cerrar Sesión"><i class="fas fa-sign-out-alt"></i></button></div>
                 </div>
             </div>
         </nav>
@@ -102,15 +77,19 @@
             <div class="p-5 border-b border-slate-800 flex justify-between items-center"><div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-indigo-500 text-white flex items-center justify-center"><i class="fas fa-bolt"></i></div><span class="text-white font-black text-lg tracking-tight">Menú Sepybet</span></div><button onclick="toggleMenu(false)" class="text-slate-400 hover:text-white p-2"><i class="fas fa-times text-xl"></i></button></div>
             <div class="flex-1 overflow-y-auto p-4 space-y-1">
                 <button onclick="switchTab('tab-dashboard')" id="btn-tab-dashboard" class="hidden w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-3"><i class="fas fa-chart-pie w-5 text-center"></i> Panel Global</button>
-                <button onclick="switchTab('tab-register')" id="btn-tab-register" class="hidden w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-3"><i class="fas fa-plus-circle w-5 text-center"></i> Carga/Registro Saldos</button>
-                <button onclick="switchTab('tab-auditoria')" id="btn-tab-auditoria" class="hidden w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-3"><i class="fas fa-search w-5 text-center"></i> Historial Saldos</button>
+                <button onclick="switchTab('tab-archivos')" id="btn-tab-archivos" class="hidden w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-3"><i class="fas fa-file-upload w-5 text-center text-teal-400"></i> Carga de Archivos</button>
+                <button onclick="switchTab('tab-conciliacion')" id="btn-tab-conciliacion" class="hidden w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-3"><i class="fas fa-link w-5 text-center text-blue-400"></i> Conciliación Bancaria</button>
+                <button onclick="switchTab('tab-auditoria')" id="btn-tab-auditoria" class="hidden w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-3"><i class="fas fa-check-double w-5 text-center"></i> Aprobación Transacc.</button>
+                <button onclick="switchTab('tab-register')" id="btn-tab-register" class="hidden w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-3"><i class="fas fa-plus-circle w-5 text-center"></i> Registro Manual</button>
                 <button onclick="switchTab('tab-gussepy')" id="btn-tab-gussepy" class="hidden w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-3"><i class="fas fa-hand-holding-usd w-5 text-center"></i> Adelantos Comisiones</button>
+                
                 <hr class="my-2 border-slate-800 hidden" id="divider-1">
                 <button onclick="switchTab('tab-maria-dash')" id="btn-tab-maria-dash" class="hidden w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-3"><i class="fas fa-trophy w-5 text-center text-rose-500"></i> Panel Bonos/Giros</button>
                 <button onclick="switchTab('tab-maria-add')" id="btn-tab-maria-add" class="hidden w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-3"><i class="fas fa-gift w-5 text-center text-rose-400"></i> Emitir Bono</button>
-                <button onclick="switchTab('tab-maria-list')" id="btn-tab-maria-list" class="hidden w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-3"><i class="fas fa-list-alt w-5 text-center text-rose-400"></i> Historial de Bonos</button>
+                <button onclick="switchTab('tab-maria-list')" id="btn-tab-maria-list" class="hidden w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-3"><i class="fas fa-list-alt w-5 text-center text-rose-400"></i> Historial Bonos</button>
                 <button onclick="switchTab('tab-giros-add')" id="btn-tab-giros-add" class="hidden w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-3"><i class="fas fa-sync w-5 text-center text-indigo-400"></i> Otorgar Giros Gratis</button>
                 <button onclick="switchTab('tab-giros-list')" id="btn-tab-giros-list" class="hidden w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-3"><i class="fas fa-history w-5 text-center text-indigo-400"></i> Historial Giros</button>
+                
                 <hr class="my-2 border-slate-800 hidden" id="divider-2">
                 <button onclick="switchTab('tab-maria-ref-add')" id="btn-tab-maria-ref-add" class="hidden w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-3"><i class="fas fa-user-plus w-5 text-center text-emerald-400"></i> Registrar Referido</button>
                 <button onclick="switchTab('tab-maria-ref-list')" id="btn-tab-maria-ref-list" class="hidden w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-3"><i class="fas fa-users w-5 text-center text-emerald-400"></i> Historial Referidos</button>
@@ -130,18 +109,15 @@
 
         <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 relative">
 
+            <!-- DASHBOARD GLOBAL -->
             <div id="tab-dashboard" class="hidden fade-in space-y-6 tab-content">
                 <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div><h2 class="text-sm font-black text-slate-800"><i class="fas fa-chart-line text-indigo-500 mr-2"></i> Rendimiento Mensual</h2><p class="text-[10px] text-slate-400 mt-1">Mes seleccionado.</p></div>
-                    <input type="month" id="dash-month-filter" class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-sm font-bold text-slate-700 outline-none w-full sm:w-auto">
+                    <input type="month" id="dash-month-filter" onchange="updateAllViews()" class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-sm font-bold text-slate-700 outline-none w-full sm:w-auto">
                 </div>
 
                 <div id="panel-personal" class="hidden mb-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-gradient-to-br from-indigo-50 to-blue-50 border border-indigo-100 p-6 rounded-2xl shadow-sm relative overflow-hidden flex flex-col justify-between">
-                        <i class="fas fa-wallet absolute -right-4 -top-4 text-indigo-500/10 text-8xl"></i>
-                        <div><div class="flex justify-between items-start mb-4 relative z-10"><div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-lg shadow-inner"><i class="fas fa-calendar-check"></i></div><span class="bg-indigo-100 text-indigo-800 text-[10px] font-black px-3 py-1.5 rounded-lg border border-indigo-200">MI BALANCE</span></div><p class="text-indigo-700 text-[10px] font-black uppercase tracking-widest mb-1 relative z-10">VERIFICADO (MES)</p></div>
-                        <h3 class="text-4xl font-black text-slate-900 relative z-10 mt-4" id="dash-personal">$0.00</h3>
-                    </div>
+                    <div class="bg-gradient-to-br from-indigo-50 to-blue-50 border border-indigo-100 p-6 rounded-2xl shadow-sm relative overflow-hidden flex flex-col justify-between"><i class="fas fa-wallet absolute -right-4 -top-4 text-indigo-500/10 text-8xl"></i><div><div class="flex justify-between items-start mb-4 relative z-10"><div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-lg shadow-inner"><i class="fas fa-calendar-check"></i></div><span class="bg-indigo-100 text-indigo-800 text-[10px] font-black px-3 py-1.5 rounded-lg border border-indigo-200">MI BALANCE</span></div><p class="text-indigo-700 text-[10px] font-black uppercase tracking-widest mb-1 relative z-10">VERIFICADO (MES)</p></div><h3 class="text-4xl font-black text-slate-900 relative z-10 mt-4" id="dash-personal">$0.00</h3></div>
                     <div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm relative overflow-hidden flex flex-col"><div class="flex justify-between items-center mb-2"><p class="text-slate-500 text-[10px] font-black uppercase tracking-widest">Depósitos (7 días)</p><i class="fas fa-chart-line text-emerald-400"></i></div><div class="flex-1 relative min-h-[120px]"><canvas id="chart-week"></canvas></div></div>
                     <div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm relative overflow-hidden flex flex-col"><div class="flex justify-between items-center mb-2"><p class="text-slate-500 text-[10px] font-black uppercase tracking-widest">Histórico (3 meses)</p><i class="fas fa-chart-bar text-blue-400"></i></div><div class="flex-1 relative min-h-[120px]"><canvas id="chart-months"></canvas></div></div>
                 </div>
@@ -161,7 +137,7 @@
                         <div class="bg-emerald-50 p-5 rounded-2xl border border-emerald-100"><p class="text-[10px] font-black text-slate-500 uppercase">Total Pagado</p><h3 class="text-3xl font-black text-emerald-600" id="gus-dash-val-ganados">$0.00</h3></div>
                     </div>
                     <div class="grid grid-cols-1 mt-6"><div class="bg-white border border-emerald-100 rounded-2xl shadow-sm overflow-hidden flex flex-col"><div class="px-6 py-4 bg-emerald-50/50"><h3 class="text-sm font-black text-emerald-900"><i class="fas fa-trophy mr-1 text-amber-500"></i>Top 5 Ganadores Históricos</h3></div><div class="overflow-x-auto"><table class="w-full text-left border-collapse"><tbody id="gus-table-top-ganadores" class="divide-y divide-slate-100"></tbody></table></div></div></div>
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-indigo-100 pb-2 mt-8 pt-4 gap-4"><h2 class="text-xl font-black text-indigo-900"><i class="fas fa-users-cog mr-2 text-indigo-500"></i>Rendimiento de Influyentes</h2><div class="flex items-center gap-2"><label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Mes:</label><input type="month" id="gus-inf-month-filter" class="bg-indigo-50 border border-indigo-200 rounded-xl px-3 py-1.5 text-sm font-bold text-indigo-800 outline-none"></div></div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-indigo-100 pb-2 mt-8 pt-4 gap-4"><h2 class="text-xl font-black text-indigo-900"><i class="fas fa-users-cog mr-2 text-indigo-500"></i>Rendimiento de Influyentes</h2><div class="flex items-center gap-2"><label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Mes:</label><input type="month" id="gus-inf-month-filter" onchange="updateAllViews()" class="bg-indigo-50 border border-indigo-200 rounded-xl px-3 py-1.5 text-sm font-bold text-indigo-800 outline-none"></div></div>
                     <div class="overflow-x-auto mt-4"><table class="w-full text-left border-collapse resp-table"><thead class="bg-indigo-50 border-b border-indigo-100 text-[10px] font-black text-indigo-800 uppercase hidden md:table-header-group"><tr><th class="p-3 pl-4">Influyente</th><th class="p-3">Total Referidos</th><th class="p-3">Depósitos</th><th class="p-3">Retiros</th><th class="p-3">Neto</th><th class="p-3 text-right">Comisión Plat.</th><th class="p-3 pr-4 text-right">Comisión Pagar</th></tr></thead><tbody id="gus-table-influencers" class="divide-y divide-slate-100 text-sm"></tbody></table></div>
                 </div>
 
@@ -170,11 +146,69 @@
                         <div class="px-6 py-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50"><h2 class="text-lg font-black text-slate-800">Últimos Movimientos (Mes)</h2></div>
                         <div class="overflow-x-auto"><table class="w-full text-left border-collapse resp-table"><thead class="bg-slate-50 border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest hidden md:table-header-group"><tr><th class="p-4 pl-6">Fecha y Hora</th><th class="p-4">Monto</th><th class="p-4">Concepto</th><th class="p-4">Cuenta</th><th class="p-4">Estado</th><th class="p-4">Ref/Comp</th><th class="p-4 pr-6 text-center">Acción</th></tr></thead><tbody id="dash-table-body"></tbody></table></div>
                         <div id="pagination-dash" class="hidden px-6 py-4 border-t border-slate-100 bg-slate-50/50 justify-between items-center"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Total: <span id="total-reg-dash">0</span></span><div class="flex items-center gap-3"><button onclick="changePage('dash', -1)" id="btn-prev-dash" class="w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-600 flex items-center justify-center hover:bg-slate-100 disabled:opacity-50"><i class="fas fa-chevron-left text-xs"></i></button><span class="text-xs font-bold text-slate-600">Pág. <span id="page-num-dash">1</span> / <span id="page-tot-dash">1</span></span><button onclick="changePage('dash', 1)" id="btn-next-dash" class="w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-600 flex items-center justify-center hover:bg-slate-100 disabled:opacity-50"><i class="fas fa-chevron-right text-xs"></i></button></div></div>
-                        <div id="dash-empty-state" class="hidden flex-col items-center justify-center p-12 text-center"><div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 text-2xl mb-4"><i class="fas fa-inbox"></i></div><h3 class="text-sm font-bold text-slate-700">No hay registros este mes</h3></div>
                     </div>
                 </div>
             </div>
 
+            <!-- CARGA DE ARCHIVOS (Backoffice y Bancario) -->
+            <div id="tab-archivos" class="hidden fade-in tab-content">
+                <div class="max-w-5xl mx-auto space-y-6">
+                    <h2 class="text-2xl font-black text-slate-800"><i class="fas fa-cloud-upload-alt mr-2 text-indigo-500"></i>Centro de Carga de Archivos</h2>
+
+                    <div class="bg-white border border-blue-200 rounded-3xl shadow-sm p-6 sm:p-8">
+                        <h3 class="text-lg font-black text-blue-900 mb-2"><i class="fas fa-university mr-2"></i>1. Subir Movimientos Bancarios</h3>
+                        <p class="text-xs text-slate-500 mb-4">Sube el extracto bancario de Tito o Jesús. (Este archivo alimenta la base de datos para la conciliación y auditoría).</p>
+                        <div id="admin-select-user-bank" class="mb-4">
+                            <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2 ml-1">Asignar transacciones a: *</label>
+                            <div class="flex gap-4">
+                                <label class="flex-1 relative cursor-pointer"><input type="radio" name="bank-assign" value="jesus" class="peer sr-only" checked><div class="p-3 border rounded-xl peer-checked:border-blue-500 peer-checked:bg-blue-50 text-center text-sm font-bold">Cuenta Jesús</div></label>
+                                <label class="flex-1 relative cursor-pointer"><input type="radio" name="bank-assign" value="tito" class="peer sr-only"><div class="p-3 border rounded-xl peer-checked:border-blue-500 peer-checked:bg-blue-50 text-center text-sm font-bold">Cuenta Tito</div></label>
+                            </div>
+                        </div>
+                        <input type="file" id="upload-bank-file" accept=".xlsx, .xls, .csv" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-blue-50 file:text-blue-700 cursor-pointer border border-slate-200 rounded-xl" onchange="handleBankUpload(event)">
+                        <div id="bank-preview-container" class="hidden flex-col gap-4 mt-4">
+                            <div class="overflow-x-auto max-h-60"><table class="w-full text-left text-xs"><tbody id="bank-preview-body" class="divide-y divide-slate-100"></tbody></table></div>
+                            <button type="button" id="btn-upload-bank" onclick="submitBankData()" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg transition-colors">Guardar Bancos en Sistema</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-teal-200 rounded-3xl shadow-sm p-6 sm:p-8">
+                        <h3 class="text-lg font-black text-teal-900 mb-2"><i class="fas fa-file-excel mr-2"></i>2. Subir Reporte Backoffice</h3>
+                        <p class="text-xs text-slate-500 mb-4">Sube el reporte de transacciones descargado de la plataforma (Sepybet o Chichesepy).</p>
+                        <div class="mb-4">
+                            <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2 ml-1">Seleccionar Agencia Origen: *</label>
+                            <div class="flex gap-4">
+                                <label class="flex-1 relative cursor-pointer"><input type="radio" name="bo-agency" value="Sepybet" class="peer sr-only" checked><div class="p-3 border rounded-xl peer-checked:border-teal-500 peer-checked:bg-teal-50 text-center text-sm font-bold text-teal-800">Sepybet</div></label>
+                                <label class="flex-1 relative cursor-pointer"><input type="radio" name="bo-agency" value="Chichesepy" class="peer sr-only"><div class="p-3 border rounded-xl peer-checked:border-orange-500 peer-checked:bg-orange-50 text-center text-sm font-bold text-orange-800">Chichesepy</div></label>
+                            </div>
+                        </div>
+                        <input type="file" id="upload-backoffice" accept=".xlsx, .xls, .csv" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-teal-50 file:text-teal-700 cursor-pointer border border-slate-200 rounded-xl" onchange="handleBackofficeUpload(event)">
+                        <button type="button" id="btn-upload-bo" onclick="submitBackofficeData()" class="hidden w-full mt-4 py-3 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl shadow-lg transition-colors">Guardar Reporte en Sistema</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONCILIACION -->
+            <div id="tab-conciliacion" class="hidden fade-in tab-content">
+                <div class="max-w-7xl mx-auto space-y-6">
+                    <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+                        <div class="px-6 py-5 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+                            <h3 class="text-lg font-black text-slate-800">Panel de Conciliación Inteligente</h3>
+                            <button onclick="renderConciliacion()" class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold shadow-sm hover:bg-slate-50"><i class="fas fa-sync-alt"></i> Buscar Matches</button>
+                        </div>
+                        <div class="overflow-x-auto p-4">
+                            <table class="w-full text-left border-collapse text-sm">
+                                <thead class="bg-slate-50 text-[10px] font-black text-slate-400 uppercase">
+                                    <tr><th class="p-3">ID Plataforma</th><th class="p-3">Jugador / Fecha</th><th class="p-3 text-right">Monto</th><th class="p-3">Comprobante Sugerido (Bancos)</th><th class="p-3 text-center">Acción</th></tr>
+                                </thead>
+                                <tbody id="table-conciliacion-body" class="divide-y divide-slate-100"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REGISTRO MANUAL -->
             <div id="tab-register" class="hidden fade-in tab-content">
                 <div class="max-w-2xl mx-auto bg-white border border-slate-200 rounded-3xl shadow-xl overflow-hidden">
                     <div class="px-6 py-8 sm:p-10 border-b border-slate-100 bg-gradient-to-br from-slate-50 to-white relative overflow-hidden"><h2 class="text-2xl font-black text-slate-800 relative z-10">Nuevo Registro Manual</h2></div>
@@ -201,29 +235,9 @@
                         <button type="submit" class="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg transition-all">Guardar Registro Manual</button>
                     </form>
                 </div>
-
-                <div class="max-w-2xl mx-auto bg-white border border-slate-200 rounded-3xl shadow-xl overflow-hidden mt-8">
-                    <div class="px-6 py-6 border-b border-slate-100 bg-gradient-to-br from-slate-50 to-white relative">
-                        <h2 class="text-xl font-black text-slate-800"><i class="fas fa-university text-blue-500 mr-2"></i>Carga Masiva Bancaria (CSV/Excel)</h2>
-                        <p class="text-xs text-slate-500 mt-1">Sube el documento del banco. El sistema extraerá <b>Fecha (con hora)</b>, <b>Concepto</b> y <b>Monto</b> según si es Crédito o Débito.</p>
-                    </div>
-                    <div class="p-6 space-y-6">
-                        <div id="admin-select-user-bank" class="hidden">
-                            <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-3 ml-1">Asignar a Cuenta *</label>
-                            <div class="flex gap-4">
-                                <label class="flex-1 relative cursor-pointer group"><input type="radio" name="bank-assign" value="jesus" class="peer sr-only" checked><div class="absolute inset-0 rounded-xl border-2 border-slate-200 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 transition-all"></div><div class="relative p-4 text-center"><i class="fas fa-user text-slate-400 peer-checked:text-indigo-600 text-xl mb-2"></i><div class="text-sm font-bold text-slate-600 peer-checked:text-indigo-800">Jesús</div></div></label>
-                                <label class="flex-1 relative cursor-pointer group"><input type="radio" name="bank-assign" value="tito" class="peer sr-only"><div class="absolute inset-0 rounded-xl border-2 border-slate-200 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 transition-all"></div><div class="relative p-4 text-center"><i class="fas fa-user-tie text-slate-400 peer-checked:text-indigo-600 text-xl mb-2"></i><div class="text-sm font-bold text-slate-600 peer-checked:text-indigo-800">Tito</div></div></label>
-                            </div>
-                        </div>
-                        <div><input type="file" id="upload-bank-file" accept=".xlsx, .xls, .csv" class="block w-full text-sm text-slate-500 file:mr-4 file:py-3 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-bold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer border-2 border-slate-200 rounded-xl" onchange="handleBankUpload(event)"></div>
-                        <div id="bank-preview-container" class="hidden flex-col gap-4 mt-6">
-                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 overflow-x-auto max-h-60"><table class="w-full text-left text-xs"><thead class="text-[10px] font-black text-slate-500 uppercase border-b border-slate-200"><tr><th class="pb-2">Fecha y Hora</th><th class="pb-2">Concepto</th><th class="pb-2 text-right">Monto</th><th class="pb-2 text-center">Ref/Comp</th><th class="pb-2 text-center"><i class="fas fa-cog"></i></th></tr></thead><tbody id="bank-preview-body" class="divide-y divide-slate-100"></tbody></table></div>
-                            <button type="button" id="btn-upload-bank" onclick="submitBankData()" class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg transition-colors"><i class="fas fa-upload mr-2"></i> Subir Registros al Sistema</button>
-                        </div>
-                    </div>
-                </div>
             </div>
 
+            <!-- AUDITORIA / APROBACION TRANSACCIONES -->
             <div id="tab-auditoria" class="hidden fade-in tab-content">
                 <div class="max-w-7xl mx-auto">
                     <div class="bg-white border border-slate-200 p-3 rounded-2xl shadow-sm mb-6">
@@ -239,20 +253,23 @@
                     </div>
                     <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col">
                         <div class="px-6 py-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
-                            <h2 class="text-lg font-black text-slate-800">Historial Completo</h2>
+                            <h2 class="text-lg font-black text-slate-800">Aprobación y Auditoría</h2>
                             <div class="flex gap-2 items-center">
                                 <input type="text" id="mass-comment" placeholder="Comentario global..." class="bg-white border border-slate-200 rounded-lg px-3 py-1.5 text-xs outline-none hidden md:block">
                                 <button onclick="approveSelected()" class="px-3 py-1.5 rounded-lg bg-emerald-500 text-white hover:bg-emerald-600 text-xs font-bold transition-colors shadow-sm hidden md:block"><i class="fas fa-check-double mr-1"></i> Aprobar Sel.</button>
                                 <button onclick="fetchData(true)" class="w-9 h-9 rounded-full bg-slate-100 text-slate-600 hover:text-indigo-600 flex items-center justify-center"><i class="fas fa-sync-alt text-xs"></i></button>
                             </div>
                         </div>
-                        <div class="overflow-x-auto"><table class="w-full text-left border-collapse resp-table"><thead class="bg-slate-50 border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest hidden md:table-header-group"><tr><th class="p-4 pl-6 w-10"><input type="checkbox" id="check-all-audit" onclick="toggleAllAuditChecks()" class="w-4 h-4 rounded border-slate-300"></th><th class="p-4">Fecha y Hora</th><th class="p-4">Monto</th><th class="p-4">Concepto</th><th class="p-4">Cuenta</th><th class="p-4">Estado</th><th class="p-4">Ref/Comp</th><th class="p-4">Comentario</th><th class="p-4 pr-6 text-center">Acción</th></tr></thead><tbody id="audit-table-body"></tbody></table></div>
+                        <div class="overflow-x-auto"><table class="w-full text-left border-collapse resp-table"><thead class="bg-slate-50 border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest hidden md:table-header-group"><tr>
+                            <th class="p-4 pl-6 w-10"><input type="checkbox" id="check-all-audit" onclick="toggleAllAuditChecks()" class="w-4 h-4 rounded border-slate-300"></th>
+                            <th class="p-4">Fecha y Hora</th><th class="p-4">Monto</th><th class="p-4">Concepto</th><th class="p-4">Cuenta</th><th class="p-4">Estado</th><th class="p-4">Ref/Comp</th><th class="p-4">Comentario</th><th class="p-4 pr-6 text-center">Acción</th></tr></thead><tbody id="audit-table-body"></tbody></table></div>
                         <div id="pagination-audit" class="hidden px-6 py-4 border-t border-slate-100 bg-slate-50/50 justify-between items-center"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Total: <span id="total-reg-audit">0</span></span><div class="flex items-center gap-3"><button onclick="changePage('audit', -1)" id="btn-prev-audit" class="w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-600 flex items-center justify-center hover:bg-slate-100 disabled:opacity-50"><i class="fas fa-chevron-left text-xs"></i></button><span class="text-xs font-bold text-slate-600">Pág. <span id="page-num-audit">1</span> / <span id="page-tot-audit">1</span></span><button onclick="changePage('audit', 1)" id="btn-next-audit" class="w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-600 flex items-center justify-center hover:bg-slate-100 disabled:opacity-50"><i class="fas fa-chevron-right text-xs"></i></button></div></div>
                         <div id="audit-empty-state" class="hidden flex-col items-center justify-center p-12 text-center"><div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 text-2xl mb-4"><i class="fas fa-search"></i></div><h3 class="text-sm font-bold text-slate-700">No hay registros</h3></div>
                     </div>
                 </div>
             </div>
 
+            <!-- ADELANTOS GUSSEPY -->
             <div id="tab-gussepy" class="hidden fade-in tab-content">
                 <div class="max-w-5xl mx-auto space-y-6">
                     <div class="bg-white border border-slate-200 rounded-2xl shadow-md overflow-hidden" id="panel-add-gussepy">
@@ -260,16 +277,17 @@
                         <form id="form-gussepy" class="p-6 space-y-6"><div class="grid grid-cols-1 sm:grid-cols-3 gap-6"><input type="date" id="gus-date" required class="block w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-sm font-bold"><input type="text" id="gus-amount" inputmode="decimal" required placeholder="Monto $" class="block w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-lg font-black"><input type="text" id="gus-concept" placeholder="Detalle..." class="block w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-sm font-medium"></div><button type="submit" class="px-8 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow-md">Guardar Solicitud</button></form>
                     </div>
                     <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
-                        <div class="px-6 py-4 bg-slate-50/50 flex items-center justify-between"><h3 class="text-sm font-black text-slate-700">Historial de Adelantos</h3><input type="month" id="gus-month-filter" class="bg-white border border-slate-200 rounded-lg px-2 py-1 text-xs font-bold outline-none focus:border-amber-500"></div>
+                        <div class="px-6 py-4 bg-slate-50/50 flex items-center justify-between"><h3 class="text-sm font-black text-slate-700">Historial de Adelantos</h3><input type="month" id="gus-month-filter" onchange="updateAllViews()" class="bg-white border border-slate-200 rounded-lg px-2 py-1 text-xs font-bold outline-none focus:border-amber-500"></div>
                         <div class="overflow-x-auto"><table class="w-full text-left border-collapse resp-table"><thead class="bg-white border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase hidden md:table-header-group"><tr><th class="p-4 pl-6">Fecha</th><th class="p-4">Monto</th><th class="p-4">Concepto</th><th class="p-4">Estado</th><th class="p-4">Detalle</th><th class="p-4 pr-6 text-center">Acción</th></tr></thead><tbody id="table-gussepy-advances"></tbody></table></div>
                         <div id="pagination-gussepy" class="hidden px-6 py-4 border-t border-slate-100 bg-slate-50/50 justify-between items-center"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Total: <span id="total-reg-gussepy">0</span></span><div class="flex items-center gap-3"><button onclick="changePage('gussepy', -1)" id="btn-prev-gussepy" class="w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-600 flex items-center justify-center hover:bg-slate-100 disabled:opacity-50"><i class="fas fa-chevron-left text-xs"></i></button><span class="text-xs font-bold text-slate-600">Pág. <span id="page-num-gussepy">1</span> / <span id="page-tot-gussepy">1</span></span><button onclick="changePage('gussepy', 1)" id="btn-next-gussepy" class="w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-600 flex items-center justify-center hover:bg-slate-100 disabled:opacity-50"><i class="fas fa-chevron-right text-xs"></i></button></div></div>
                     </div>
                 </div>
             </div>
 
+            <!-- DASHBOARD BONOS -->
             <div id="tab-maria-dash" class="hidden fade-in theme-maria tab-content">
                 <div class="max-w-6xl mx-auto space-y-6">
-                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-rose-100 flex items-center justify-between"><h2 class="text-sm font-black text-rose-900"><i class="fas fa-calendar-alt text-rose-500 mr-2"></i> Mes a Consultar:</h2><input type="month" id="bonos-month-filter" class="bg-rose-50 border border-rose-200 rounded-xl px-4 py-2 text-sm font-bold text-rose-800 outline-none"></div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-rose-100 flex items-center justify-between"><h2 class="text-sm font-black text-rose-900"><i class="fas fa-calendar-alt text-rose-500 mr-2"></i> Mes a Consultar:</h2><input type="month" id="bonos-month-filter" onchange="updateAllViews()" class="bg-rose-50 border border-rose-200 rounded-xl px-4 py-2 text-sm font-bold text-rose-800 outline-none"></div>
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                         <div class="bg-rose-50 p-5 rounded-2xl border border-rose-100"><p class="text-[10px] font-black text-slate-500 uppercase">Bonos Emitidos</p><h3 class="text-3xl font-black text-slate-800" id="dash-bonos-qty">0</h3></div>
                         <div class="bg-rose-50 p-5 rounded-2xl border border-rose-100"><p class="text-[10px] font-black text-slate-500 uppercase">Inversión Total</p><h3 class="text-3xl font-black text-rose-600" id="dash-bonos-val">$0.00</h3></div>
@@ -283,6 +301,7 @@
                 </div>
             </div>
 
+            <!-- EMITIR BONO -->
             <div id="tab-maria-add" class="hidden fade-in theme-maria tab-content">
                 <div class="max-w-2xl mx-auto">
                     <div class="bg-white border border-rose-100 rounded-3xl shadow-xl overflow-hidden">
@@ -304,11 +323,12 @@
                 </div>
             </div>
 
+            <!-- HISTORIAL BONOS -->
             <div id="tab-maria-list" class="hidden fade-in theme-maria tab-content">
                 <div class="max-w-6xl mx-auto space-y-6">
                     <div class="bg-white border border-rose-100 p-3 rounded-2xl shadow-sm mb-4">
                         <div class="flex flex-col lg:flex-row items-end gap-3 w-full">
-                            <div class="w-full lg:w-auto flex-1"><label class="block text-[10px] font-black text-slate-400 uppercase mb-1">Fecha</label><input type="date" id="filter-bono-date" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-bold outline-none"></div>
+                            <div class="w-full lg:w-auto flex-1"><label class="block text-[10px] font-black text-slate-400 uppercase mb-1">Fecha Exacta</label><input type="date" id="filter-bono-date" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-bold outline-none"></div>
                             <div class="w-full lg:w-auto flex-1"><label class="block text-[10px] font-black text-slate-400 uppercase mb-1">Agencia</label><select id="filter-bono-agency" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-bold outline-none"><option value="all">Todas</option><option value="Sepybet">Sepybet</option><option value="Chichesepy">Chichesepy</option></select></div>
                             <div class="w-full lg:w-auto flex-1"><label class="block text-[10px] font-black text-slate-400 uppercase mb-1">Estado</label><select id="filter-bono-status" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-bold outline-none"><option value="all">Todos</option><option value="Ganado">Ganados</option><option value="Entregado">Entregados</option></select></div>
                             <div class="w-full lg:w-auto flex-1"><label class="block text-[10px] font-black text-slate-400 uppercase mb-1">Jugador</label><input type="text" id="filter-bono-dest" oninput="applyBonoFilters()" placeholder="ID Jugador..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-bold outline-none"></div>
@@ -323,6 +343,7 @@
                 </div>
             </div>
 
+            <!-- GIROS GRATIS -->
             <div id="tab-giros-add" class="hidden fade-in theme-maria tab-content">
                 <div class="max-w-2xl mx-auto bg-white border border-indigo-200 rounded-3xl shadow-xl overflow-hidden">
                     <div class="px-6 py-8 sm:p-10 border-b border-indigo-50 bg-gradient-to-br from-indigo-50 to-white"><h2 class="text-2xl font-black text-indigo-900"><i class="fas fa-sync-alt mr-2 text-indigo-500"></i>Otorgar Giros Gratis</h2></div>
@@ -344,11 +365,13 @@
                 </div>
             </div>
 
+            <!-- HISTORIAL GIROS -->
             <div id="tab-giros-list" class="hidden fade-in theme-maria tab-content">
                 <div class="max-w-6xl mx-auto space-y-6">
                     <div class="bg-white border border-indigo-100 p-3 rounded-2xl shadow-sm mb-4">
                         <div class="flex flex-col lg:flex-row items-end gap-3 w-full">
                             <div class="w-full lg:w-auto flex-1"><label class="block text-[10px] font-black text-slate-400 uppercase mb-1">Fecha</label><input type="date" id="filter-giro-date" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-bold outline-none"></div>
+                            <div class="w-full lg:w-auto flex-1"><label class="block text-[10px] font-black text-slate-400 uppercase mb-1">Estado</label><select id="filter-giro-status" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-bold outline-none"><option value="all">Todos</option><option value="Ganado">Ganados</option><option value="Entregado">Entregados</option></select></div>
                             <div class="w-full lg:w-auto flex-1"><label class="block text-[10px] font-black text-slate-400 uppercase mb-1">Jugador</label><input type="text" id="filter-giro-dest" oninput="applyGiroFilters()" placeholder="ID Jugador..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-bold outline-none"></div>
                             <div class="flex gap-2 w-full lg:w-auto mt-2 lg:mt-0"><button onclick="applyGiroFilters()" class="flex-1 lg:flex-none px-6 py-2.5 bg-indigo-600 text-white rounded-xl text-sm font-bold shadow-md">Filtrar</button><button onclick="clearGiroFilters()" class="flex-1 lg:flex-none px-6 py-2.5 bg-slate-100 text-slate-600 rounded-xl text-sm font-bold">Limpiar</button></div>
                         </div>
@@ -361,6 +384,7 @@
                 </div>
             </div>
 
+            <!-- REGISTRAR REFERIDO -->
             <div id="tab-maria-ref-add" class="hidden fade-in theme-maria tab-content">
                 <div class="max-w-2xl mx-auto bg-white border border-indigo-100 rounded-3xl shadow-xl overflow-hidden">
                     <div class="px-6 py-8 sm:p-10 border-b border-indigo-50 bg-gradient-to-br from-indigo-50 to-white"><h2 class="text-2xl font-black text-slate-800">Registrar Nuevo Referido</h2></div>
@@ -374,6 +398,7 @@
                 </div>
             </div>
 
+            <!-- HISTORIAL REFERIDOS -->
             <div id="tab-maria-ref-list" class="hidden fade-in theme-maria tab-content">
                 <div class="max-w-7xl mx-auto space-y-6">
                     <div class="bg-white border border-indigo-100 p-3 rounded-2xl shadow-sm mb-4"><div class="flex flex-col lg:flex-row items-end gap-3 w-full"><div class="w-full lg:w-auto flex-1"><label class="block text-[10px] font-black text-slate-400 uppercase mb-1">Nombre</label><input type="text" id="filter-ref-name" oninput="applyRefFilters()" placeholder="Buscar..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-bold"></div><div class="flex gap-2 w-full lg:w-auto mt-2 lg:mt-0"><button onclick="applyRefFilters()" class="flex-1 lg:flex-none px-6 py-2.5 bg-indigo-600 text-white rounded-xl text-sm font-bold shadow-md">Filtrar</button><button onclick="clearRefFilters()" class="flex-1 lg:flex-none px-6 py-2.5 bg-slate-100 text-slate-600 rounded-xl text-sm font-bold">Limpiar</button></div></div></div>
@@ -381,6 +406,7 @@
                 </div>
             </div>
 
+            <!-- CARGA AFILIADOS -->
             <div id="tab-melanie-add" class="hidden fade-in tab-content">
                 <div class="max-w-6xl mx-auto space-y-6">
                     <div class="bg-white border border-pink-200 rounded-3xl shadow-xl overflow-hidden max-w-4xl mx-auto mt-8">
@@ -413,6 +439,7 @@
                 </div>
             </div>
 
+            <!-- HISTORIAL RENDIMIENTOS -->
             <div id="tab-melanie-list" class="hidden fade-in tab-content">
                 <div class="max-w-7xl mx-auto space-y-6">
                     <div class="bg-white border border-pink-100 p-3 rounded-2xl shadow-sm mb-4"><div class="flex flex-col lg:flex-row items-end gap-3 w-full"><div class="w-full lg:w-auto flex-1"><label class="block text-[10px] font-black text-slate-400 uppercase mb-1">Influyente</label><input type="text" id="filter-rend-inf" oninput="applyMelFilters()" placeholder="Nombre..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-bold focus:border-pink-500"></div><div class="w-full lg:w-auto flex-1"><label class="block text-[10px] font-black text-slate-400 uppercase mb-1">Jugador</label><input type="text" id="filter-rend-jug" oninput="applyMelFilters()" placeholder="Nombre..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-bold focus:border-pink-500"></div><div class="flex gap-2 w-full lg:w-auto mt-2 lg:mt-0"><button onclick="applyMelFilters()" class="flex-1 lg:flex-none px-6 py-2.5 bg-pink-600 text-white rounded-xl text-sm font-bold shadow-md">Filtrar</button><button onclick="clearRendFilters()" class="flex-1 lg:flex-none px-6 py-2.5 bg-slate-100 text-slate-600 rounded-xl text-sm font-bold">Limpiar</button></div></div></div>
@@ -420,18 +447,20 @@
                 </div>
             </div>
 
+            <!-- INACTIVOS -->
             <div id="tab-inactivos" class="hidden fade-in tab-content">
                 <div class="max-w-6xl mx-auto space-y-6 mt-8">
                     <div class="bg-white border border-amber-200 rounded-3xl shadow-xl overflow-hidden">
                         <div class="px-6 py-5 border-b border-amber-100 bg-amber-50/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <h2 class="text-lg font-black text-amber-900"><i class="fas fa-user-clock mr-2 text-amber-500"></i>Jugadores Inactivos (+10 Días)</h2>
-                            <input type="text" id="filter-inactivos-jugador" oninput="updateAllViews()" placeholder="Buscar jugador..." class="bg-white border border-amber-200 rounded-xl px-4 py-2 text-sm font-bold outline-none focus:border-amber-500 w-full sm:w-64">
+                            <input type="text" id="filter-inactivos-jugador" oninput="updateAllViews()" placeholder="Buscar jugador o influencer..." class="bg-white border border-amber-200 rounded-xl px-4 py-2 text-sm font-bold outline-none focus:border-amber-500 w-full sm:w-64">
                         </div>
                         <div class="overflow-x-auto"><table class="w-full text-left border-collapse resp-table"><thead class="bg-white border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase hidden md:table-header-group"><tr><th class="p-4 pl-6">Influencer</th><th class="p-4">Jugador</th><th class="p-4">Último Mov.</th><th class="p-4">Días Inactivo</th><th class="p-4 text-center">Estado</th></tr></thead><tbody id="table-inactivos-list"></tbody></table></div><div id="pagination-inactivos" class="hidden px-6 py-4 border-t border-slate-100 bg-slate-50/50 justify-between items-center"><span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Total: <span id="total-reg-inactivos">0</span></span><div class="flex items-center gap-3"><button onclick="changePage('inactivos', -1)" id="btn-prev-inactivos" class="w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-600 flex items-center justify-center hover:bg-slate-100 disabled:opacity-50"><i class="fas fa-chevron-left text-xs"></i></button><span class="text-xs font-bold text-slate-600">Pág. <span id="page-num-inactivos">1</span> / <span id="page-tot-inactivos">1</span></span><button onclick="changePage('inactivos', 1)" id="btn-next-inactivos" class="w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-600 flex items-center justify-center hover:bg-slate-100 disabled:opacity-50"><i class="fas fa-chevron-right text-xs"></i></button></div></div>
                     </div>
                 </div>
             </div>
 
+            <!-- PANEL VIP -->
             <div id="tab-influencer-dash" class="hidden fade-in tab-content">
                 <div class="max-w-5xl mx-auto space-y-6">
                     <div class="bg-gradient-to-r from-purple-800 to-indigo-900 rounded-3xl p-8 shadow-xl text-white">
@@ -453,6 +482,7 @@
                 </div>
             </div>
 
+            <!-- DETALLE DE JUGADOR VIP -->
             <div id="tab-influencer-details" class="hidden fade-in tab-content">
                 <div class="max-w-5xl mx-auto space-y-6">
                     <div class="bg-gradient-to-r from-purple-800 to-indigo-900 rounded-3xl p-6 shadow-xl text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -460,7 +490,7 @@
                             <button onclick="switchTab('tab-influencer-dash')" class="mb-4 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-bold transition-colors"><i class="fas fa-arrow-left mr-2"></i> Volver al Panel</button>
                             <h2 class="text-xl font-black mb-1"><i class="fas fa-address-book mr-2"></i>Historial Detallado por Jugador</h2>
                         </div>
-                        <div class="flex flex-col sm:flex-row gap-2 w-full md:w-auto"><select id="inf-detail-player" onchange="resetPagesAndUpdate()" class="bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-sm font-bold text-white outline-none w-full sm:w-48"><option value="" class="text-slate-800">Seleccionar Jugador...</option></select><input type="month" id="inf-detail-month" class="bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-sm font-bold text-white outline-none w-full sm:w-auto"></div>
+                        <div class="flex flex-col sm:flex-row gap-2 w-full md:w-auto"><select id="inf-detail-player" onchange="resetPagesAndUpdate()" class="bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-sm font-bold text-white outline-none w-full sm:w-48"><option value="" class="text-slate-800">Seleccionar Jugador...</option></select><input type="month" id="inf-detail-month" onchange="updateAllViews()" class="bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-sm font-bold text-white outline-none w-full sm:w-auto"></div>
                     </div>
                     <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col">
                         <div class="px-6 py-5 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center"><h3 class="text-lg font-black text-slate-800" id="inf-detail-title">Movimientos Diarios</h3></div>
@@ -474,8 +504,9 @@
         </main>
     </div>
 
+    <!-- MODALES VARIOS -->
     <div id="modal-password" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4"><div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden fade-in"><div class="p-6 text-center border-b border-slate-100 bg-slate-50"><h3 class="text-lg font-black text-slate-800">Cambiar Contraseña</h3></div><form id="form-password" class="p-6 space-y-4"><input type="password" id="new-password" required minlength="4" placeholder="Nueva Clave..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold"><div class="flex gap-3"><button type="button" onclick="closePasswordModal()" class="flex-1 py-3 bg-slate-100 rounded-xl font-bold">Cancelar</button><button type="submit" class="flex-1 py-3 bg-slate-800 text-white rounded-xl font-bold">Actualizar</button></div></form></div></div>
-    <div id="modal-edit" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4"><div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden fade-in"><div class="p-6 text-center border-b border-slate-100 bg-slate-50"><h3 class="text-lg font-black text-slate-800">Editar Registro</h3></div><div class="p-6 space-y-4"><input type="hidden" id="edit-id"><input type="datetime-local" id="edit-date" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3"><input type="text" id="edit-amount" inputmode="decimal" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3"><input type="text" id="edit-concept" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3"><div class="flex gap-3"><button onclick="closeEditModal()" class="flex-1 py-3 bg-slate-100 rounded-xl font-bold">Cancelar</button><button id="btn-edit-confirm" onclick="confirmEdit()" class="flex-1 py-3 bg-blue-50 text-white rounded-xl font-bold">Guardar</button></div></div></div></div>
+    <div id="modal-edit" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4"><div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden fade-in"><div class="p-6 text-center border-b border-slate-100 bg-slate-50"><h3 class="text-lg font-black text-slate-800">Editar Registro</h3></div><div class="p-6 space-y-4"><input type="hidden" id="edit-id"><input type="datetime-local" id="edit-date" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3"><input type="text" id="edit-amount" inputmode="decimal" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3"><input type="text" id="edit-concept" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3"><div class="flex gap-3"><button onclick="closeEditModal()" class="flex-1 py-3 bg-slate-100 rounded-xl font-bold">Cancelar</button><button id="btn-edit-confirm" onclick="confirmEdit()" class="flex-1 py-3 bg-blue-500 text-white rounded-xl font-bold">Guardar</button></div></div></div></div>
     <div id="modal-edit-rend" class="fixed inset-0 z-[55] bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4"><div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden fade-in border border-pink-200"><div class="p-6 text-center border-b border-pink-50 bg-pink-50"><h3 class="text-lg font-black text-slate-800">Modificar Rendimiento</h3></div><div class="p-6 space-y-4"><input type="hidden" id="edit-rend-id"><input type="date" id="edit-rend-date" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3"><input type="text" id="edit-rend-dep" inputmode="decimal" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3"><input type="text" id="edit-rend-ret" inputmode="decimal" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3"><div class="flex gap-3"><button onclick="closeEditRendModal()" class="flex-1 py-3 bg-slate-100 rounded-xl font-bold">Cancelar</button><button id="btn-edit-rend-confirm" onclick="confirmEditRend()" class="flex-1 py-3 bg-pink-600 text-white rounded-xl font-bold">Actualizar</button></div></div></div></div>
     <div id="modal-comprobante" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4"><div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden fade-in"><div class="p-6 text-center border-b border-slate-100 bg-slate-50"><h3 class="text-lg font-black text-slate-800">Dar Visto Bueno</h3></div><div class="p-6 space-y-4"><input type="text" id="input-receipt" placeholder="Comentario u Observación..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3"><div class="flex gap-3"><button onclick="closeModal()" class="flex-1 py-3 bg-slate-100 rounded-xl font-bold">Cancelar</button><button id="btn-verify-confirm" onclick="confirmVerify()" class="flex-1 py-3 bg-emerald-500 text-white rounded-xl font-bold">Aprobar</button></div></div></div></div>
     <div id="modal-gussepy" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4"><div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden fade-in"><div class="p-6 text-center border-b border-slate-100 bg-amber-50"><h3 class="text-lg font-black text-slate-800">Autorizar Adelanto</h3></div><div class="p-6 space-y-4"><input type="text" id="input-gussepy-detail" placeholder="Detalle..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3"><div class="flex gap-3"><button onclick="closeGussepyModal()" class="flex-1 py-3 bg-slate-100 rounded-xl font-bold">Cancelar</button><button id="btn-gussepy-confirm" onclick="confirmGussepyAuth()" class="flex-1 py-3 bg-amber-500 text-white rounded-xl font-bold">Autorizar</button></div></div></div></div>
@@ -483,79 +514,43 @@
     <div id="modal-superadmin" class="fixed inset-0 z-[60] bg-slate-900/80 backdrop-blur-sm hidden items-center justify-center p-4"><div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden fade-in border border-slate-700"><div class="p-6 text-center border-b border-slate-100 bg-slate-800"><h3 class="text-lg font-black text-white">Panel de Supervisor</h3></div><div class="p-6 space-y-4"><select id="superadmin-select" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700"><option value="1311397689">Vista Global (Supervisor)</option></select><div class="flex gap-3"><button onclick="closeSuperAdminSwitcher()" class="flex-1 py-3 bg-slate-100 rounded-xl font-bold">Cerrar</button><button onclick="confirmSwitchUser()" class="flex-1 py-3 bg-slate-800 text-white rounded-xl font-bold">Ingresar</button></div></div></div></div>
 
     <script>
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyUx3G_kaO_X--M7-c3MnFgL7dlT7QvcnOH27VqzQQCtXHyc44Vox1AtbkP4tjikgrOsg/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwDYBlKUUgce6NB9CsPU531EM-fdRgHupMKZsOOSwuXybd4asVxPVOazNZ43NLnKnE25w/exec';
 
         let USERS = { 'michelle': { name: 'Michelle', type: 'admin', icon: 'fa-shield-alt', color: 'bg-indigo-600', comision: 20 }, 'jesus': { name: 'Jesús', type: 'user', icon: 'fa-user', color: 'bg-[#0284c7]', comision: 20 }, 'tito': { name: 'Tito', type: 'user', icon: 'fa-user-tie', color: 'bg-[#16a34a]', comision: 20 }, 'gussepy': { name: 'Gussepy', type: 'master', icon: 'fa-crown', color: 'bg-amber-600', comision: 20 }, 'emilia': { name: 'M. Emilia', type: 'bonos', icon: 'fa-gift', color: 'bg-rose-600', comision: 20 }, 'melanie': { name: 'Melanie', type: 'cajero_afiliados', icon: 'fa-calculator', color: 'bg-pink-500', comision: 20 }, 'admin': { name: 'Afiliado VIP', type: 'influencer', icon: 'fa-bullhorn', color: 'bg-purple-600', comision: 20 }, '1311397689': { name: 'Supervisor', type: 'superadmin', icon: 'fa-user-secret', color: 'bg-slate-800', comision: 20 } };
         
         let currentUser = null, isSuperAdmin = false;
-        let records = [], advances = [], bonos = [], giros = [], referrals = [], rendimientos = [], allReceipts = [];
-        
-        let filters = { date: '', user: 'all', status: 'all', amount: '', text: '', type: 'all' }, bonoFilters = { date: '', dest: '', amount: '', agency: 'all', status: 'all' }, refFilters = { date: '', name: '', cedula: '', agency: 'all' }, giroFilters = { date: '', dest: '', agency: 'all' }, melFilters = { date: '', inf: '', jug: '' };
+        let records = [], advances = [], bonos = [], giros = [], referrals = [], rendimientos = [], allReceipts = [], backofficeRecords = [], boUploadTemp = [];
+        let filters = { date: '', user: 'all', status: 'all', amount: '', text: '', type: 'all' };
+        let bonoFilters = { date: '', dest: '', amount: '', agency: 'all', status: 'all' };
+        let refFilters = { date: '', name: '', cedula: '', agency: 'all' };
+        let giroFilters = { date: '', dest: '', agency: 'all', status: 'all' };
+        let melFilters = { date: '', inf: '', jug: '' };
         
         let pendingVerifyId = null, pendingAuthId = null, pendingBonoWinId = null, pendingGiroWinId = null;
-        let referidosChart = null, inactivityTimer, chartWeekInstance = null, chartMonthsInstance = null;
+        let inactivityTimer, chartWeekInstance = null, chartMonthsInstance = null;
         let currentPlayersList = [], uploadData = [], bankUploadData = []; 
 
         const fmt = v => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v || 0);
-        
-        const getVal = (v) => {
-            if(typeof v === 'number') return v;
-            if(!v || v === '') return 0;
-            let s = String(v).trim();
-            if(s.includes(',') && !s.includes('.')) s = s.replace(',', '.');
-            else s = s.replace(/,/g, '');
-            return parseFloat(s) || 0;
-        };
-
-        const isInf = (val) => { 
-            if(val === true) return true;
-            if(!val) return false;
-            const v = String(val).toLowerCase().trim(); 
-            return v==='true' || v==='verdadero' || v==='1' || v==='sí' || v==='si' || v==='yes'; 
-        };
-
+        const getVal = (v) => { if(typeof v === 'number') return v; if(!v || v === '') return 0; let s = String(v).trim(); if(s.includes(',') && !s.includes('.')) s = s.replace(',', '.'); else s = s.replace(/,/g, ''); return parseFloat(s) || 0; };
         const getLocalIsoDatetime = () => new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0,16);
-
-        function sortDataDesc(a, b) {
-            const dateDiff = new Date(b.date) - new Date(a.date);
-            if (dateDiff !== 0) return dateDiff;
-            const tA = parseInt((String(a.id).match(/\d+/) || [0])[0], 10);
-            const tB = parseInt((String(b.id).match(/\d+/) || [0])[0], 10);
-            return (tB || 0) - (tA || 0);
-        }
+        function sortDataDesc(a, b) { const dateDiff = new Date(b.date) - new Date(a.date); if (dateDiff !== 0) return dateDiff; const tA = parseInt((String(a.id).match(/\d+/) || [0])[0], 10); const tB = parseInt((String(b.id).match(/\d+/) || [0])[0], 10); return (tB || 0) - (tA || 0); }
         
         function parseExcelDate(dateVal) {
             if (!dateVal) return new Date();
-            if (typeof dateVal === 'number') { return new Date(1899, 11, 30 + dateVal); }
-            let s = String(dateVal).trim().replace(/"/g, '');
-            let datePart = s; let timePart = "12:00";
-            if (s.includes(',')) { let parts = s.split(','); datePart = parts[0].trim(); timePart = parts[1].trim(); } 
-            else if (s.includes(' ')) { let parts = s.split(' '); datePart = parts[0].trim(); timePart = parts.slice(1).join(' ').trim(); }
-            let dParts = datePart.split(/[-/]/);
-            let y = 0, m = 0, d = 0;
-            if (dParts.length === 3) { y = parseInt(dParts[0]); if (y < 100) y += 2000; m = parseInt(dParts[1]) - 1; d = parseInt(dParts[2]); } 
-            else { let fd = new Date(s.replace(/-/g, '/')); return isNaN(fd.getTime()) ? new Date() : fd; }
-            let tParts = timePart.match(/(\d+):(\d+)\s*(AM|PM|am|pm)?/i);
-            let h = 12, min = 0;
+            if (typeof dateVal === 'number') return new Date(1899, 11, 30 + dateVal);
+            let s = String(dateVal).trim().replace(/"/g, ''); let datePart = s; let timePart = "12:00";
+            if (s.includes(',')) { let parts = s.split(','); datePart = parts[0].trim(); timePart = parts[1].trim(); } else if (s.includes(' ')) { let parts = s.split(' '); datePart = parts[0].trim(); timePart = parts.slice(1).join(' ').trim(); }
+            let dParts = datePart.split(/[-/]/); let y = 0, m = 0, d = 0;
+            if (dParts.length === 3) { y = parseInt(dParts[0]); if (y < 100) y += 2000; m = parseInt(dParts[1]) - 1; d = parseInt(dParts[2]); } else { let fd = new Date(s.replace(/-/g, '/')); return isNaN(fd.getTime()) ? new Date() : fd; }
+            let tParts = timePart.match(/(\d+):(\d+)\s*(AM|PM|am|pm)?/i); let h = 12, min = 0;
             if (tParts) { h = parseInt(tParts[1]); min = parseInt(tParts[2]); let ampm = tParts[3] ? tParts[3].toUpperCase() : null; if (ampm === 'PM' && h < 12) h += 12; if (ampm === 'AM' && h === 12) h = 0; }
             return new Date(y, m, d, h, min, 0);
         }
-        
-        function excelToISO(serial) {
-            let d = parseExcelDate(serial);
-            const pad = n => n.toString().padStart(2, '0');
-            return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
-        }
-
-        const fmtDate = dStr => { 
-            if(!dStr) return ''; const d = new Date(dStr); 
-            if (dStr.includes('T') || dStr.includes(':')) return d.toLocaleString('es-ES', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-            d.setMinutes(d.getMinutes() + d.getTimezoneOffset()); return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }); 
-        };
+        function excelToISO(serial) { let d = parseExcelDate(serial); const pad = n => n.toString().padStart(2, '0'); return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`; }
+        const fmtDate = dStr => { if(!dStr) return ''; const d = new Date(dStr); if (dStr.includes('T') || dStr.includes(':')) return d.toLocaleString('es-ES', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }); d.setMinutes(d.getMinutes() + d.getTimezoneOffset()); return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }); };
 
         const PAGE_SIZE = 15;
         let pages = { dash: 1, audit: 1, gussepy: 1, bonos: 1, giros: 1, ref: 1, mel: 1, inactivos: 1, infdash: 1, infdetail: 1 };
-
         function resetPagesAndUpdate() { Object.keys(pages).forEach(k => pages[k] = 1); updateAllViews(); }
         function changePage(type, delta) { pages[type] += delta; updateAllViews(); }
 
@@ -563,49 +558,33 @@
             const total = dataArray.length; const totalPages = Math.ceil(total / PAGE_SIZE) || 1;
             if (pages[type] > totalPages) pages[type] = totalPages; if (pages[type] < 1) pages[type] = 1;
             const start = (pages[type] - 1) * PAGE_SIZE; const end = start + PAGE_SIZE;
-            
             const elNum = document.getElementById(`page-num-${type}`), elTot = document.getElementById(`page-tot-${type}`), elTotalReg = document.getElementById(`total-reg-${type}`);
             const btnPrev = document.getElementById(`btn-prev-${type}`), btnNext = document.getElementById(`btn-next-${type}`);
             const container = document.getElementById(`pagination-${type}`);
-            
             if(elNum) elNum.innerText = pages[type]; if(elTot) elTot.innerText = totalPages; if(elTotalReg) elTotalReg.innerText = total;
             if(btnPrev) btnPrev.disabled = pages[type] === 1; if(btnNext) btnNext.disabled = pages[type] === totalPages;
             if (container) { if (total === 0) { container.classList.add('hidden'); container.classList.remove('flex'); } else { container.classList.remove('hidden'); container.classList.add('flex'); } }
             return dataArray.slice(start, end);
         }
 
-        function changeGlobalMonth(newMonth) {
-            ['dash-month-filter', 'bonos-month-filter', 'inf-month-filter', 'gus-month-filter', 'inf-detail-month'].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.value = newMonth;
-            });
-            fetchData(false);
-        }
+        function changeGlobalMonth(newMonth) { ['dash-month-filter', 'bonos-month-filter', 'inf-month-filter', 'gus-month-filter', 'inf-detail-month'].forEach(id => { const el = document.getElementById(id); if (el) el.value = newMonth; }); fetchData(false); }
 
         window.onload = () => {
             const savedData = localStorage.getItem('sb_user_data');
             if (savedData) { const ud = JSON.parse(savedData); if (ud.baseType === 'superadmin') { isSuperAdmin = true; currentUser = ud.id; loginUI(USERS[ud.id] || ud); } else { currentUser = ud.id; loginUI(ud); } } else { showScreen('login'); }
-            
             const now = new Date(); const currentMonthStr = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
-            ['dash-month-filter', 'bonos-month-filter', 'inf-month-filter', 'gus-month-filter', 'inf-detail-month'].forEach(id => { 
-                const el = document.getElementById(id); 
-                if (el) { el.value = currentMonthStr; el.onchange = (e) => changeGlobalMonth(e.target.value); } 
-            });
-            
+            ['dash-month-filter', 'bonos-month-filter', 'inf-month-filter', 'gus-month-filter', 'inf-detail-month'].forEach(id => { const el = document.getElementById(id); if (el) { el.value = currentMonthStr; el.onchange = (e) => changeGlobalMonth(e.target.value); } });
             const searchInf = document.getElementById('inf-search'); if (searchInf) searchInf.onkeyup = resetPagesAndUpdate;
-            const todayStr = now.toISOString().split('T')[0]; 
-            const nowLocalTimeStr = getLocalIsoDatetime();
-
+            const todayStr = now.toISOString().split('T')[0]; const nowLocalTimeStr = getLocalIsoDatetime();
             ['gus-date', 'bono-date', 'ref-date', 'rend-date', 'giro-date'].forEach(id => { const el = document.getElementById(id); if (el) el.value = todayStr; });
             ['reg-date', 'edit-date'].forEach(id => { const el = document.getElementById(id); if (el) el.value = nowLocalTimeStr; });
-            
             const forms = [{ id: 'login-form', handler: handleLogin }, { id: 'register-form', handler: handleRegister }, { id: 'form-gussepy', handler: handleGussepy }, { id: 'form-bonos', handler: handleBono }, { id: 'form-giros', handler: handleGiro }, { id: 'form-referrals', handler: handleReferral }, { id: 'form-rendimiento', handler: handleRendimiento }];
             forms.forEach(form => { const el = document.getElementById(form.id); if (el) el.addEventListener('submit', form.handler); });
             ['mousemove', 'keydown', 'click', 'touchstart', 'scroll'].forEach(evt => document.addEventListener(evt, resetInactivityTimer));
         };
 
-        function logout() { localStorage.removeItem('sb_user_data'); currentUser = null; clearTimeout(inactivityTimer); showScreen('login'); records = []; advances = []; bonos = []; giros = []; referrals = []; rendimientos = []; window.location.reload(); }
-        function resetInactivityTimer() { clearTimeout(inactivityTimer); if (currentUser) inactivityTimer = setTimeout(() => { showToast('Sesión cerrada por inactividad.', 'warning'); logout(); }, 15 * 60 * 1000); }
+        function logout() { localStorage.removeItem('sb_user_data'); currentUser = null; clearTimeout(inactivityTimer); showScreen('login'); records = []; advances = []; bonos = []; giros = []; referrals = []; rendimientos = []; backofficeRecords = []; window.location.reload(); }
+        function resetInactivityTimer() { clearTimeout(inactivityTimer); if (currentUser) inactivityTimer = setTimeout(() => { alert('Sesión cerrada por inactividad.'); logout(); }, 15 * 60 * 1000); }
         function toggleMenu(forceOpen) { const sidebar = document.getElementById('sidebar-menu'); const overlay = document.getElementById('sidebar-overlay'); if(!sidebar || !overlay) return; const isOpen = !sidebar.classList.contains('-translate-x-full'); const shouldOpen = forceOpen !== undefined ? forceOpen : !isOpen; if (shouldOpen) { overlay.classList.remove('hidden'); setTimeout(() => overlay.classList.remove('opacity-0'), 10); sidebar.classList.remove('-translate-x-full'); } else { overlay.classList.add('opacity-0'); sidebar.classList.add('-translate-x-full'); setTimeout(() => overlay.classList.add('hidden'), 300); } }
         function togglePassword() { const passInput = document.getElementById('login-pass'); const icon = document.getElementById('eye-icon'); if (passInput.type === 'password') { passInput.type = 'text'; icon.classList.replace('fa-eye', 'fa-eye-slash'); } else { passInput.type = 'password'; icon.classList.replace('fa-eye-slash', 'fa-eye'); } }
         function showToast(msg, type = 'success') { const container = document.getElementById('toast-container'); const toast = document.createElement('div'); toast.className = `toast-enter flex items-center gap-3 px-4 py-3 rounded-xl shadow-xl text-white text-sm font-bold ${type === 'success' ? 'bg-slate-800' : 'bg-rose-600'}`; toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle text-emerald-400' : 'fa-exclamation-circle'}"></i> ${msg}`; container.appendChild(toast); setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 4000); }
@@ -617,9 +596,7 @@
         const formPw = document.getElementById('form-password');
         if(formPw) { formPw.addEventListener('submit', async (e) => { e.preventDefault(); const newPass = document.getElementById('new-password').value.trim(); if(newPass.length < 4) { showToast("Mínimo 4 caracteres", "error"); return; } const btn = e.target.querySelector('button[type="submit"]'); const orig = btn.innerHTML; btn.innerHTML = '...'; btn.disabled = true; const targetUser = isSuperAdmin ? document.getElementById('superadmin-select').value : currentUser; const res = await pushData('change_password', { user: targetUser, newPass: newPass }); if (res.success) { showToast("Clave actualizada", "success"); closePasswordModal(); } else { showToast("Error al cambiar clave", "error"); } btn.innerHTML = orig; btn.disabled = false; }); }
 
-        async function pushData(action, data) {
-            try { const response = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: action, data: data }) }); const text = await response.text(); if (text.includes("<html") || text.includes("<body")) { showToast("ERROR: Google Sheets bloqueó la conexión.", "error"); return { success: false, msg: "Permisos denegados." }; } try { const result = JSON.parse(text); return { success: result.status === 'success', msg: result.msg, user: result.user }; } catch(e) { return { success: true, msg: 'Procesado.' }; } } catch (err) { return { success: true, msg: 'Guardado localmente.' }; }
-        }
+        async function pushData(action, data) { try { const response = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: action, data: data }) }); const text = await response.text(); if (text.includes("<html") || text.includes("<body")) { showToast("ERROR: Google Sheets bloqueó la conexión.", "error"); return { success: false, msg: "Permisos denegados." }; } try { const result = JSON.parse(text); return { success: result.status === 'success', msg: result.msg, user: result.user }; } catch(e) { return { success: true, msg: 'Procesado.' }; } } catch (err) { return { success: true, msg: 'Guardado localmente.' }; } }
 
         async function handleLogin(e) {
             e.preventDefault(); const u = document.getElementById('login-user').value.toLowerCase().trim(); const p = document.getElementById('login-pass').value.trim(); const btn = e.target.querySelector('button'); const orig = btn.innerHTML; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Autenticando...'; btn.disabled = true;
@@ -637,30 +614,18 @@
         function confirmSwitchUser(overrideId = null) { const targetId = overrideId || document.getElementById('superadmin-select').value; const userObj = { ...USERS[targetId], id: targetId, baseType: 'superadmin' }; localStorage.setItem('sb_user_data', JSON.stringify(userObj)); currentUser = targetId; loginUI(userObj); document.getElementById('modal-superadmin').classList.replace('flex', 'hidden'); showToast('Vista cambiada exitosamente.', 'success');}
 
         function loginUI(user) {
-            const hardcodedUser = USERS[user.id ? user.id.toLowerCase() : currentUser.toLowerCase()] || user;
-            const elUserDisplay = document.getElementById('user-display'); 
-            if (elUserDisplay) elUserDisplay.innerText = hardcodedUser.name + (isSuperAdmin ? " (Auditor)" : "");
-            
-            const iconEl = document.getElementById('nav-icon'); 
-            if (iconEl) { 
-                let finalIcon = hardcodedUser.icon;
-                if(!finalIcon || String(finalIcon).trim() === '' || finalIcon === 'undefined') finalIcon = 'fa-user';
-                let finalColor = hardcodedUser.color;
-                if(!finalColor || String(finalColor).trim() === '' || finalColor === 'undefined') finalColor = 'bg-indigo-600';
-                iconEl.innerHTML = `<i class="fas ${finalIcon}"></i>`; 
-                iconEl.className = `w-10 h-10 rounded-xl text-white flex items-center justify-center text-lg shadow-md ${finalColor}`; 
-            }
-
+            const elUserDisplay = document.getElementById('user-display'); if (elUserDisplay) elUserDisplay.innerText = user.name + (isSuperAdmin ? " (Auditor)" : "");
+            const iconEl = document.getElementById('nav-icon'); if (iconEl) { iconEl.innerHTML = `<i class="fas ${user.icon || 'fa-user'}"></i>`; iconEl.className = `w-10 h-10 rounded-xl text-white flex items-center justify-center text-lg shadow-md ${user.color || 'bg-indigo-600'}`; }
             const btnSuper = document.getElementById('btn-superadmin'); if (btnSuper) { if (isSuperAdmin) btnSuper.classList.remove('hidden'); else btnSuper.classList.add('hidden'); }
             resetInactivityTimer();
-            const allTabs = ['btn-tab-dashboard', 'btn-tab-register', 'btn-tab-gussepy', 'btn-tab-auditoria', 'btn-tab-maria-dash', 'btn-tab-maria-add', 'btn-tab-maria-list', 'btn-tab-giros-add', 'btn-tab-giros-list', 'btn-tab-maria-ref-add', 'btn-tab-maria-ref-list', 'btn-tab-melanie-add', 'btn-tab-melanie-list', 'btn-tab-influencer-dash', 'btn-tab-influencer-details', 'btn-tab-inactivos', 'divider-1', 'divider-2'];
+            const allTabs = ['btn-tab-dashboard', 'btn-tab-archivos', 'btn-tab-register', 'btn-tab-gussepy', 'btn-tab-auditoria', 'btn-tab-conciliacion', 'btn-tab-maria-dash', 'btn-tab-maria-add', 'btn-tab-maria-list', 'btn-tab-giros-add', 'btn-tab-giros-list', 'btn-tab-maria-ref-add', 'btn-tab-maria-ref-list', 'btn-tab-melanie-add', 'btn-tab-melanie-list', 'btn-tab-influencer-dash', 'btn-tab-influencer-details', 'btn-tab-inactivos', 'divider-1', 'divider-2'];
             allTabs.forEach(id => { const el = document.getElementById(id); if (el) el.classList.add('hidden'); });
             ['panel-admin', 'panel-personal', 'panel-gussepy-bonos', 'panel-add-gussepy', 'panel-dash-movimientos', 'filter-user-container', 'admin-select-user', 'admin-select-user-bank'].forEach(id => { const el = document.getElementById(id); if (el) el.classList.add('hidden'); });
 
             if (user.type === 'admin' || user.type === 'superadmin') {
-                ['btn-tab-dashboard','btn-tab-register','btn-tab-gussepy', 'btn-tab-auditoria', 'divider-1'].forEach(id=> { const el = document.getElementById(id); if(el) el.classList.remove('hidden'); });
+                ['btn-tab-dashboard','btn-tab-archivos','btn-tab-conciliacion','btn-tab-auditoria','btn-tab-register','divider-1'].forEach(id=> { const el = document.getElementById(id); if(el) el.classList.remove('hidden'); });
                 ['panel-admin','panel-dash-movimientos','panel-add-gussepy', 'filter-user-container', 'admin-select-user', 'admin-select-user-bank'].forEach(id=> { const el = document.getElementById(id); if(el) el.classList.remove('hidden'); });
-                if(user.type === 'superadmin') { ['btn-tab-maria-dash','btn-tab-maria-add','btn-tab-maria-list', 'btn-tab-giros-add', 'btn-tab-giros-list', 'divider-2', 'btn-tab-maria-ref-add','btn-tab-maria-ref-list', 'btn-tab-melanie-add', 'btn-tab-melanie-list', 'btn-tab-influencer-dash', 'btn-tab-influencer-details', 'btn-tab-inactivos'].forEach(id=> { const el = document.getElementById(id); if(el) el.classList.remove('hidden'); }); }
+                if(user.type === 'superadmin') { ['btn-tab-gussepy','btn-tab-maria-dash','btn-tab-maria-add','btn-tab-maria-list', 'btn-tab-giros-add', 'btn-tab-giros-list', 'divider-2', 'btn-tab-maria-ref-add','btn-tab-maria-ref-list', 'btn-tab-melanie-add', 'btn-tab-melanie-list', 'btn-tab-influencer-dash', 'btn-tab-influencer-details', 'btn-tab-inactivos'].forEach(id=> { const el = document.getElementById(id); if(el) el.classList.remove('hidden'); }); }
                 switchTab('tab-dashboard');
             } else if (user.type === 'master') {
                 ['btn-tab-dashboard','btn-tab-gussepy','btn-tab-maria-list', 'btn-tab-giros-list', 'btn-tab-maria-ref-list', 'btn-tab-melanie-list', 'btn-tab-inactivos', 'divider-1', 'divider-2'].forEach(id=> { const el = document.getElementById(id); if(el) el.classList.remove('hidden'); });
@@ -680,20 +645,21 @@
                 ['panel-personal'].forEach(id=> { const el = document.getElementById(id); if(el) el.classList.remove('hidden'); });
                 switchTab('tab-dashboard');
             }
-            document.getElementById('login-pass').value = ''; showScreen('app'); 
-            fetchData(false);
+            document.getElementById('login-pass').value = ''; showScreen('app'); fetchData(false);
         }
 
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            ['btn-tab-dashboard', 'btn-tab-register', 'btn-tab-gussepy', 'btn-tab-auditoria', 'btn-tab-maria-dash', 'btn-tab-maria-add', 'btn-tab-maria-list', 'btn-tab-giros-add', 'btn-tab-giros-list', 'btn-tab-maria-ref-add', 'btn-tab-maria-ref-list', 'btn-tab-melanie-add', 'btn-tab-melanie-list', 'btn-tab-inactivos', 'btn-tab-influencer-dash', 'btn-tab-influencer-details'].forEach(id => {
-                const btn = document.getElementById(id); if(btn) { btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-sm', 'bg-rose-600', 'bg-slate-800', 'bg-pink-600', 'bg-purple-600', 'bg-amber-500'); btn.classList.add('text-slate-400', 'hover:bg-slate-800'); }
+            ['btn-tab-dashboard', 'btn-tab-archivos', 'btn-tab-register', 'btn-tab-gussepy', 'btn-tab-auditoria', 'btn-tab-conciliacion', 'btn-tab-maria-dash', 'btn-tab-maria-add', 'btn-tab-maria-list', 'btn-tab-giros-add', 'btn-tab-giros-list', 'btn-tab-maria-ref-add', 'btn-tab-maria-ref-list', 'btn-tab-melanie-add', 'btn-tab-melanie-list', 'btn-tab-inactivos', 'btn-tab-influencer-dash', 'btn-tab-influencer-details'].forEach(id => {
+                const btn = document.getElementById(id); if(btn) { btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-sm', 'bg-rose-600', 'bg-slate-800', 'bg-pink-600', 'bg-purple-600', 'bg-amber-500', 'bg-teal-600', 'bg-blue-600'); btn.classList.add('text-slate-400', 'hover:bg-slate-800'); }
             });
             const content = document.getElementById(tabId); if(content) content.classList.remove('hidden');
             const activeBtn = document.getElementById(`btn-${tabId}`);
             if(activeBtn) {
                 activeBtn.classList.remove('text-slate-400', 'hover:bg-slate-800');
                 if (isSuperAdmin) activeBtn.classList.add('bg-slate-800', 'text-white', 'shadow-sm');
+                else if (tabId.includes('archivos')) activeBtn.classList.add('bg-teal-600', 'text-white', 'shadow-sm');
+                else if (tabId.includes('conciliacion')) activeBtn.classList.add('bg-blue-600', 'text-white', 'shadow-sm');
                 else if (tabId.includes('maria') || tabId.includes('giros')) activeBtn.classList.add('bg-rose-600', 'text-white', 'shadow-sm');
                 else if (tabId.includes('melanie')) activeBtn.classList.add('bg-pink-600', 'text-white', 'shadow-sm');
                 else if (tabId.includes('influencer')) activeBtn.classList.add('bg-purple-600', 'text-white', 'shadow-sm');
@@ -707,43 +673,26 @@
             if (!isBackground) document.getElementById('global-loader').classList.remove('hidden');
             else document.querySelectorAll('button[title="Recargar"] i, button[title="Recargar datos"] i').forEach(i => i.classList.add('fa-spin'));
             try {
-                const selectedMonth = document.getElementById('dash-month-filter')?.value || '';
                 let fetchUrl = SCRIPT_URL;
-                if(selectedMonth) fetchUrl += (SCRIPT_URL.includes('?') ? '&' : '?') + 'month=' + selectedMonth;
                 fetchUrl += (fetchUrl.includes('?') ? '&' : '?') + 't=' + new Date().getTime();
-
-                const res = await fetch(fetchUrl); 
-                const text = await res.text();
-                let data;
-                try { data = JSON.parse(text); } catch(e) { throw new Error("Google Sheets no devolvió un JSON válido. Verifique permisos."); }
+                const res = await fetch(fetchUrl); const text = await res.text(); let data;
+                try { data = JSON.parse(text); } catch(e) { throw new Error("Google Sheets no devolvió JSON."); }
                 
                 if (data.status === 'success') { 
                     if (data.users) {
                         Object.keys(data.users).forEach(k => {
-                            let sUser = data.users[k];
-                            let com = parseFloat(sUser.comision);
-                            if (com > 0 && com <= 1) com = com * 100; 
-                            if(USERS[k]) {
-                                USERS[k].comision = com || 20;
-                            } else {
-                                USERS[k] = { 
-                                    name: sUser.name && String(sUser.name).trim() !== '' ? sUser.name : k, 
-                                    type: sUser.type, 
-                                    icon: sUser.icon && String(sUser.icon).trim() !== '' ? sUser.icon : 'fa-user', 
-                                    color: sUser.color && String(sUser.color).trim() !== '' ? sUser.color : 'bg-slate-600', 
-                                    comision: com || 20 
-                                };
-                            }
+                            let sUser = data.users[k]; let com = parseFloat(sUser.comision); if (com > 0 && com <= 1) com = com * 100; 
+                            if(USERS[k]) USERS[k].comision = com || 20;
+                            else USERS[k] = { name: sUser.name || k, type: sUser.type, icon: sUser.icon || 'fa-user', color: sUser.color || 'bg-slate-600', comision: com || 20 };
                         });
                     }
                     records = data.data || []; advances = data.advances || []; bonos = data.bonos || []; giros = data.giros || []; referrals = data.referrals || []; rendimientos = data.rendimientos || []; 
-                    if (data.allReceipts) allReceipts = data.allReceipts;
+                    backofficeRecords = data.backoffice || [];
                     
                     records.sort(sortDataDesc); advances.sort(sortDataDesc); bonos.sort(sortDataDesc); giros.sort(sortDataDesc); referrals.sort(sortDataDesc); rendimientos.sort(sortDataDesc);
-
                     resetPagesAndUpdate(); updateBonoDatalist(); updateMelanieDropdowns(); 
                 }
-            } catch (err) { console.error(err); showToast("Error al sincronizar base de datos.", "error"); } 
+            } catch (err) { console.error(err); showToast("Error al sincronizar", "error"); } 
             finally { if (!isBackground) document.getElementById('global-loader').classList.add('hidden'); else document.querySelectorAll('button[title="Recargar"] i').forEach(i => i.classList.remove('fa-spin')); }
         }
 
@@ -751,14 +700,12 @@
             const dlBono = document.getElementById('bonos-destinatarios'); const dlRef = document.getElementById('ref-referrers-list'); const dlGiro = document.getElementById('giro-dest');
             const p = [...new Set([...bonos.map(b=>b.assignedTo), ...giros.map(g=>g.dest), ...referrals.map(r=>r.referrer), ...referrals.map(r=>r.referred)])].filter(Boolean);
             const opts = p.map(n => `<option value="${n}">`).join('');
-            if(dlBono) dlBono.innerHTML = opts; if(dlRef) dlRef.innerHTML = opts;
-            if(dlGiro && dlBono) dlGiro.setAttribute('list', 'bonos-destinatarios');
+            if(dlBono) dlBono.innerHTML = opts; if(dlRef) dlRef.innerHTML = opts; if(dlGiro && dlBono) dlGiro.setAttribute('list', 'bonos-destinatarios');
         }
 
         function updateMelanieDropdowns() {
-            const refList = [...new Set(referrals.filter(r => isInf(r.isInfluencer)).map(r => r.referrer))].filter(Boolean);
-            const allInf = [...new Set([...refList, 'admin'])]; 
-            const selRef = document.getElementById('rend-referrer');
+            const refList = [...new Set(referrals.filter(r => r.isInfluencer).map(r => r.referrer))].filter(Boolean);
+            const allInf = [...new Set([...refList, 'admin'])]; const selRef = document.getElementById('rend-referrer');
             if (selRef) { selRef.innerHTML = '<option value="">Seleccione Influyente...</option>' + allInf.map(r => { const rKey = String(r).trim().toLowerCase(); const rate = (USERS[rKey] && USERS[rKey].comision ? USERS[rKey].comision : 20); return `<option value="${r}">${r} (${rate}%)</option>`; }).join(''); }
         }
 
@@ -767,8 +714,7 @@
             if (inputReferred) inputReferred.value = ''; 
             if (!referrer) { if (inputReferred) inputReferred.placeholder = 'Seleccione influyente primero...'; currentPlayersList = []; renderPlayerDropdown([]); return; }
             currentPlayersList = [...new Set(referrals.filter(r => r.referrer === referrer).map(r => r.referred))];
-            if (inputReferred) inputReferred.placeholder = 'Escriba o seleccione jugador...';
-            renderPlayerDropdown(currentPlayersList);
+            if (inputReferred) inputReferred.placeholder = 'Escriba o seleccione jugador...'; renderPlayerDropdown(currentPlayersList);
         }
 
         function renderPlayerDropdown(list) { const ul = document.getElementById('custom-player-dropdown'); if (!ul) return; if(list.length === 0) ul.innerHTML = '<li class="px-4 py-3 text-sm text-slate-500 italic">No se encontraron</li>'; else ul.innerHTML = list.map(u => `<li class="px-4 py-3 text-sm font-bold text-slate-700 hover:bg-pink-50 hover:text-pink-600 cursor-pointer" onclick="selectPlayer('${u.replace(/'/g, "\\'")}')">${u}</li>`).join(''); }
@@ -779,6 +725,7 @@
         function clearPlayerSelection() { const input = document.getElementById('rend-referred'); if(input) { input.value = ''; input.focus(); } filterPlayerDropdown(); openPlayerDropdown(); }
         document.addEventListener('click', function(e) { const input = document.getElementById('rend-referred'); const dropdown = document.getElementById('custom-player-dropdown'); const btnClear = document.getElementById('btn-clear-player'); if (input && dropdown) { if (!input.contains(e.target) && !dropdown.contains(e.target) && (!btnClear || !btnClear.contains(e.target))) closePlayerDropdown(); } });
 
+        // ARCHIVOS BANCARIOS (Carga)
         function handleBankUpload(e) {
             const file = e.target.files[0]; if(!file) return; const reader = new FileReader();
             reader.onload = function(evt) {
@@ -790,108 +737,158 @@
                     
                     for(let i=0; i<Math.min(30, rows.length); i++) {
                         const r = Array.from(rows[i] || []).map(x => x ? String(x).toLowerCase() : "");
-                        const f = r.findIndex(x => x.includes('fech'));
-                        const c = r.findIndex(x => x.includes('concepto') || x.includes('descrip') || x.includes('detalle'));
-                        const m = r.findIndex(x => x.includes('monto') || x.includes('valor'));
-                        const t = r.findIndex(x => x.includes('tipo'));
+                        const f = r.findIndex(x => x.includes('fech')); const c = r.findIndex(x => x.includes('concepto') || x.includes('descrip') || x.includes('detalle'));
+                        const m = r.findIndex(x => x.includes('monto') || x.includes('valor')); const t = r.findIndex(x => x.includes('tipo'));
                         const ref = r.findIndex(x => x.includes('referencia') || x.includes('documento') || x.includes('comprobante') || x.includes('transaccion'));
                         if(f !== -1 && m !== -1) { hIdx = i; cIdx = {f, c: c!==-1?c:1, m, t, ref}; break; }
                     }
                     if(hIdx === -1) { showToast("No se detectaron columnas Fecha/Monto", "error"); return; }
 
-                    bankUploadData = [];
-                    let currentTx = null;
-
+                    bankUploadData = []; let currentTx = null;
                     for(let i=hIdx+1; i<rows.length; i++) {
                         const row = rows[i]||[];
-                        
                         if(row[cIdx.f] !== undefined && row[cIdx.m] !== undefined) {
-                            let montoStr = String(row[cIdx.m]).replace(/[^0-9,-]/g, '').replace(',', '.');
-                            let monto = parseFloat(montoStr);
+                            let montoStr = String(row[cIdx.m]).replace(/[^0-9,-]/g, '').replace(',', '.'); let monto = parseFloat(montoStr);
                             if(isNaN(monto) || monto === 0) continue;
-                            
-                            if(cIdx.t !== -1 && row[cIdx.t] !== undefined) {
-                                const tipo = String(row[cIdx.t]).toLowerCase();
-                                if(tipo.includes('deb')||tipo.includes('déb')) monto = -Math.abs(monto);
-                                else if(tipo.includes('cred')||tipo.includes('créd')) monto = Math.abs(monto);
-                            }
-                            
-                            let localDate = excelToISO(row[cIdx.f]);
-                            let conceptStr = row[cIdx.c] !== undefined ? String(row[cIdx.c]).trim() : 'Movimiento Banco';
-                            let refStr = (cIdx.ref !== -1 && row[cIdx.ref] !== undefined && String(row[cIdx.ref]).trim() !== "") ? String(row[cIdx.ref]).trim() : '';
-                            
-                            currentTx = { date: localDate, concept: conceptStr, amount: monto, receipt: refStr };
-                            bankUploadData.push(currentTx);
+                            if(cIdx.t !== -1 && row[cIdx.t] !== undefined) { const tipo = String(row[cIdx.t]).toLowerCase(); if(tipo.includes('deb')||tipo.includes('déb')) monto = -Math.abs(monto); else if(tipo.includes('cred')||tipo.includes('créd')) monto = Math.abs(monto); }
+                            let localDate = excelToISO(row[cIdx.f]); let conceptStr = row[cIdx.c] !== undefined ? String(row[cIdx.c]).trim() : 'Movimiento Banco'; let refStr = (cIdx.ref !== -1 && row[cIdx.ref] !== undefined && String(row[cIdx.ref]).trim() !== "") ? String(row[cIdx.ref]).trim() : '';
+                            currentTx = { date: localDate, concept: conceptStr, amount: monto, receipt: refStr }; bankUploadData.push(currentTx);
                         } else if (currentTx && row.length > 0) {
                             let possibleRef = Array.from(row).find(x => x && String(x).trim().match(/^[0-9]+$/) && String(x).trim().length >= 5);
-                            if (possibleRef && !currentTx.receipt) {
-                                currentTx.receipt = String(possibleRef).trim();
-                            }
+                            if (possibleRef && !currentTx.receipt) currentTx.receipt = String(possibleRef).trim();
                         }
                     }
-                    
-                    bankUploadData.forEach(tx => { if(!tx.receipt) tx.receipt = "Sin Ref"; });
-                    
-                    renderBankPreview(); showToast(`Detectados ${bankUploadData.length} registros`, 'success');
-                } catch(err) { showToast("Error leyendo archivo", "error"); console.error(err); }
-            };
-            reader.readAsBinaryString(file);
+                    bankUploadData.forEach(tx => { if(!tx.receipt) tx.receipt = "Sin Ref"; }); renderBankPreview(); showToast(`Detectados ${bankUploadData.length} registros`, 'success');
+                } catch(err) { showToast("Error leyendo archivo bancario", "error"); console.error(err); }
+            }; reader.readAsBinaryString(file);
         }
         
         function renderBankPreview() {
             const tbody = document.getElementById('bank-preview-body'); const cont = document.getElementById('bank-preview-container');
             if(!bankUploadData.length) { cont.classList.add('hidden'); cont.classList.remove('flex'); return; }
-            tbody.innerHTML = bankUploadData.map((r, i) => `<tr><td data-label="Fecha" class="py-2 text-[10px] font-bold">${r.date.replace('T', ' ')}</td><td data-label="Concepto" class="py-2 text-[10px]">${r.concept}</td><td data-label="Monto" class="py-2 text-[10px] font-black text-right ${r.amount<0?'text-rose-600':'text-emerald-600'}">${fmt(r.amount)}</td><td data-label="Ref" class="py-2 text-[10px] font-bold text-center text-slate-500">${r.receipt}</td><td data-label="Acción" class="py-2 text-center"><button onclick="bankUploadData.splice(${i},1); renderBankPreview()" class="text-rose-500"><i class="fas fa-times"></i></button></td></tr>`).join('');
+            tbody.innerHTML = bankUploadData.map((r, i) => `<tr><td class="py-2 text-[10px] font-bold">${r.date.replace('T', ' ')}</td><td class="py-2 text-[10px]">${r.concept}</td><td class="py-2 text-[10px] font-black text-right ${r.amount<0?'text-rose-600':'text-emerald-600'}">${fmt(r.amount)}</td><td class="py-2 text-[10px] font-bold text-center text-slate-500">${r.receipt}</td><td class="py-2 text-center"><button onclick="bankUploadData.splice(${i},1); renderBankPreview()" class="text-rose-500"><i class="fas fa-times"></i></button></td></tr>`).join('');
             cont.classList.remove('hidden'); cont.classList.add('flex');
         }
 
         async function submitBankData() {
-            if(!bankUploadData.length) return;
-            const btn = document.getElementById('btn-upload-bank'); 
-            btn.disabled = true;
-            
-            let assigned = currentUser; 
-            const adminBlockBank = document.getElementById('admin-select-user-bank');
-            if (adminBlockBank && !adminBlockBank.classList.contains('hidden')) {
-                const assignRadio = document.querySelector('input[name="bank-assign"]:checked'); 
-                if (assignRadio) assigned = assignRadio.value;
-            }
-
+            if(!bankUploadData.length) return; const btn = document.getElementById('btn-upload-bank'); btn.disabled = true;
+            let assigned = currentUser; const adminBlockBank = document.getElementById('admin-select-user-bank');
+            if (adminBlockBank && !adminBlockBank.classList.contains('hidden')) { const assignRadio = document.querySelector('input[name="bank-assign"]:checked'); if (assignRadio) assigned = assignRadio.value; }
             bankUploadData.sort((a, b) => new Date(a.date) - new Date(b.date));
-
             let newTxs = [];
-            for(let i=0; i<bankUploadData.length; i++) {
-                const r = bankUploadData[i];
-                newTxs.push({ id: 'TX_BNK_' + Date.now() + '_' + i, date: r.date, amount: r.amount, concept: r.concept, assignedTo: assigned, createdBy: currentUser, status: 'Pendiente', receipt: r.receipt });
-            }
-
-            let successCount = 0;
-            const CHUNK_SIZE = 50;
-            
+            for(let i=0; i<bankUploadData.length; i++) { const r = bankUploadData[i]; newTxs.push({ id: 'TX_BNK_' + Date.now() + '_' + i, date: r.date, amount: r.amount, concept: r.concept, assignedTo: assigned, createdBy: currentUser, status: 'Pendiente', receipt: r.receipt }); }
+            let successCount = 0; const CHUNK_SIZE = 50;
             for (let i = 0; i < newTxs.length; i += CHUNK_SIZE) {
-                const chunk = newTxs.slice(i, i + CHUNK_SIZE);
-                btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Subiendo lote ${Math.floor(i/CHUNK_SIZE)+1}...`;
-                
+                const chunk = newTxs.slice(i, i + CHUNK_SIZE); btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Subiendo lote ${Math.floor(i/CHUNK_SIZE)+1}...`;
                 const res = await pushData('add_multiple', chunk); 
-                if(res.success) { 
-                    records = [...chunk.reverse(), ...records];
-                    successCount += chunk.length;
-                } else {
-                    showToast("Error en lote, cambiando a subida lenta...", "warning");
-                    for (let j = 0; j < chunk.length; j++) {
-                        btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Subiendo ${i+j+1}/${newTxs.length}...`;
-                        const singleRes = await pushData('add', chunk[j]);
-                        if(singleRes.success) { records.unshift(chunk[j]); successCount++; }
-                    }
+                if(res.success) { records = [...chunk.reverse(), ...records]; successCount += chunk.length; } else {
+                    showToast("Cambiando a subida lenta...", "warning");
+                    for (let j = 0; j < chunk.length; j++) { btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Subiendo ${i+j+1}/${newTxs.length}...`; const singleRes = await pushData('add', chunk[j]); if(singleRes.success) { records.unshift(chunk[j]); successCount++; } }
                 }
             }
+            records.sort((a,b) => new Date(b.date) - new Date(a.date)); resetPagesAndUpdate(); showToast(`Carga masiva completada.`, 'success');
+            document.getElementById('bank-preview-container').classList.add('hidden'); document.getElementById('bank-preview-container').classList.remove('flex'); document.getElementById('upload-bank-file').value = ''; bankUploadData = []; btn.innerHTML = 'Guardar Bancos en Sistema'; btn.disabled = false;
+        }
 
-            records.sort((a,b) => new Date(b.date) - new Date(a.date));
-            resetPagesAndUpdate(); 
-            showToast(`Carga masiva completada: ${successCount} registros en Pendiente.`, 'success');
+        // ARCHIVOS BACKOFFICE (Carga)
+        function handleBackofficeUpload(e) {
+            const file = e.target.files[0]; if(!file) return; 
+            const agRadio = document.querySelector('input[name="bo-agency"]:checked');
+            const agenciaSeleccionada = agRadio ? agRadio.value : 'Sepybet';
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                try {
+                    const workbook = XLSX.read(evt.target.result, {type: 'binary'});
+                    const sheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const rows = XLSX.utils.sheet_to_json(sheet);
+                    boUploadTemp = [];
+                    rows.forEach(row => {
+                        const keys = Object.keys(row);
+                        const kId = keys.find(k => String(k).toLowerCase().includes('id'));
+                        const kFech = keys.find(k => String(k).toLowerCase().includes('fech'));
+                        const kJugo = keys.find(k => String(k).toLowerCase().includes('jugador') || String(k).toLowerCase().includes('agente'));
+                        const kMon = keys.find(k => String(k).toLowerCase().includes('monto'));
+                        const kTip = keys.find(k => String(k).toLowerCase().includes('operaci'));
+
+                        let id = kId ? row[kId] : null;
+                        let fecha = kFech ? row[kFech] : null;
+                        let jugador = kJugo ? row[kJugo] : 'Desconocido';
+                        let monto = kMon ? parseFloat(row[kMon]) : 0;
+                        let tipo = kTip ? row[kTip] : 'Deposit';
+
+                        if(id && !isNaN(monto) && monto !== 0) {
+                            boUploadTemp.push({ id: id, agencia: agenciaSeleccionada, date: excelToISO(fecha), jugador: jugador, monto: monto, tipo: tipo });
+                        }
+                    });
+                    showToast(`Listo para procesar ${boUploadTemp.length} ops de ${agenciaSeleccionada}.`, 'success');
+                    document.getElementById('btn-upload-bo').classList.remove('hidden');
+                } catch(err) { showToast("Error leyendo archivo backoffice", "error"); console.error(err); }
+            }; 
+            reader.readAsBinaryString(file);
+        }
+
+        async function submitBackofficeData() {
+            if(boUploadTemp.length === 0) return;
+            const btn = document.getElementById('btn-upload-bo'); btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Guardando...'; btn.disabled = true;
+            const res = await pushData('add_backoffice_multiple', boUploadTemp);
+            if(res.success) {
+                showToast("Registros guardados en plataforma.", "success");
+                boUploadTemp.forEach(b => backofficeRecords.push({...b, estado: 'Pendiente', comprobante: ''}));
+                document.getElementById('upload-backoffice').value = ''; btn.classList.add('hidden');
+                renderConciliacion();
+            } else { showToast("Error al guardar.", "error"); }
+            btn.disabled = false; btn.innerHTML = 'Guardar Reporte en Sistema';
+        }
+
+        // MOTOR DE CONCILIACIÓN
+        function renderConciliacion() {
+            const tbody = document.getElementById('table-conciliacion-body');
+            if (!tbody) return;
+            const pendientesBO = backofficeRecords.filter(b => b.estado === 'Pendiente' && b.monto > 0);
             
-            document.getElementById('bank-preview-container').classList.add('hidden'); document.getElementById('bank-preview-container').classList.remove('flex');
-            document.getElementById('upload-bank-file').value = ''; bankUploadData = []; btn.innerHTML = '<i class="fas fa-upload mr-2"></i> Subir Registros al Sistema'; btn.disabled = false;
+            let html = '';
+            pendientesBO.forEach(bo => {
+                let sugerencias = records.filter(r => {
+                    if (Math.abs(r.amount) !== Math.abs(bo.monto)) return false;
+                    if (!r.receipt || r.receipt === 'Sin Ref') return false;
+                    const esCuentaTitoOJesus = (r.assignedTo === 'tito' || r.assignedTo === 'jesus');
+                    if (bo.agencia === 'Sepybet' && !esCuentaTitoOJesus) return false;
+                    if (bo.agencia === 'Chichesepy' && esCuentaTitoOJesus) return false;
+                    return true;
+                });
+
+                let selectHTML = `<select id="match_${bo.id}" class="w-full text-xs p-2 border rounded bg-slate-50 outline-none focus:border-teal-500">`;
+                if(sugerencias.length === 0) { selectHTML += `<option value="">Sin match exacto en banco...</option>`; } 
+                else {
+                    selectHTML += `<option value="">Elige comprobante (${sugerencias.length})...</option>`;
+                    sugerencias.forEach(s => { selectHTML += `<option value="${s.receipt}">Ref: ${s.receipt} | Cuenta: ${USERS[s.assignedTo]?.name || s.assignedTo} | Fecha: ${fmtDate(s.date)}</option>`; });
+                }
+                selectHTML += `</select>`;
+
+                let badgeAgencia = bo.agencia === 'Sepybet' ? 'bg-teal-100 text-teal-700' : 'bg-orange-100 text-orange-700';
+
+                html += `<tr class="border-b border-slate-50 hover:bg-slate-50">
+                    <td class="p-3"><div class="font-black text-slate-700">#${bo.id}</div><span class="px-2 py-0.5 rounded text-[9px] font-black uppercase ${badgeAgencia}">${bo.agencia}</span></td>
+                    <td class="p-3"><div class="font-bold text-indigo-600 uppercase">${bo.jugador}</div><div class="text-[10px] text-slate-500">${fmtDate(bo.date)}</div></td>
+                    <td class="p-3 text-right font-black text-emerald-600 text-lg">${fmt(bo.monto)}</td>
+                    <td class="p-3 min-w-[200px]">${selectHTML}</td>
+                    <td class="p-3 text-center"><button onclick="ejecutarMatch('${bo.id}')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md transition-all active:scale-95">Vincular</button></td>
+                </tr>`;
+            });
+            tbody.innerHTML = html || `<tr><td colspan="5" class="p-8 text-center text-slate-400 font-bold"><div class="text-3xl mb-3"><i class="fas fa-check-circle text-teal-400"></i></div>Sin transacciones por conciliar.</td></tr>`;
+        }
+
+        async function ejecutarMatch(id_backoffice) {
+            const comprobanteSelected = document.getElementById(`match_${id_backoffice}`).value;
+            if(!comprobanteSelected) { showToast("Selecciona un comprobante de la lista.", "warning"); return; }
+            
+            const boIndex = backofficeRecords.findIndex(b => String(b.id) === String(id_backoffice));
+            if(boIndex !== -1) { backofficeRecords[boIndex].estado = 'Conciliado'; backofficeRecords[boIndex].comprobante = comprobanteSelected; }
+            renderConciliacion(); 
+            
+            const res = await pushData('conciliar', { id_backoffice: id_backoffice, comprobante: comprobanteSelected });
+            if(res.success) showToast("Boleta vinculada con éxito", "success");
+            else showToast("Error de guardado.", "error");
         }
 
         function handleMelanieUpload(e) {
@@ -901,130 +898,62 @@
                     const workbook = XLSX.read(evt.target.result, {type: 'binary'});
                     const sheet = workbook.Sheets[workbook.SheetNames[0]];
                     const rows = XLSX.utils.sheet_to_json(sheet, {header: 1});
-                    uploadData = [];
-                    let hIdx = -1, cIdx = {f: -1, inf: -1, jug: -1, dep: -1, ret: -1};
-                    
+                    uploadData = []; let hIdx = -1, cIdx = {f: -1, inf: -1, jug: -1, dep: -1, ret: -1};
                     for(let i=0; i<Math.min(30, rows.length); i++) {
                         const r = Array.from(rows[i] || []).map(x => x ? String(x).toLowerCase() : "");
-                        const f = r.findIndex(x => x.includes('fech'));
-                        const inf = r.findIndex(x => x.includes('influencer') || x.includes('referente') || (x.includes('nombre') && !x.includes('usuario')));
+                        const f = r.findIndex(x => x.includes('fech')); const inf = r.findIndex(x => x.includes('influencer') || x.includes('referente') || (x.includes('nombre') && !x.includes('usuario')));
                         const jug = r.findIndex(x => x.includes('jugador') || x.includes('usuario') || (x.includes('nombre') && !x.includes('influencer')));
                         const dep = r.findIndex(x => x.includes('deposito') || x.includes('depósito') || x.includes('ingreso') || x.includes('dep'));
                         const ret = r.findIndex(x => x.includes('retiro') || x.includes('egreso') || x.includes('ret'));
-                        
-                        if(f !== -1 && inf !== -1 && jug !== -1 && dep !== -1 && ret !== -1) { 
-                            hIdx = i; cIdx = {f, inf, jug, dep, ret}; break; 
-                        }
+                        if(f !== -1 && inf !== -1 && jug !== -1 && dep !== -1 && ret !== -1) { hIdx = i; cIdx = {f, inf, jug, dep, ret}; break; }
                     }
                     if(hIdx === -1) { showToast("Formato incorrecto. Verifique columnas.", "error"); return; }
-                    
                     for(let i=hIdx+1; i<rows.length; i++) {
-                        const row = rows[i]||[];
-                        let fVal = row[cIdx.f], infVal = row[cIdx.inf], jugVal = row[cIdx.jug], depVal = row[cIdx.dep], retVal = row[cIdx.ret];
+                        const row = rows[i]||[]; let fVal = row[cIdx.f], infVal = row[cIdx.inf], jugVal = row[cIdx.jug], depVal = row[cIdx.dep], retVal = row[cIdx.ret];
                         if(fVal === undefined && jugVal === undefined && infVal === undefined) continue;
-                        
-                        let localDate = excelToISO(fVal).split('T')[0];
-                        let influencer = infVal !== undefined ? String(infVal).trim() : 'Desconocido';
-                        let jugador = jugVal !== undefined ? String(jugVal).trim() : 'Desconocido';
-                        
-                        let dep = getVal(depVal);
-                        let ret = getVal(retVal);
-                        let neto = dep - ret;
-                        
-                        const rateKey = influencer.toLowerCase();
-                        let rateUser = USERS[rateKey] || Object.values(USERS).find(u => u.name.toLowerCase() === rateKey);
-                        let rate = rateUser && rateUser.comision ? (parseFloat(rateUser.comision) / 100) : 0.20;
-                        let com = neto * rate;
-                        
+                        let localDate = excelToISO(fVal).split('T')[0]; let influencer = infVal !== undefined ? String(infVal).trim() : 'Desconocido'; let jugador = jugVal !== undefined ? String(jugVal).trim() : 'Desconocido';
+                        let dep = parseFloat(String(depVal || '0').replace(/[^0-9,-]/g, '').replace(',', '.')) || 0; let ret = parseFloat(String(retVal || '0').replace(/[^0-9,-]/g, '').replace(',', '.')) || 0; let neto = dep - ret;
+                        const rateKey = influencer.toLowerCase(); let rateUser = USERS[rateKey] || Object.values(USERS).find(u => u.name.toLowerCase() === rateKey); let rate = rateUser && rateUser.comision ? (rateUser.comision / 100) : 0.20; let com = neto * rate;
                         uploadData.push({ date: localDate, influencer: influencer, jugador: jugador, depositos: dep, retiros: ret, neto: neto, comision: com });
                     }
                     renderMelaniePreview(); showToast(`Detectados ${uploadData.length} registros`, 'success');
                 } catch(err) { showToast("Error leyendo archivo", "error"); console.error(err); }
-            };
-            reader.readAsBinaryString(file);
+            }; reader.readAsBinaryString(file);
         }
 
         function renderMelaniePreview() {
             const tbody = document.getElementById('upload-preview-body'); const cont = document.getElementById('upload-preview-container');
             if(!uploadData.length) { cont.classList.add('hidden'); cont.classList.remove('flex'); return; }
-            tbody.innerHTML = uploadData.map((r, i) => `<tr><td data-label="Fecha" class="py-2 text-[10px] font-bold pl-2">${r.date}</td><td data-label="Influencer" class="py-2 text-[10px] text-indigo-600 uppercase">${r.influencer}</td><td data-label="Jugador" class="py-2 text-[10px] uppercase">${r.jugador}</td><td data-label="Depósitos" class="py-2 text-[10px] font-black text-right text-emerald-600">${fmt(r.depositos)}</td><td data-label="Retiros" class="py-2 text-[10px] font-black text-right text-rose-600">${fmt(r.retiros)}</td><td data-label="Comisión" class="py-2 text-[10px] font-black text-right text-purple-600">${fmt(r.comision)}</td><td data-label="Acción" class="py-2 text-center pr-2"><button onclick="uploadData.splice(${i},1); renderMelaniePreview()" class="text-rose-500"><i class="fas fa-times"></i></button></td></tr>`).join('');
+            tbody.innerHTML = uploadData.map((r, i) => `<tr><td class="py-2 text-[10px] font-bold pl-2">${r.date}</td><td class="py-2 text-[10px] text-indigo-600 uppercase">${r.influencer}</td><td class="py-2 text-[10px] uppercase">${r.jugador}</td><td class="py-2 text-[10px] font-black text-right text-emerald-600">${fmt(r.depositos)}</td><td class="py-2 text-[10px] font-black text-right text-rose-600">${fmt(r.retiros)}</td><td class="py-2 text-[10px] font-black text-right text-purple-600">${fmt(r.comision)}</td><td class="py-2 text-center pr-2"><button onclick="uploadData.splice(${i},1); renderMelaniePreview()" class="text-rose-500"><i class="fas fa-times"></i></button></td></tr>`).join('');
             cont.classList.remove('hidden'); cont.classList.add('flex');
         }
 
         async function submitMelanieUploadData() {
-            if(!uploadData.length) return;
-            const btn = document.getElementById('btn-upload-data'); btn.disabled = true;
-            const uploadDate = new Date().toISOString().split('T')[0];
-            
+            if(!uploadData.length) return; const btn = document.getElementById('btn-upload-data'); btn.disabled = true; const uploadDate = new Date().toISOString().split('T')[0];
             uploadData.sort((a, b) => new Date(a.date || uploadDate) - new Date(b.date || uploadDate));
-
             let newRends = [];
-            for(let i=0; i<uploadData.length; i++) {
-                const r = uploadData[i];
-                newRends.push({ id: 'RND_XL_' + Date.now() + '_' + i, date: r.date || uploadDate, referrer: r.influencer, referred: r.jugador, depositos: r.depositos, retiros: r.retiros, neto: r.neto, comision: r.comision, createdBy: currentUser });
-            }
-
-            let successCount = 0;
-            const CHUNK_SIZE = 50;
-            
+            for(let i=0; i<uploadData.length; i++) { const r = uploadData[i]; newRends.push({ id: 'RND_XL_' + Date.now() + '_' + i, date: r.date || uploadDate, referrer: r.influencer, referred: r.jugador, depositos: r.depositos, retiros: r.retiros, neto: r.neto, comision: r.comision, createdBy: currentUser }); }
+            let successCount = 0; const CHUNK_SIZE = 50;
             for (let i = 0; i < newRends.length; i += CHUNK_SIZE) {
-                const chunk = newRends.slice(i, i + CHUNK_SIZE);
-                btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Subiendo lote ${Math.floor(i/CHUNK_SIZE)+1}...`;
-                
+                const chunk = newRends.slice(i, i + CHUNK_SIZE); btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Subiendo lote ${Math.floor(i/CHUNK_SIZE)+1}...`;
                 const res = await pushData('add_rendimiento_multiple', chunk); 
-                if(res.success) { 
-                    rendimientos = [...chunk.reverse(), ...rendimientos]; 
-                    successCount += chunk.length;
-                } else {
-                    showToast("Error en lote, subiendo individual...", "warning");
-                    for (let j = 0; j < chunk.length; j++) {
-                        btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Subiendo ${i+j+1}/${newRends.length}...`;
-                        const singleRes = await pushData('add_rendimiento', chunk[j]);
-                        if(singleRes.success) { rendimientos.unshift(chunk[j]); successCount++; }
-                    }
+                if(res.success) { rendimientos = [...chunk.reverse(), ...rendimientos]; successCount += chunk.length; } else {
+                    showToast("Subiendo individual...", "warning");
+                    for (let j = 0; j < chunk.length; j++) { btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Subiendo ${i+j+1}/${newRends.length}...`; const singleRes = await pushData('add_rendimiento', chunk[j]); if(singleRes.success) { rendimientos.unshift(chunk[j]); successCount++; } }
                 }
             }
-
-            rendimientos.sort(sortDataDesc);
-            resetPagesAndUpdate(); 
-            showToast(`Carga masiva completada: ${successCount} registros.`, 'success');
-            
-            document.getElementById('upload-preview-container').classList.add('hidden'); document.getElementById('upload-preview-container').classList.remove('flex');
-            document.getElementById('upload-file').value = ''; uploadData = []; btn.innerHTML = '<i class="fas fa-upload mr-2"></i> Confirmar y Subir Registros'; btn.disabled = false;
+            rendimientos.sort((a,b) => new Date(b.date) - new Date(a.date)); resetPagesAndUpdate(); showToast(`Carga masiva completada.`, 'success');
+            document.getElementById('upload-preview-container').classList.add('hidden'); document.getElementById('upload-preview-container').classList.remove('flex'); document.getElementById('upload-file').value = ''; uploadData = []; btn.innerHTML = 'Confirmar y Subir Registros'; btn.disabled = false;
         }
 
-        function applyFilters() { 
-            filters.date = document.getElementById('filter-date')?.value || ''; const fUser = document.getElementById('filter-user'); filters.user = fUser ? fUser.value : 'all'; 
-            filters.status = document.getElementById('filter-status')?.value || 'all'; filters.type = document.getElementById('filter-type')?.value || 'all'; 
-            filters.amount = document.getElementById('filter-amount')?.value.replace(',', '.') || ''; filters.text = document.getElementById('filter-ref-comment')?.value.trim() || ''; 
-            pages.audit = 1; updateAllViews(); 
-        }
-        function clearFilters() { 
-            filters = { date: '', user: 'all', status: 'all', amount: '', text: '', type: 'all' }; 
-            ['filter-date', 'filter-amount', 'filter-ref-comment'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).value = ''; });
-            if(document.getElementById('filter-user')) document.getElementById('filter-user').value = 'all'; if(document.getElementById('filter-status')) document.getElementById('filter-status').value = 'all'; if(document.getElementById('filter-type')) document.getElementById('filter-type').value = 'all'; 
-            pages.audit = 1; updateAllViews(); 
-        }
-
-        function applyBonoFilters() { 
-            bonoFilters.date = document.getElementById('filter-bono-date')?.value || ''; 
-            bonoFilters.dest = document.getElementById('filter-bono-dest')?.value.trim().toLowerCase() || ''; 
-            bonoFilters.agency = document.getElementById('filter-bono-agency')?.value || 'all'; 
-            bonoFilters.status = document.getElementById('filter-bono-status')?.value || 'all'; 
-            pages.bonos = 1; updateAllViews(); 
-        }
-        function clearBonoFilters() { 
-            bonoFilters = { date: '', dest: '', amount: '', agency: 'all', status: 'all' }; 
-            if(document.getElementById('filter-bono-date')) document.getElementById('filter-bono-date').value = ''; 
-            if(document.getElementById('filter-bono-dest')) document.getElementById('filter-bono-dest').value = ''; 
-            if(document.getElementById('filter-bono-agency')) document.getElementById('filter-bono-agency').value = 'all'; 
-            if(document.getElementById('filter-bono-status')) document.getElementById('filter-bono-status').value = 'all'; 
-            pages.bonos = 1; updateAllViews(); 
-        }
+        function applyFilters() { filters.date = document.getElementById('filter-date')?.value || ''; const fUser = document.getElementById('filter-user'); filters.user = fUser ? fUser.value : 'all'; filters.status = document.getElementById('filter-status')?.value || 'all'; filters.type = document.getElementById('filter-type')?.value || 'all'; filters.amount = document.getElementById('filter-amount')?.value.replace(',', '.') || ''; filters.text = document.getElementById('filter-ref-comment')?.value.trim() || ''; pages.audit = 1; updateAllViews(); }
+        function clearFilters() { filters = { date: '', user: 'all', status: 'all', amount: '', text: '', type: 'all' }; ['filter-date', 'filter-amount', 'filter-ref-comment'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).value = ''; }); if(document.getElementById('filter-user')) document.getElementById('filter-user').value = 'all'; if(document.getElementById('filter-status')) document.getElementById('filter-status').value = 'all'; if(document.getElementById('filter-type')) document.getElementById('filter-type').value = 'all'; pages.audit = 1; updateAllViews(); }
+        function applyBonoFilters() { bonoFilters.date = document.getElementById('filter-bono-date')?.value || ''; bonoFilters.dest = document.getElementById('filter-bono-dest')?.value.trim().toLowerCase() || ''; bonoFilters.status = document.getElementById('filter-bono-status')?.value || 'all'; bonoFilters.agency = document.getElementById('filter-bono-agency')?.value || 'all'; pages.bonos = 1; updateAllViews(); }
+        function clearBonoFilters() { bonoFilters = { date: '', dest: '', amount: '', agency: 'all', status: 'all' }; if(document.getElementById('filter-bono-date')) document.getElementById('filter-bono-date').value = ''; if(document.getElementById('filter-bono-dest')) document.getElementById('filter-bono-dest').value = ''; if(document.getElementById('filter-bono-status')) document.getElementById('filter-bono-status').value = 'all'; if(document.getElementById('filter-bono-agency')) document.getElementById('filter-bono-agency').value = 'all'; pages.bonos = 1; updateAllViews(); }
         function applyRefFilters() { refFilters.date = document.getElementById('filter-ref-date')?.value || ''; refFilters.name = document.getElementById('filter-ref-name')?.value.trim().toLowerCase() || ''; refFilters.agency = document.getElementById('filter-ref-agency')?.value || 'all'; pages.ref = 1; updateAllViews(); }
         function clearRefFilters() { refFilters = { date: '', name: '', cedula: '', agency: 'all' }; if(document.getElementById('filter-ref-date')) document.getElementById('filter-ref-date').value = ''; if(document.getElementById('filter-ref-name')) document.getElementById('filter-ref-name').value = ''; if(document.getElementById('filter-ref-agency')) document.getElementById('filter-ref-agency').value = 'all'; pages.ref = 1; updateAllViews(); }
-        function applyGiroFilters() { giroFilters.date = document.getElementById('filter-giro-date')?.value || ''; giroFilters.dest = document.getElementById('filter-giro-dest')?.value.trim().toLowerCase() || ''; giroFilters.agency = document.getElementById('filter-giro-agency')?.value || 'all'; pages.giros = 1; updateAllViews(); }
-        function clearGiroFilters() { giroFilters = { date: '', dest: '', agency: 'all' }; if(document.getElementById('filter-giro-date')) document.getElementById('filter-giro-date').value = ''; if(document.getElementById('filter-giro-dest')) document.getElementById('filter-giro-dest').value = ''; if(document.getElementById('filter-giro-agency')) document.getElementById('filter-giro-agency').value = 'all'; pages.giros = 1; updateAllViews(); }
+        function applyGiroFilters() { giroFilters.date = document.getElementById('filter-giro-date')?.value || ''; giroFilters.dest = document.getElementById('filter-giro-dest')?.value.trim().toLowerCase() || ''; giroFilters.status = document.getElementById('filter-giro-status')?.value || 'all'; giroFilters.agency = document.getElementById('filter-giro-agency')?.value || 'all'; pages.giros = 1; updateAllViews(); }
+        function clearGiroFilters() { giroFilters = { date: '', dest: '', agency: 'all', status: 'all' }; if(document.getElementById('filter-giro-date')) document.getElementById('filter-giro-date').value = ''; if(document.getElementById('filter-giro-dest')) document.getElementById('filter-giro-dest').value = ''; if(document.getElementById('filter-giro-status')) document.getElementById('filter-giro-status').value = 'all'; if(document.getElementById('filter-giro-agency')) document.getElementById('filter-giro-agency').value = 'all'; pages.giros = 1; updateAllViews(); }
         function applyMelFilters() { melFilters.date = document.getElementById('filter-rend-date')?.value || ''; melFilters.inf = document.getElementById('filter-rend-inf')?.value.trim().toLowerCase() || ''; melFilters.jug = document.getElementById('filter-rend-jug')?.value.trim().toLowerCase() || ''; pages.mel = 1; updateAllViews(); }
         function clearRendFilters() { melFilters = { date: '', inf: '', jug: '' }; if(document.getElementById('filter-rend-date')) document.getElementById('filter-rend-date').value = ''; if(document.getElementById('filter-rend-inf')) document.getElementById('filter-rend-inf').value = ''; if(document.getElementById('filter-rend-jug')) document.getElementById('filter-rend-jug').value = ''; pages.mel = 1; updateAllViews(); }
 
@@ -1070,80 +999,39 @@
             e.preventDefault(); const btn = e.target.querySelector('button[type="submit"]'); const orig = btn.innerHTML; 
             let amt = getVal(document.getElementById('reg-amount').value); if (isNaN(amt) || amt <= 0) { showToast('Monto inválido', 'error'); return; }
             const isDebit = document.querySelector('input[name="reg-type"]:checked').value === 'debito'; if (isDebit) amt = -Math.abs(amt);
-            
-            let assigned = currentUser;
-            const adminSelectUserBlock = document.getElementById('admin-select-user');
-            const ud = JSON.parse(localStorage.getItem('sb_user_data'));
-            if (ud && (ud.type === 'admin' || isSuperAdmin)) { 
-                if (adminSelectUserBlock && !adminSelectUserBlock.classList.contains('hidden')) { 
-                    const assignRadio = document.querySelector('input[name="reg-assign"]:checked'); 
-                    if (assignRadio) assigned = assignRadio.value; 
-                } 
-            }
+            let assigned = currentUser; const adminSelectUserBlock = document.getElementById('admin-select-user'); const ud = JSON.parse(localStorage.getItem('sb_user_data'));
+            if (ud && (ud.type === 'admin' || isSuperAdmin)) { if (adminSelectUserBlock && !adminSelectUserBlock.classList.contains('hidden')) { const assignRadio = document.querySelector('input[name="reg-assign"]:checked'); if (assignRadio) assigned = assignRadio.value; } }
             
             const newTx = { id: 'TX' + Date.now(), date: document.getElementById('reg-date').value, amount: amt, concept: document.getElementById('reg-concept').value.trim() || (isDebit ? 'Débito' : 'Ingreso'), assignedTo: assigned, createdBy: currentUser, status: 'Pendiente', receipt: '', comment: '' };
-            
             records.unshift(newTx); records.sort(sortDataDesc); updateAllViews(); 
-            document.getElementById('reg-amount').value = ''; document.getElementById('reg-concept').value = ''; document.querySelector('input[name="reg-type"][value="ingreso"]').checked = true; toggleAmountStyle();
-            document.getElementById('reg-date').value = getLocalIsoDatetime();
-            
-            showToast('Guardando en la nube...', 'info');
-            btn.disabled = true;
-            pushData('add', newTx).then(res => { 
-                if (res.success) showToast('Registro guardado', 'success'); 
-                else showToast('Error al guardar en la nube', 'error');
-                btn.disabled = false;
-            });
+            document.getElementById('reg-amount').value = ''; document.getElementById('reg-concept').value = ''; document.querySelector('input[name="reg-type"][value="ingreso"]').checked = true; toggleAmountStyle(); document.getElementById('reg-date').value = getLocalIsoDatetime();
+            btn.innerHTML = 'Guardando...'; btn.disabled = true; pushData('add', newTx).then(res => { if (res.success) showToast('Registro guardado', 'success'); else showToast('Error al guardar', 'error'); btn.innerHTML = orig; btn.disabled = false; });
         }
 
         async function handleGussepy(e) {
             e.preventDefault(); const btn = e.target.querySelector('button'); const orig = btn.innerHTML; 
             const amt = getVal(document.getElementById('gus-amount').value); if (isNaN(amt) || amt <= 0) { showToast('Monto inválido', 'error'); return; }
-            
             const newAdv = { id: 'ADV' + Date.now(), date: document.getElementById('gus-date').value, amount: amt, concept: document.getElementById('gus-concept').value.trim() || 'Adelanto', createdBy: currentUser, status: 'Pendiente', detail: '' };
-            advances.unshift(newAdv); advances.sort(sortDataDesc); updateAllViews(); 
-            document.getElementById('form-gussepy').reset(); document.getElementById('gus-date').value = new Date().toISOString().split('T')[0]; 
-            
-            showToast('Procesando en la nube...', 'info');
-            btn.disabled = true;
-            pushData('add_advance', newAdv).then(res => { 
-                if(res.success) showToast('Adelanto registrado', 'success'); 
-                btn.disabled = false;
-            });
+            advances.unshift(newAdv); advances.sort(sortDataDesc); updateAllViews(); document.getElementById('form-gussepy').reset(); document.getElementById('gus-date').value = new Date().toISOString().split('T')[0]; 
+            btn.innerHTML = 'Procesando...'; btn.disabled = true; pushData('add_advance', newAdv).then(res => { if(res.success) showToast('Adelanto registrado', 'success'); btn.innerHTML = orig; btn.disabled = false; });
         }
 
         async function handleBono(e) {
             e.preventDefault(); const btn = e.target.querySelector('button'); const orig = btn.innerHTML; 
             const amt = getVal(document.getElementById('bono-amount').value); if (isNaN(amt) || amt <= 0) { showToast('Monto inválido', 'error'); return; }
             const companyRadio = document.querySelector('input[name="bono-company"]:checked'); const company = companyRadio ? companyRadio.value : 'Sepybet';
-            
             const newBono = { id: 'BN' + Date.now(), date: document.getElementById('bono-date').value, amount: amt, assignedTo: document.getElementById('bono-dest').value.trim(), concept: document.getElementById('bono-concept').value.trim() || 'Emisión', createdBy: currentUser, status: 'Entregado', amountWon: 0, company: company };
-            bonos.unshift(newBono); bonos.sort(sortDataDesc); updateAllViews(); updateBonoDatalist(); 
-            document.getElementById('form-bonos').reset(); document.getElementById('bono-date').value = getLocalIsoDatetime(); 
-            
-            showToast('Guardando en la nube...', 'info');
-            btn.disabled = true;
-            pushData('add_bono', newBono).then(res => { 
-                if(res.success) showToast('Bono emitido', 'success'); 
-                btn.disabled = false;
-            });
+            bonos.unshift(newBono); bonos.sort(sortDataDesc); updateAllViews(); updateBonoDatalist(); document.getElementById('form-bonos').reset(); document.getElementById('bono-date').value = getLocalIsoDatetime(); 
+            btn.innerHTML = 'Enviando...'; btn.disabled = true; pushData('add_bono', newBono).then(res => { if(res.success) showToast('Bono emitido', 'success'); btn.innerHTML = orig; btn.disabled = false; });
         }
 
         async function handleGiro(e) {
             e.preventDefault(); const btn = e.target.querySelector('button'); const orig = btn.innerHTML; 
             const qty = parseInt(document.getElementById('giro-qty').value); if (isNaN(qty) || qty <= 0) { showToast('Cantidad inválida', 'error'); return; }
             const companyRadio = document.querySelector('input[name="giro-company"]:checked'); const company = companyRadio ? companyRadio.value : 'Sepybet';
-            
             const newGiro = { id: 'GR' + Date.now(), date: document.getElementById('giro-date').value, company: company, dest: document.getElementById('giro-dest').value.trim(), game: document.getElementById('giro-game').value, qty: qty, status: 'Entregado', amountWon: 0, createdBy: currentUser };
-            giros.unshift(newGiro); giros.sort(sortDataDesc); updateAllViews(); updateBonoDatalist(); 
-            document.getElementById('form-giros').reset(); document.getElementById('giro-date').value = getLocalIsoDatetime(); 
-            
-            showToast('Guardando en la nube...', 'info');
-            btn.disabled = true;
-            pushData('add_giro', newGiro).then(res => { 
-                if(res.success) showToast('Giros registrados con éxito', 'success'); 
-                btn.disabled = false;
-            });
+            giros.unshift(newGiro); giros.sort(sortDataDesc); updateAllViews(); updateBonoDatalist(); document.getElementById('form-giros').reset(); document.getElementById('giro-date').value = getLocalIsoDatetime(); 
+            btn.innerHTML = 'Enviando...'; btn.disabled = true; pushData('add_giro', newGiro).then(res => { if(res.success) showToast('Giros registrados', 'success'); btn.innerHTML = orig; btn.disabled = false; });
         }
 
         async function handleReferral(e) {
@@ -1152,41 +1040,22 @@
             const amt = getVal(document.getElementById('ref-amount').value); if (isNaN(amt) || amt <= 0) { showToast('Monto inválido', 'error'); return; }
             const isInfluencer = document.getElementById('ref-is-influencer').checked; const companyRadio = document.querySelector('input[name="ref-company"]:checked'); const company = companyRadio ? companyRadio.value : 'Sepybet';
             const referrer = document.getElementById('ref-referrer').value.trim(); const referred = document.getElementById('ref-referred').value.trim(); const dateVal = document.getElementById('ref-date').value; const rId = 'REF' + Date.now();
-            
             const newRef = { id: rId, date: dateVal, amount: amt, referrer: referrer, referred: referred, cedula: cedula, createdBy: currentUser, isInfluencer: isInfluencer, company: company };
             const newBonoFromRef = { id: rId + '_B', date: dateVal, amount: amt, assignedTo: referrer, concept: "Referido: " + referred, createdBy: currentUser, status: 'Entregado', amountWon: 0, company: company };
-            
             referrals.unshift(newRef); bonos.unshift(newBonoFromRef); referrals.sort(sortDataDesc); bonos.sort(sortDataDesc); updateAllViews(); updateBonoDatalist(); updateMelanieDropdowns();
             document.getElementById('form-referrals').reset(); document.getElementById('ref-date').value = getLocalIsoDatetime(); 
-            
-            showToast('Guardando en la nube...', 'info');
-            btn.disabled = true;
-            pushData('add_referral', { ...newRef, company: company, isInfluencer: isInfluencer }).then(res => { 
-                if(res.success) showToast('Referido guardado.', 'success'); 
-                btn.disabled = false;
-            });
+            btn.innerHTML = 'Guardando...'; btn.disabled = true; pushData('add_referral', { ...newRef, company: company, isInfluencer: isInfluencer }).then(res => { if(res.success) showToast('Referido guardado.', 'success'); btn.innerHTML = orig; btn.disabled = false; });
         }
 
         async function handleRendimiento(e) {
             e.preventDefault(); const btn = e.target.querySelector('button'); const orig = btn.innerHTML; 
             const referrer = document.getElementById('rend-referrer').value; const referred = document.getElementById('rend-referred').value;
             if(!referrer || !referred) { showToast("Seleccione usuarios.", "error"); return; }
-            
-            const depositos = getVal(document.getElementById('rend-dep').value); 
-            const retiros = getVal(document.getElementById('rend-ret').value); 
-            const neto = depositos - retiros; 
+            const depositos = getVal(document.getElementById('rend-dep').value); const retiros = getVal(document.getElementById('rend-ret').value); const neto = depositos - retiros; 
             const rateKey = String(referrer).trim().toLowerCase(); const rate = (USERS[rateKey] && USERS[rateKey].comision ? parseFloat(USERS[rateKey].comision) : 20) / 100; const comision = neto * rate;
-            
             const newRend = { id: 'RND' + Date.now(), date: document.getElementById('rend-date').value, referrer, referred, depositos, retiros, neto, comision, createdBy: currentUser };
-            rendimientos.unshift(newRend); rendimientos.sort(sortDataDesc); updateAllViews(); 
-            document.getElementById('form-rendimiento').reset(); document.getElementById('rend-date').value = new Date().toISOString().split('T')[0]; clearPlayerSelection(); 
-            
-            showToast('Guardando en la nube...', 'info');
-            btn.disabled = true;
-            pushData('add_rendimiento', newRend).then(res => { 
-                if(res.success) showToast('Rendimiento guardado.', 'success'); 
-                btn.disabled = false;
-            });
+            rendimientos.unshift(newRend); rendimientos.sort(sortDataDesc); updateAllViews(); document.getElementById('form-rendimiento').reset(); document.getElementById('rend-date').value = new Date().toISOString().split('T')[0]; clearPlayerSelection(); 
+            btn.innerHTML = 'Guardando...'; btn.disabled = true; pushData('add_rendimiento', newRend).then(res => { if(res.success) showToast('Rendimiento guardado.', 'success'); btn.innerHTML = orig; btn.disabled = false; });
         }
 
         function actionVerify(id) { pendingVerifyId = String(id); document.getElementById('input-receipt').value = ''; document.getElementById('modal-comprobante').classList.replace('hidden', 'flex'); }
@@ -1197,17 +1066,25 @@
             const targetId = String(pendingVerifyId); 
             const commentText = document.getElementById('input-receipt').value.trim(); 
             const btn = document.getElementById('btn-verify-confirm');
-            const orig = btn.innerHTML; btn.innerHTML = '...'; btn.disabled = true; 
+            const orig = btn.innerHTML; 
+            btn.innerHTML = '...'; 
+            btn.disabled = true; 
+            
             const tx = records.find(r => String(r.id) === targetId);
             
             if (tx) { 
                 tx.status = 'Verificado'; 
-                tx.comment = commentText; 
+                tx.comment = commentText;
                 updateAllViews(); 
                 closeModal(); 
-                pushData('verify', { id: targetId, comment: commentText, receipt: tx.receipt }).then(res => { if(res.success) showToast("Aprobado y comentado", "success")}); 
-            } else { closeModal(); }
-            btn.innerHTML = orig; btn.disabled = false; 
+                
+                pushData('verify', { id: targetId, comment: commentText, receipt: tx.receipt || '' }).then(res => { 
+                    if(res.success) showToast("Aprobado y comentado", "success");
+                    else showToast("Error guardando", "error");
+                }); 
+            } else closeModal(); 
+            btn.innerHTML = orig; 
+            btn.disabled = false; 
         }
 
         function toggleAllAuditChecks() {
@@ -1229,14 +1106,14 @@
             
             document.getElementById('mass-comment').value = '';
             const checkAll = document.getElementById('check-all-audit'); if(checkAll) checkAll.checked = false;
-
             const res = await pushData('verify_multiple', { ids: ids, comment: commentVal });
-            if(res.success) showToast(`${res.procesados} registros guardados en sistema.`, 'success');
+            if(res.success) showToast(`Aprobación masiva exitosa.`, 'success');
+            else showToast(`Error guardando.`, 'error');
         }
 
         function actionEdit(id) {
             const ud = JSON.parse(localStorage.getItem('sb_user_data')); const tx = records.find(r => String(r.id) === String(id));
-            if (ud && ud.type === 'user' && tx && tx.status !== 'Pendiente') { showToast("Acceso denegado. Registro bloqueado.", "error"); return; }
+            if (ud && ud.type === 'user' && tx && tx.status !== 'Pendiente') { showToast("Registro bloqueado.", "error"); return; }
             if(tx) { document.getElementById('edit-id').value = tx.id; document.getElementById('edit-date').value = tx.date; document.getElementById('edit-amount').value = Math.abs(tx.amount); document.getElementById('edit-concept').value = tx.concept; document.getElementById('modal-edit').classList.replace('hidden', 'flex'); }
         }
         function closeEditModal() { document.getElementById('modal-edit').classList.replace('flex', 'hidden'); }
@@ -1244,7 +1121,7 @@
             const id = document.getElementById('edit-id').value; const tx = records.find(r => String(r.id) === id); if(!tx) return;
             const btn = document.getElementById('btn-edit-confirm'); const orig = btn.innerHTML; btn.innerHTML = '...'; btn.disabled = true;
             tx.date = document.getElementById('edit-date').value; let nAmt = parseFloat(document.getElementById('edit-amount').value.replace(',', '.')); tx.amount = (tx.amount < 0) ? -nAmt : nAmt; tx.concept = document.getElementById('edit-concept').value;
-            records.sort(sortDataDesc); updateAllViews(); closeEditModal(); pushData('edit_record', tx).then(res => { if(res.success) showToast("Editado con éxito", "success")}); btn.innerHTML = orig; btn.disabled = false;
+            records.sort((a,b) => new Date(b.date) - new Date(a.date)); updateAllViews(); closeEditModal(); pushData('edit_record', tx).then(res => { if(res.success) showToast("Editado con éxito", "success")}); btn.innerHTML = orig; btn.disabled = false;
         }
 
         function actionEditRend(id) { const rend = rendimientos.find(r => String(r.id) === String(id)); if(rend) { document.getElementById('edit-rend-id').value = rend.id; document.getElementById('edit-rend-date').value = rend.date; document.getElementById('edit-rend-dep').value = rend.depositos; document.getElementById('edit-rend-ret').value = rend.retiros; document.getElementById('modal-edit-rend').classList.replace('hidden', 'flex'); } }
@@ -1252,16 +1129,12 @@
         async function confirmEditRend() {
             const id = document.getElementById('edit-rend-id').value; const rend = rendimientos.find(r => String(r.id) === id); if(!rend) return;
             const btn = document.getElementById('btn-edit-rend-confirm'); const orig = btn.innerHTML; btn.innerHTML = '...'; btn.disabled = true;
-            rend.date = document.getElementById('edit-rend-date').value; rend.depositos = getVal(document.getElementById('edit-rend-dep').value); rend.retiros = getVal(document.getElementById('edit-rend-ret').value); rend.neto = rend.depositos - rend.retiros; 
-            const rateKey = String(rend.referrer).trim().toLowerCase(); const rate = (USERS[rateKey] && USERS[rateKey].comision ? parseFloat(USERS[rateKey].comision) : 20) / 100; rend.comision = rend.neto * rate;
-            rendimientos.sort(sortDataDesc); updateAllViews(); closeEditRendModal(); pushData('edit_rendimiento', rend).then(res => { if(res.success) showToast("Editado", "success")}); btn.innerHTML = orig; btn.disabled = false;
+            rend.date = document.getElementById('edit-rend-date').value; rend.depositos = parseFloat(document.getElementById('edit-rend-dep').value.replace(',', '.')) || 0; rend.retiros = parseFloat(document.getElementById('edit-rend-ret').value.replace(',', '.')) || 0; rend.neto = rend.depositos - rend.retiros; 
+            const rateKey = String(rend.referrer).trim().toLowerCase(); const rate = (USERS[rateKey] && USERS[rateKey].comision ? USERS[rateKey].comision : 20) / 100; rend.comision = rend.neto * rate;
+            rendimientos.sort((a,b) => new Date(b.date) - new Date(a.date)); updateAllViews(); closeEditRendModal(); pushData('edit_rendimiento', rend).then(res => { if(res.success) showToast("Editado", "success")}); btn.innerHTML = orig; btn.disabled = false;
         }
 
-        async function actionDeny(id) { 
-            const targetId = String(id); const tx = records.find(r => String(r.id) === targetId); 
-            if (tx) { tx.status = 'Denegado'; updateAllViews(); showToast("Denegado", "warning"); pushData('deny', { id: targetId }); } 
-        }
-
+        async function actionDeny(id) { const targetId = String(id); const tx = records.find(r => String(r.id) === targetId); if (tx) { tx.status = 'Denegado'; updateAllViews(); showToast("Denegado", "warning"); pushData('deny', { id: targetId }); } }
         function actionAuthorizeAdvance(id) { pendingAuthId = String(id); document.getElementById('input-gussepy-detail').value = ''; document.getElementById('modal-gussepy').classList.replace('hidden', 'flex'); }
         function closeGussepyModal() { document.getElementById('modal-gussepy').classList.replace('flex', 'hidden'); pendingAuthId = null; }
         async function confirmGussepyAuth() {
@@ -1275,7 +1148,7 @@
         function closeBonoWinModal() { document.getElementById('modal-bono-ganado').classList.replace('flex', 'hidden'); pendingBonoWinId = null; pendingGiroWinId = null; }
         async function confirmBonoWin() {
             const wonAmtStr = document.getElementById('input-bono-win-amount').value.replace(',', '.'); const wonAmt = wonAmtStr === '' ? 0 : parseFloat(wonAmtStr);
-            if (isNaN(wonAmt) || wonAmt < 0) { showToast("Ingrese un valor numérico válido", "error"); return; }
+            if (isNaN(wonAmt) || wonAmt < 0) { showToast("Ingrese valor válido", "error"); return; }
             const btn = document.getElementById('btn-bono-win-confirm'); const orig = btn.innerHTML; btn.innerHTML = 'Guardando...'; btn.disabled = true;
             if (pendingBonoWinId) { const bId = String(pendingBonoWinId); const b = bonos.find(r => String(r.id) === bId); if (b) { b.status = 'Ganado'; b.amountWon = wonAmt; updateAllViews(); closeBonoWinModal(); pushData('win_bono', { id: bId, amountWon: wonAmt }).then(res => { if(res.success) showToast("Ganancia guardada", "success"); }); } } 
             else if (pendingGiroWinId) { const gId = String(pendingGiroWinId); const g = giros.find(r => String(r.id) === gId); if (g) { g.status = 'Ganado'; g.amountWon = wonAmt; updateAllViews(); closeBonoWinModal(); pushData('win_giro', { id: gId, amountWon: wonAmt }).then(res => { if(res.success) showToast("Ganancia guardada", "success"); }); } }
@@ -1285,15 +1158,16 @@
         async function actionDelete(id, type = 'record') {
             const ud = JSON.parse(localStorage.getItem('sb_user_data'));
             if (type === 'record' && ud && ud.type === 'user') { const tx = records.find(r => String(r.id) === String(id)); if (tx && tx.status !== 'Pendiente') { showToast("No puedes eliminar registros procesados.", "error"); return; } }
-            showToast("Eliminando...", "warning");
-            const tId = String(id); let act = 'delete';
-            if(type === 'advance'){ act = 'delete_advance'; advances = advances.filter(r => String(r.id) !== tId); } 
-            else if(type === 'bono'){ act = 'delete_bono'; bonos = bonos.filter(r => String(r.id) !== tId); } 
-            else if(type === 'giro'){ act = 'delete_giro'; giros = giros.filter(r => String(r.id) !== tId); } 
-            else if(type === 'referral'){ act = 'delete_referral'; referrals = referrals.filter(r => String(r.id) !== tId); bonos = bonos.filter(b => String(b.id) !== tId + "_B"); } 
-            else if (type === 'rendimiento') { act = 'delete_rendimiento'; rendimientos = rendimientos.filter(r => String(r.id) !== tId); } 
-            else { records = records.filter(r => String(r.id) !== tId); }
-            updateAllViews(); pushData(act, {id: tId}).then(res => { if(!res.success) showToast("Error al eliminar remoto", "error"); });
+            if(confirm("🚨 ¿Seguro que desea eliminar permanentemente?")) {
+                const tId = String(id); let act = 'delete';
+                if(type === 'advance'){ act = 'delete_advance'; advances = advances.filter(r => String(r.id) !== tId); } 
+                else if(type === 'bono'){ act = 'delete_bono'; bonos = bonos.filter(r => String(r.id) !== tId); } 
+                else if(type === 'giro'){ act = 'delete_giro'; giros = giros.filter(r => String(r.id) !== tId); } 
+                else if(type === 'referral'){ act = 'delete_referral'; referrals = referrals.filter(r => String(r.id) !== tId); bonos = bonos.filter(b => String(b.id) !== tId + "_B"); } 
+                else if (type === 'rendimiento') { act = 'delete_rendimiento'; rendimientos = rendimientos.filter(r => String(r.id) !== tId); } 
+                else { records = records.filter(r => String(r.id) !== tId); }
+                updateAllViews(); pushData(act, {id: tId}).then(res => { if(res.success) showToast("Eliminado", "success"); });
+            }
         }
 
         function renderRecordsTable(tbodyId, emptyId, dataArray, userType) {
@@ -1352,17 +1226,12 @@
             const dashMF = document.getElementById('dash-month-filter')?.value; const globalMF = dashMF; const bonoMF = document.getElementById('bonos-month-filter')?.value || dashMF;
 
             const normalizeInf = (rawName) => String(rawName || 'desconocido').toLowerCase().trim();
-
-            const isMyReferral = (refName) => {
-                if (userType === 'admin' || isSuperAdmin || userType === 'master' || userType === 'cajero_afiliados' || userType === 'bonos') return true; 
-                if (userType !== 'influencer') return false; 
-                if (!refName) return false;
-                
-                let cleanRef = normalizeInf(refName);
-                let myId = normalizeInf(currentUser);
-                let myName = normalizeInf(USERS[currentUser]?.name || '');
-                
-                return cleanRef === myId || (myName !== '' && cleanRef === myName);
+            const isMe = (refName) => {
+                if(!refName) return false;
+                const r = String(refName).toLowerCase().trim();
+                const myIdStr = String(currentUser).toLowerCase().trim();
+                const myNameStr = String(USERS[currentUser]?.name || '').toLowerCase().trim();
+                return r === myIdStr || (myNameStr !== '' && r === myNameStr);
             };
 
             if (userType === 'admin' || userType === 'master' || isSuperAdmin || userType === 'user') {
@@ -1517,7 +1386,7 @@
                 if (bonoFilters.amount && !isNaN(parseFloat(bonoFilters.amount))) displayBonos = displayBonos.filter(b => Math.abs(b.amount) === parseFloat(bonoFilters.amount));
                 if (bonoFilters.agency && bonoFilters.agency !== 'all') displayBonos = displayBonos.filter(b => b.company && b.company.toLowerCase() === bonoFilters.agency.toLowerCase());
                 if (bonoFilters.status && bonoFilters.status !== 'all') displayBonos = displayBonos.filter(b => b.status === bonoFilters.status);
-                
+
                 const elTableBonos = document.getElementById('table-bonos-list');
                 if(elTableBonos) {
                     let hB = ''; const pagB = paginate(displayBonos, 'bonos');
@@ -1534,7 +1403,8 @@
                 if (giroFilters.date) displayGiros = displayGiros.filter(g => isExactDate(g.date, giroFilters.date));
                 if (giroFilters.dest) displayGiros = displayGiros.filter(g => (g.dest || '').toLowerCase().includes(giroFilters.dest));
                 if (giroFilters.agency && giroFilters.agency !== 'all') displayGiros = displayGiros.filter(g => g.company && g.company.toLowerCase() === giroFilters.agency.toLowerCase());
-                
+                if (giroFilters.status && giroFilters.status !== 'all') displayGiros = displayGiros.filter(g => g.status === giroFilters.status);
+
                 const elTableGiros = document.getElementById('table-giros-list');
                 if(elTableGiros) {
                     let hG = ''; const pagG = paginate(displayGiros, 'giros');
@@ -1602,7 +1472,9 @@
                         const diffMs = nowMs - move.time;
                         const diffDays = Math.floor(diffMs / (24*60*60*1000));
                         
-                        if (!isMyReferral(move.influencer)) return; 
+                        if (userType === 'influencer') {
+                            if (!isMe(move.influencer)) return; 
+                        }
 
                         if (diffDays >= 10) {
                             listInactivos.push({ jugador: jugador, influencer: move.influencer, days: diffDays, lastMove: new Date(move.time).toISOString().split('T')[0] });
@@ -1625,50 +1497,50 @@
                     tbodyInactivos.innerHTML = hInac || `<tr><td colspan="5" class="p-4 text-center text-sm text-slate-400">No hay inactivos (+10 días)</td></tr>`;
                 }
 
-                if (userType === 'influencer' || userType === 'admin' || isSuperAdmin) {
+                if (userType === 'influencer') {
                     const myMonth = document.getElementById('inf-month-filter')?.value;
                     
-                    let rateVal = USERS[currentUser] && USERS[currentUser].comision ? parseFloat(USERS[currentUser].comision) : 20;
-                    const labelEl = document.getElementById('inf-dash-com-label');
-                    if (labelEl && userType === 'influencer') labelEl.innerText = `Mi Ganancia (${rateVal}%)`;
-                    else if (labelEl) labelEl.innerText = `Mi Ganancia`;
+                    let rateVal = USERS[currentUser] && USERS[currentUser].comision ? (USERS[currentUser].comision / 100) : 0.20;
+                    let myRends = rendimientos.filter(r => isMe(r.referrer) && isSameMonth(r.date, myMonth));
                     
-                    const myRefs = referrals.filter(r => isMyReferral(r.referrer));
-                    const elQty = document.getElementById('inf-dash-qty'); if(elQty) elQty.innerText = myRefs.length;
+                    let totDep = 0, totRet = 0, totNet = 0, totCom = 0;
+                    let myPlayersMap = {};
                     
-                    let myDep = 0, myRet = 0, myNeto = 0, myCom = 0; const playerStats = {};
-                    
-                    rendimientos.filter(r => isSameMonth(r.date, myMonth) && isMyReferral(r.referrer)).forEach(r => {
-                        let dep = getVal(r.depositos); let ret = getVal(r.retiros); let neto = getVal(r.neto); let com = getVal(r.comision);
-                        myDep += dep; myRet += ret; myNeto += neto; myCom += com;
-                        if(!playerStats[r.referred]) playerStats[r.referred] = { dep: 0, ret: 0, neto: 0, com: 0, influencer: r.referrer };
-                        playerStats[r.referred].dep += dep; playerStats[r.referred].ret += ret; playerStats[r.referred].neto += neto; playerStats[r.referred].com += com;
+                    myRends.forEach(r => {
+                        totDep += getVal(r.depositos); totRet += getVal(r.retiros); totNet += getVal(r.neto); totCom += getVal(r.comision);
+                        const j = r.referred.toLowerCase();
+                        if(!myPlayersMap[j]) myPlayersMap[j] = { name: r.referred, dep: 0, ret: 0, net: 0, com: 0, records: [] };
+                        myPlayersMap[j].dep += getVal(r.depositos); myPlayersMap[j].ret += getVal(r.retiros); myPlayersMap[j].net += getVal(r.neto); myPlayersMap[j].com += getVal(r.comision);
+                        myPlayersMap[j].records.push(r);
                     });
                     
-                    const elDep = document.getElementById('inf-dash-dep'); if(elDep) elDep.innerText = fmt(myDep);
-                    const elRet = document.getElementById('inf-dash-ret'); if(elRet) elRet.innerText = fmt(myRet);
-                    const elNeto = document.getElementById('inf-dash-neto'); if(elNeto) elNeto.innerText = fmt(myNeto);
-                    const elCom = document.getElementById('inf-dash-com'); if(elCom) elCom.innerText = fmt(myCom);
-
-                    const searchPlayer = document.getElementById('inf-search')?.value.toLowerCase().trim() || '';
-                    let displayPlayers = Object.keys(playerStats);
-                    if (searchPlayer) displayPlayers = displayPlayers.filter(p => p.toLowerCase().includes(searchPlayer));
-                    displayPlayers.sort();
-
+                    const elInfQty = document.getElementById('inf-dash-qty'); if(elInfQty) elInfQty.innerText = referrals.filter(r => isMe(r.referrer)).length;
+                    const elInfDep = document.getElementById('inf-dash-dep'); if(elInfDep) elInfDep.innerText = fmt(totDep);
+                    const elInfRet = document.getElementById('inf-dash-ret'); if(elInfRet) elInfRet.innerText = fmt(totRet);
+                    const elInfNet = document.getElementById('inf-dash-neto'); if(elInfNet) elInfNet.innerText = fmt(totNet);
+                    const elInfCom = document.getElementById('inf-dash-com'); if(elInfCom) elInfCom.innerText = fmt(totCom);
+                    
+                    let pList = Object.values(myPlayersMap);
+                    const searchQ = document.getElementById('inf-search')?.value.toLowerCase().trim() || '';
+                    if(searchQ) pList = pList.filter(p => p.name.toLowerCase().includes(searchQ));
+                    pList.sort((a,b) => b.com - a.com);
+                    
                     const tbodyInf = document.getElementById('inf-table-body');
-                    if (tbodyInf) {
-                        let hInf = ''; const pagInf = paginate(displayPlayers, 'infdash');
-                        for(let i=0; i<pagInf.length; i++) {
-                            const p = pagInf[i]; const stat = playerStats[p];
-                            hInf += `<tr class="border-b border-slate-50 cursor-pointer hover:bg-slate-50" onclick="viewPlayerDetails('${p}')"><td data-label="Jugador (ID)" class="p-3 text-sm font-black text-indigo-600">${p}</td><td data-label="Depósitos" class="p-3 text-sm font-black text-emerald-500">${fmt(stat.dep)}</td><td data-label="Retiros" class="p-3 text-sm font-black text-rose-500">${fmt(stat.ret)}</td><td data-label="Neto Generado" class="p-3 text-sm font-black">${fmt(stat.neto)}</td><td data-label="Mi Comisión" class="p-3 text-sm font-black text-amber-500 text-right">${fmt(stat.com)}</td><td data-label="Detalle" class="p-3 text-center hidden md:table-cell"><button class="text-indigo-500 hover:text-indigo-700"><i class="fas fa-chevron-right"></i></button></td></tr>`;
+                    if(tbodyInf) {
+                        let hI = ''; const pagI = paginate(pList, 'infdash');
+                        for(let i=0; i<pagI.length; i++) {
+                            const p = pagI[i];
+                            hI += `<tr class="border-b border-slate-50"><td data-label="Jugador (ID)" class="p-3 text-xs font-bold uppercase text-indigo-600">${p.name}</td><td data-label="Depósitos" class="p-3 text-sm font-black text-emerald-500">${fmt(p.dep)}</td><td data-label="Retiros" class="p-3 text-sm font-black text-rose-500">${fmt(p.ret)}</td><td data-label="Neto Generado" class="p-3 text-sm font-black">${fmt(p.net)}</td><td data-label="Mi Comisión" class="p-3 text-sm font-black text-amber-500 text-right">${fmt(p.com)}</td><td data-label="Detalle" class="p-3 text-center hidden md:table-cell"><button onclick="viewPlayerDetails('${p.name}')" class="px-3 py-1.5 bg-purple-50 text-purple-600 rounded-lg hover:bg-purple-100 text-[10px] font-bold transition-colors"><i class="fas fa-search mr-1"></i> Ver</button></td></tr>`;
                         }
-                        tbodyInf.innerHTML = hInf || `<tr><td colspan="6" class="p-4 text-center text-sm text-slate-400">Sin datos registrados.</td></tr>`;
+                        tbodyInf.innerHTML = hI || `<tr><td colspan="6" class="p-4 text-center text-sm text-slate-400">Sin movimientos en este periodo.</td></tr>`;
                     }
-
+                    
                     const detailPlayer = document.getElementById('inf-detail-player')?.value;
                     if (detailPlayer) {
-                        const detailMonth = document.getElementById('inf-detail-month')?.value || dashMF;
-                        let pRecords = rendimientos.filter(r => r.referred === detailPlayer && isSameMonth(r.date, detailMonth));
+                        const detailMonth = document.getElementById('inf-detail-month')?.value;
+                        let pRecords = rendimientos.filter(r => isMe(r.referrer) && String(r.referred).toLowerCase() === detailPlayer.toLowerCase());
+                        if (detailMonth) pRecords = pRecords.filter(r => isSameMonth(r.date, detailMonth));
+                        pRecords.sort(sortDataDesc);
                         
                         const detailTitle = document.getElementById('inf-detail-title');
                         if(detailTitle) detailTitle.innerText = `Movimientos Diarios - ${detailPlayer}`;
@@ -1681,7 +1553,7 @@
                                 let dep = getVal(r.depositos); let ret = getVal(r.retiros); let neto = getVal(r.neto); let com = getVal(r.comision);
                                 hDet += `<tr class="border-b border-slate-50"><td data-label="Fecha" class="p-3 text-xs font-bold text-slate-600">${fmtDate(r.date)}</td><td data-label="Depósitos" class="p-3 text-sm font-black text-emerald-500">${fmt(dep)}</td><td data-label="Retiros" class="p-3 text-sm font-black text-rose-500">${fmt(ret)}</td><td data-label="Neto Generado" class="p-3 text-sm font-black">${fmt(neto)}</td><td data-label="Mi Comisión" class="p-3 text-sm font-black text-amber-500 text-right">${fmt(com)}</td></tr>`;
                             }
-                            tbodyDetail.innerHTML = hDet || `<tr><td colspan="5" class="p-4 text-center text-sm text-slate-400">Sin movimientos.</td></tr>`;
+                            tbodyDetail.innerHTML = hDet || `<tr><td colspan="5" class="p-4 text-center text-sm text-slate-400">Sin registros detallados.</td></tr>`;
                         }
                     }
                 }
