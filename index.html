@@ -3,263 +3,1041 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorti365 - Pronósticos y Juegos</title>
-    <!-- Tailwind CSS para maquetación rápida -->
+    <title>Neo-Encarta: Cuartel de Exploradores</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Three.js (Motor 3D) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Tone.js (Motor de Audio Generativo) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
     <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #9333ea;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --dark-glass: rgba(15, 23, 42, 0.75);
+        }
+
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #060e0a;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Fallback */
+            min-height: 100vh;
             overflow-x: hidden;
+            margin: 0;
+            cursor: default;
         }
-        /* Efecto de Luces de Estadio y Atmósfera de Fútbol */
-        .stadium-glow {
-            background: 
-                radial-gradient(circle at 50% 10%, rgba(34, 197, 94, 0.25) 0%, transparent 60%),
-                radial-gradient(circle at 50% 90%, rgba(22, 163, 74, 0.15) 0%, transparent 50%),
-                linear-gradient(to bottom, #040a07, #0b1c12, #040a07);
+
+        .font-nunito { font-family: 'Nunito', sans-serif; }
+        .font-mono { font-family: 'Space Mono', monospace; }
+
+        /* Animated Background for App */
+        .bg-animated-gradient {
+            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #0f172a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            position: fixed;
+            inset: 0;
+            z-index: -2;
         }
-        /* Tipografía estilo Copa Mundial */
-        .world-cup-title {
-            text-shadow: 0 4px 12px rgba(249, 115, 22, 0.5), 0 2px 4px rgba(0, 0, 0, 0.8);
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        /* Botón con brillo neon verde */
-        .btn-neon-glow {
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+
+        /* Star Particles */
+        #particles {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: starDrift 100s linear infinite;
+            opacity: 0.3;
         }
-        /* Animación de pulso suave */
-        @keyframes pulse-glow {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
-            50% { transform: scale(1.02); box-shadow: 0 0 30px rgba(34, 197, 94, 0.7); }
+
+        @keyframes starDrift {
+            from { transform: translateY(0); }
+            to { transform: translateY(-2000px); }
         }
-        .animate-pulse-glow {
-            animation: pulse-glow 2s infinite ease-in-out;
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 40px 0 rgba(31, 38, 135, 0.15);
         }
-        /* Checkbox modificado */
-        .custom-checkbox:checked {
-            background-color: #10b981;
-            border-color: #10b981;
+        
+        .dark-glass {
+            background: var(--dark-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5);
         }
+
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            70% { transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.6); }
+            70% { box-shadow: 0 0 0 20px rgba(99, 102, 241, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+
+        .animate-fade-in { animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-slide-up { animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-pop-in { animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulseGlow 2s infinite; }
+
+        /* Story Text & Glossary */
+        .story-text {
+            font-size: 1.35rem;
+            line-height: 1.8;
+            color: #334155;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+        }
+        
+        .glossary-word {
+            position: relative;
+            cursor: pointer;
+            color: #4f46e5;
+            font-weight: 800;
+            padding: 0 4px;
+            border-radius: 4px;
+            background: rgba(79, 70, 229, 0.1);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .glossary-word:hover {
+            background: #4f46e5;
+            color: white;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        /* 3D Canvas */
+        #canvas-container {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            background: transparent;
+            cursor: grab;
+        }
+        #canvas-container:active { cursor: grabbing; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb { background: #818cf8; border-radius: 5px; border: 2px solid #e2e8f0; }
+        ::-webkit-scrollbar-thumb:hover { background: #4f46e5; }
+
+        .hidden-view { display: none !important; }
+
+        /* Map Nodes */
+        .map-node { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .map-node.active { transform: scale(1.3); z-index: 10; box-shadow: 0 0 20px rgba(99,102,241,0.6); }
+        .map-line { transition: width 0.6s ease-in-out; }
+
+        /* Typewriter cursor */
+        .cursor-blink { animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Dashboard Circles */
+        .circular-chart { display: block; margin: 0 auto; max-width: 80%; max-height: 250px; }
+        .circle-bg { fill: none; stroke: #e2e8f0; stroke-width: 3.8; }
+        .circle { fill: none; stroke-width: 2.8; stroke-linecap: round; animation: progress 1s ease-out forwards; }
+        @keyframes progress { 0% { stroke-dasharray: 0 100; } }
     </style>
 </head>
-<body class="stadium-glow text-white min-h-screen flex flex-col justify-between relative selection:bg-emerald-500 selection:text-black">
+<body>
 
-    <!-- CANVAS PARA PARTÍCULAS FLOTANTES DE ESTADIO -->
-    <canvas id="particles-canvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
+    <!-- Backgrounds -->
+    <div class="bg-animated-gradient"></div>
+    <div id="particles"></div>
 
-    <!-- CONTENEDOR PRINCIPAL -->
-    <main class="flex-grow flex items-center justify-center p-4 relative z-10">
-        
-        <div class="w-full max-w-md text-center flex flex-col items-center">
+    <div id="auth-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
+        <div class="dark-glass p-8 md:p-12 rounded-[2.5rem] max-w-5xl w-full mx-auto text-center border border-indigo-500/30 relative">
             
-            <!-- Logo Superior (Estilo Sorti365) -->
-            <div class="mb-10 flex items-center gap-2 justify-center bg-black/40 backdrop-blur-md py-2 px-5 rounded-full border border-emerald-500/10 shadow-[0_0_15px_rgba(34,197,94,0.1)]">
-                <span class="text-emerald-500 animate-spin" style="animation-duration: 12s;">
-                    <!-- Trébol / Estrella Verde de Sorti365 SVG -->
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2a3 3 0 0 0-3 3c0 1.14.64 2.13 1.58 2.63A4 4 0 0 0 7 11c0 1.14.64 2.13 1.58 2.63A3 3 0 1 0 12 22a3 3 0 0 0 3-3c0-1.14-.64-2.13-1.58-2.63A4 4 0 0 0 17 13c0-1.14-.64-2.13-1.58-2.63A3 3 0 0 0 12 2zm0 14a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm-4-4a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm8 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm-4-4a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
-                    </svg>
-                </span>
-                <div>
-                    <span id="view-brand-name" class="font-black text-lg tracking-tight text-white uppercase">SEPY<span class="text-emerald-500">BET</span></span>
-                    <span class="block text-[8px] tracking-widest text-emerald-400/80 font-bold uppercase -mt-1">Atención Oficial</span>
+            <!-- Floating Decorative Orbs -->
+            <div class="absolute -top-10 -left-10 w-32 h-32 bg-indigo-500 rounded-full mix-blend-screen filter blur-2xl opacity-50 animate-float"></div>
+            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500 rounded-full mix-blend-screen filter blur-2xl opacity-50 animate-float" style="animation-delay: 2s;"></div>
+
+            <!-- Title Section -->
+            <div class="animate-slide-up">
+                <div class="w-28 h-28 bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 rounded-full mx-auto flex items-center justify-center mb-6 shadow-[0_0_40px_rgba(139,92,246,0.6)] animate-float border-4 border-white/20">
+                    <i class="fa-solid fa-book-journal-whills text-6xl text-white drop-shadow-md"></i>
                 </div>
-            </div>
-
-            <!-- TÍTULOS CENTRALES -->
-            <div class="mb-10 px-4 relative">
-                <!-- Luces de reflectores simuladas en el fondo del texto -->
-                <div class="absolute w-72 h-32 bg-emerald-500/15 rounded-full blur-3xl -translate-y-12 left-1/2 -translate-x-1/2 pointer-events-none"></div>
-
-                <span id="view-brand-subtitle" class="block text-sm font-bold uppercase tracking-[0.25em] text-emerald-400 mb-2">Aviso Importante</span>
-                
-                <h1 id="view-main-title" class="text-4xl md:text-5xl font-extrabold tracking-tighter text-white uppercase leading-none drop-shadow-lg mb-2">
-                    NUEVO
+                <h1 class="text-5xl md:text-7xl font-nunito font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-200 to-white mb-4 drop-shadow-lg tracking-tight">
+                    Neo-Encarta
                 </h1>
-                <h1 id="view-accent-title" class="world-cup-title text-5xl md:text-6xl font-extrabold tracking-tighter text-emerald-500 uppercase leading-none drop-shadow-xl italic">
-                    NÚMERO
-                </h1>
+                <p class="text-2xl text-indigo-200 mb-2 font-bold tracking-widest uppercase">Cuartel de Exploradores</p>
+                <p class="text-slate-400 mb-10 font-medium max-w-2xl mx-auto">Selecciona tu escuadrón para iniciar la simulación interactiva. El destino de la Biblioteca de Cristal está en tus manos.</p>
             </div>
-
-            <!-- ENTRADA TIPO CHECKBOX -->
-            <div class="w-full px-4 mb-8 text-left">
-                <div class="flex items-center justify-between mb-2 pl-1">
-                    <label class="block text-[13px] font-bold uppercase tracking-widest text-emerald-400">Paso Único</label>
-                </div>
+            
+            <!-- Teams Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 animate-slide-up" style="animation-delay: 0.2s;">
+                <button onclick="loginTeam('Dragones de Fuego', 'red')" class="group relative p-8 rounded-3xl border border-red-500/30 bg-red-900/40 hover:bg-red-800/60 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(239,68,68,0.4)] overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-red-950/80"></div>
+                    <i class="fa-solid fa-fire text-5xl text-red-400 mb-4 relative z-10 group-hover:scale-125 transition-transform duration-500 group-hover:text-red-300 drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]"></i>
+                    <h3 class="font-bold text-xl text-white relative z-10 font-nunito tracking-wide">Fuego</h3>
+                </button>
                 
-                <!-- Recuadro para marcar -->
-                <label class="relative flex items-start gap-4 cursor-pointer bg-black/75 border-2 border-emerald-500/20 hover:border-emerald-500/40 rounded-2xl p-4 transition-all backdrop-blur-md group">
-                    <div class="flex items-center h-6">
-                        <input type="checkbox" id="terms-checkbox" onchange="updateButtonState()" class="custom-checkbox w-6 h-6 border-2 border-slate-500 rounded-md appearance-none checked:bg-emerald-500 checked:border-transparent outline-none transition-all cursor-pointer flex items-center justify-center">
-                        <i id="check-icon" class="fas fa-check absolute text-white text-sm hidden pointer-events-none" style="left: 1.3rem;"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-base font-bold text-white leading-tight">Ir al nuevo WhatsApp</span>
-                        <span class="text-[12px] text-slate-400 mt-1">Marca este cuadro para ser redirigido automáticamente al nuevo número de atención.</span>
-                    </div>
-                </label>
+                <button onclick="loginTeam('Tigres de Agua', 'blue')" class="group relative p-8 rounded-3xl border border-blue-500/30 bg-blue-900/40 hover:bg-blue-800/60 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-blue-950/80"></div>
+                    <i class="fa-solid fa-water text-5xl text-blue-400 mb-4 relative z-10 group-hover:scale-125 transition-transform duration-500 group-hover:text-blue-300 drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]"></i>
+                    <h3 class="font-bold text-xl text-white relative z-10 font-nunito tracking-wide">Agua</h3>
+                </button>
+
+                <button onclick="loginTeam('Búhos de Tierra', 'emerald')" class="group relative p-8 rounded-3xl border border-emerald-500/30 bg-emerald-900/40 hover:bg-emerald-800/60 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-emerald-950/80"></div>
+                    <i class="fa-solid fa-leaf text-5xl text-emerald-400 mb-4 relative z-10 group-hover:scale-125 transition-transform duration-500 group-hover:text-emerald-300 drop-shadow-[0_0_15px_rgba(16,185,129,0.8)]"></i>
+                    <h3 class="font-bold text-xl text-white relative z-10 font-nunito tracking-wide">Tierra</h3>
+                </button>
+
+                <button onclick="loginTeam('Águilas de Aire', 'sky')" class="group relative p-8 rounded-3xl border border-sky-500/30 bg-sky-900/40 hover:bg-sky-800/60 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(14,165,233,0.4)] overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-sky-950/80"></div>
+                    <i class="fa-solid fa-wind text-5xl text-sky-400 mb-4 relative z-10 group-hover:scale-125 transition-transform duration-500 group-hover:text-sky-300 drop-shadow-[0_0_15px_rgba(14,165,233,0.8)]"></i>
+                    <h3 class="font-bold text-xl text-white relative z-10 font-nunito tracking-wide">Aire</h3>
+                </button>
             </div>
-
-            <!-- BOTÓN ÚNICO DE ALTA CONVERSIÓN -->
-            <div class="w-full px-4 mb-6">
-                <a id="btn-main-action" href="#" target="_top" class="flex flex-col items-center justify-center w-full py-5 px-6 rounded-2xl transition-all duration-200">
-                    <span id="view-btn-text" class="text-xl font-black uppercase tracking-wider">🟢 ESPERANDO CONFIRMACIÓN</span>
-                    <span id="view-btn-subtext" class="text-xs font-semibold mt-1">Por favor, marca el recuadro arriba</span>
-                </a>
+            
+            <!-- Bottom Actions -->
+            <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 animate-slide-up" style="animation-delay: 0.4s;">
+                <button onclick="openRulesModal()" class="px-8 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold backdrop-blur-sm border border-white/20 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-circle-info"></i> Detalles de la Misión
+                </button>
+                <button onclick="loginTeacher()" class="px-8 py-3 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold shadow-[0_0_20px_rgba(79,70,229,0.5)] transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-chalkboard-user"></i> Panel Docente
+                </button>
             </div>
-
-            <!-- Sello de Juego Responsable -->
-            <p id="view-disclaimer" class="text-[9px] text-emerald-500/60 uppercase tracking-widest font-semibold">
-                Soporte Oficial | Sepybet 2026
-            </p>
-
         </div>
-    </main>
-
-    <!-- Footer de la marca -->
-    <footer class="py-4 text-center text-[10px] text-emerald-500/30 font-semibold uppercase tracking-widest relative z-10 bg-black/25">
-        &copy; Sepybet - Nuevo Canal de Atención
-    </footer>
-
-    <!-- Notificaciones Flotantes -->
-    <div id="toast" class="fixed bottom-6 right-6 transform translate-y-20 opacity-0 bg-emerald-500 text-slate-950 px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 transition-all duration-300 z-50 text-sm font-bold pointer-events-none">
-        <span id="toast-msg">¡Listo!</span>
     </div>
 
-    <!-- SCRIPT DE EFECTOS VISUALES Y CONTROL DE REDIRECCIÓN -->
+    <div id="main-app" class="hidden-view min-h-screen relative z-10">
+        
+        <!-- Header / HUD -->
+        <header class="glass-panel sticky top-0 z-40 border-b border-white/20 bg-white/70">
+            <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
+                
+                <!-- Team Info -->
+                <div class="flex items-center gap-4">
+                    <div id="hud-icon-bg" class="w-12 h-12 rounded-2xl flex items-center justify-center text-white shadow-lg border-2 border-white/50 transform transition hover:rotate-12">
+                        <i id="hud-icon" class="fa-solid fa-users text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-slate-500 font-black uppercase tracking-widest">Escuadrón Activo</p>
+                        <h2 id="hud-team-name" class="font-nunito font-black text-xl text-slate-800">Cargando...</h2>
+                    </div>
+                </div>
+
+                <!-- Badges -->
+                <div class="flex items-center gap-2 bg-slate-100/80 px-4 py-2 rounded-full border border-slate-200 shadow-inner">
+                    <i class="fa-solid fa-medal text-amber-500 text-2xl animate-pulse-glow rounded-full"></i>
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wide mr-1">Insignias:</span>
+                    <span id="hud-badges" class="font-black text-2xl text-slate-800 font-mono">0</span>
+                </div>
+
+                <!-- Tabs (Student / Teacher) -->
+                <div class="flex bg-slate-200/50 p-1 rounded-full border border-slate-300/50">
+                    <button id="btn-tab-student" onclick="switchTab('student')" class="py-2 px-6 rounded-full font-bold text-sm transition-all duration-300 bg-indigo-600 text-white shadow-md">
+                        <i class="fa-solid fa-book-open-reader mr-2"></i> Recurso
+                    </button>
+                    <button id="btn-tab-teacher" onclick="switchTab('teacher')" class="py-2 px-6 rounded-full font-bold text-sm transition-all duration-300 text-slate-600 hover:bg-slate-200">
+                        <i class="fa-solid fa-chart-pie mr-2"></i> Informe
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="p-4 md:p-8 max-w-7xl mx-auto">
+            
+            <div id="view-student" class="max-w-4xl mx-auto space-y-8 pb-20">
+                
+                <!-- Timeline Map -->
+                <div class="glass-panel p-6 rounded-3xl mb-8 animate-slide-up bg-white/60">
+                    <h3 class="text-xs font-black text-indigo-400 uppercase tracking-widest mb-4 text-center">Mapa de la Misión</h3>
+                    <div class="relative flex justify-between items-center max-w-2xl mx-auto px-4">
+                        <!-- Connecting Line -->
+                        <div class="absolute top-1/2 left-8 right-8 h-1 bg-slate-200 -translate-y-1/2 z-0 rounded-full"></div>
+                        <div id="timeline-progress" class="absolute top-1/2 left-8 h-1 bg-indigo-500 -translate-y-1/2 z-0 rounded-full map-line" style="width: 0%;"></div>
+                        
+                        <!-- Nodes generated via JS -->
+                        <div id="timeline-nodes" class="relative z-10 flex justify-between w-full"></div>
+                    </div>
+                </div>
+
+                <!-- 3D Environment -->
+                <div class="animate-slide-up shadow-2xl rounded-[2.5rem] relative bg-slate-900 border-4 border-indigo-500/20 group">
+                    <div id="canvas-container"></div>
+                    <!-- Overlay Text -->
+                    <div class="absolute inset-0 pointer-events-none flex flex-col items-center justify-end pb-8 bg-gradient-to-t from-slate-900 via-transparent to-transparent rounded-[2.5rem]">
+                        <h1 class="text-4xl md:text-5xl font-nunito font-black text-white text-center drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
+                            La Biblioteca de Cristal
+                        </h1>
+                        <p class="text-indigo-200 font-mono text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity"><i class="fa-solid fa-hand-pointer animate-bounce"></i> Arrastra para explorar</p>
+                    </div>
+                </div>
+
+                <!-- Story Reading Area -->
+                <div class="glass-panel rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-white relative overflow-visible animate-slide-up bg-white/90">
+                    
+                    <!-- Chapter Badge -->
+                    <div class="absolute -top-6 -left-6 w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl rotate-12 flex items-center justify-center shadow-lg border-4 border-white">
+                        <span id="scene-number" class="text-4xl font-black text-white font-nunito -rotate-12">1</span>
+                    </div>
+
+                    <h2 id="scene-title" class="text-3xl md:text-4xl font-black text-slate-800 mb-8 font-nunito text-center mt-4">Título</h2>
+                    
+                    <div id="scene-text" class="story-text text-slate-700 font-medium">
+                        <!-- Text injected via JS -->
+                    </div>
+
+                    <!-- Interaction Zone -->
+                    <div class="mt-12 pt-8 border-t-2 border-slate-100/50 flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div id="interaction-container" class="w-full md:w-auto">
+                            <!-- Buttons injected here -->
+                        </div>
+
+                        <button onclick="nextScene()" id="btn-next" class="w-full md:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-slate-800 hover:bg-slate-900 text-white rounded-2xl font-bold text-lg shadow-[0_10px_20px_rgba(0,0,0,0.2)] transform transition hover:-translate-y-1">
+                            Siguiente Fase <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="challenge-content-area" class="hidden-view animate-slide-up mt-12">
+                    <div class="dark-glass rounded-[3rem] p-8 md:p-12 border border-indigo-500/30 relative overflow-hidden shadow-2xl">
+                        
+                        <!-- AI Background Effect -->
+                        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-600/20 rounded-full mix-blend-screen filter blur-[80px] animate-pulse-glow pointer-events-none"></div>
+
+                        <div class="text-center mb-10 relative z-10">
+                            <div class="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-indigo-500 to-fuchsia-600 rounded-3xl text-white shadow-lg mb-6 transform rotate-3">
+                                <i class="fa-solid fa-microchip text-5xl animate-pulse"></i>
+                            </div>
+                            <h2 class="text-4xl md:text-5xl font-black text-white font-nunito mb-4 drop-shadow-md">El Oráculo IA</h2>
+                            <p class="text-lg text-indigo-200 max-w-2xl mx-auto font-mono">El cuento no tiene final. Ingresa la idea de tu escuadrón y el Oráculo evaluará tu guion para hacerlo más emocionante.</p>
+                        </div>
+
+                        <div class="bg-slate-800/80 rounded-3xl p-6 md:p-8 border border-slate-700 relative z-10 shadow-inner">
+                            <label class="block text-sm font-bold text-indigo-400 uppercase tracking-widest mb-3"><i class="fa-solid fa-terminal mr-2"></i> Input_del_Equipo:</label>
+                            <textarea id="ai-input" class="w-full h-32 p-5 bg-slate-900/50 border-2 border-indigo-500/30 rounded-2xl focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-400 text-white text-lg font-mono resize-none transition-all placeholder-slate-600" placeholder="Ej: Queremos que Leo use magia para atrapar al gigante y salvar los libros..."></textarea>
+                            
+                            <div id="ai-error" class="hidden-view mt-3 text-red-400 font-bold text-sm bg-red-900/30 p-3 rounded-lg border border-red-500/30 flex items-center gap-2">
+                                <i class="fa-solid fa-triangle-exclamation"></i> Idea muy corta. El Oráculo necesita más detalles (mínimo 15 letras).
+                            </div>
+
+                            <button id="btn-ask-ai" onclick="simulateAILogic()" class="mt-6 w-full py-5 bg-gradient-to-r from-indigo-600 to-fuchsia-600 hover:from-indigo-500 hover:to-fuchsia-500 text-white rounded-2xl font-black text-xl shadow-[0_0_30px_rgba(139,92,246,0.4)] transform transition hover:-translate-y-1 flex items-center justify-center gap-3">
+                                <i class="fa-solid fa-bolt"></i> Iniciar Análisis Algorítmico
+                            </button>
+
+                            <!-- AI Processing State -->
+                            <div id="ai-loading" class="hidden-view mt-8 text-center py-6">
+                                <div class="flex justify-center gap-3 mb-4">
+                                    <div class="w-4 h-4 bg-indigo-500 rounded-full animate-bounce"></div>
+                                    <div class="w-4 h-4 bg-purple-500 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                                    <div class="w-4 h-4 bg-fuchsia-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                                </div>
+                                <p class="text-indigo-300 font-mono text-sm tracking-widest animate-pulse">Procesando redes neuronales narrativas...</p>
+                            </div>
+
+                            <!-- AI Output Area (Typewriter) -->
+                            <div id="ai-response-area" class="hidden-view mt-8 p-8 bg-slate-900/80 rounded-2xl border-l-4 border-fuchsia-500 shadow-inner">
+                                <h4 class="font-bold text-fuchsia-400 mb-4 flex items-center gap-2 font-mono uppercase text-sm tracking-wider">
+                                    <i class="fa-solid fa-robot"></i> Output_Oráculo:
+                                </h4>
+                                <div class="text-slate-300 text-lg font-mono leading-relaxed min-h-[100px]">
+                                    <span id="ai-typewriter-text"></span><span class="cursor-blink bg-fuchsia-500 w-2 h-5 inline-block ml-1 align-middle"></span>
+                                </div>
+                                
+                                <!-- Final Script area reveals after typing -->
+                                <div id="final-script-area" class="hidden-view mt-8 pt-6 border-t border-slate-700 animate-slide-up">
+                                    <p class="text-sm text-emerald-400 font-bold mb-3 uppercase tracking-wide"><i class="fa-solid fa-pen-nib mr-2"></i> Redacción Final del Guion</p>
+                                    <textarea id="final-script" class="w-full h-40 p-5 bg-emerald-950/30 border-2 border-emerald-500/30 rounded-2xl focus:border-emerald-400 text-emerald-100 text-lg resize-none font-sans" placeholder="Escriban aquí su versión final mejorada..."></textarea>
+                                    <button onclick="finishProject()" class="mt-4 w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-lg shadow-lg transform transition hover:-translate-y-1">
+                                        <i class="fa-solid fa-check-double mr-2"></i> Publicar en Biblioteca
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-teacher" class="hidden-view space-y-8 pb-12">
+                
+                <!-- Metrics Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 animate-slide-up">
+                    <div class="glass-panel bg-white/80 p-6 rounded-[2rem] border-b-4 border-indigo-500 flex flex-col items-center justify-center text-center">
+                        <i class="fa-solid fa-chart-pie text-3xl text-indigo-300 mb-2"></i>
+                        <h3 class="text-slate-500 font-bold uppercase text-xs tracking-widest mb-2">Comprensión Inferencial</h3>
+                        <div class="text-5xl font-black text-slate-800 font-nunito">85%</div>
+                        <p class="text-emerald-500 text-sm font-bold mt-2"><i class="fa-solid fa-arrow-up"></i> +12% vs Lectura Tradicional</p>
+                    </div>
+                    <div class="glass-panel bg-white/80 p-6 rounded-[2rem] border-b-4 border-fuchsia-500 flex flex-col items-center justify-center text-center">
+                        <i class="fa-solid fa-robot text-3xl text-fuchsia-300 mb-2"></i>
+                        <h3 class="text-slate-500 font-bold uppercase text-xs tracking-widest mb-2">Iteraciones Oráculo IA</h3>
+                        <div class="text-5xl font-black text-slate-800 font-nunito">2.1</div>
+                        <p class="text-slate-500 text-sm font-bold mt-2">Promedio por escuadrón</p>
+                    </div>
+                    <div class="glass-panel bg-white/80 p-6 rounded-[2rem] border-b-4 border-amber-500 flex flex-col items-center justify-center text-center">
+                        <i class="fa-solid fa-book-open text-3xl text-amber-300 mb-2"></i>
+                        <h3 class="text-slate-500 font-bold uppercase text-xs tracking-widest mb-2">Andamiajes Usados</h3>
+                        <div class="text-5xl font-black text-slate-800 font-nunito">100%</div>
+                        <p class="text-slate-500 text-sm font-bold mt-2">Glosario y pistas visuales</p>
+                    </div>
+                </div>
+
+                <!-- Academic Report -->
+                <div class="glass-panel bg-white/90 rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-slate-200 animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="flex items-center gap-6 border-b-2 border-slate-100 pb-8 mb-8">
+                        <div class="w-20 h-20 bg-slate-800 rounded-3xl flex items-center justify-center text-white text-3xl shadow-[0_10px_20px_rgba(0,0,0,0.2)]">
+                            <i class="fa-solid fa-file-contract"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-black text-slate-800 font-nunito">Informe de Innovación</h2>
+                            <p class="text-slate-500 font-medium text-lg mt-1">Integración de IA Generativa en ABP (Educación Básica)</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-10">
+                        <section>
+                            <h3 class="text-2xl font-bold text-indigo-900 flex items-center gap-3 mb-4"><i class="fa-solid fa-cube text-indigo-500"></i> 1. Recurso Educativo Producido</h3>
+                            <div class="bg-indigo-50/50 p-6 rounded-2xl border border-indigo-100 text-slate-700 text-lg leading-relaxed shadow-inner">
+                                <p><strong>Formato:</strong> Aplicación Web Interactiva Multimodal (Neo-Encarta).</p>
+                                <p class="mt-2">El recurso es un "cuento mutilado" interactivo que funciona como andamiaje cognitivo para la Fase de Procesamiento Lector. Segmenta la lectura y emplea pop-ups (pistas hipertextuales) para reducir el filtro afectivo en estudiantes de 8-9 años, facilitando el salto de la decodificación silábica a la comprensión inferencial.</p>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h3 class="text-2xl font-bold text-indigo-900 flex items-center gap-3 mb-4"><i class="fa-solid fa-microchip text-indigo-500"></i> 2. Proceso de Creación IA</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-slate-900 p-6 rounded-2xl shadow-lg border border-slate-700">
+                                    <h4 class="font-bold text-fuchsia-400 mb-3 uppercase text-xs tracking-widest"><i class="fa-solid fa-code mr-2"></i> Prompt Instruccional</h4>
+                                    <p class="text-slate-300 font-mono text-sm leading-relaxed">
+                                        "Actúa como diseñador instruccional interactivo. Escribe el inicio de un cuento infantil sobre un niño y un dragón. Adapta el texto para 8 años (oraciones cortas). Detén la historia abruptamente en el clímax. Indica dónde insertar botones para andamiajes visuales e inferenciales."
+                                    </p>
+                                </div>
+                                <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-200 shadow-inner">
+                                    <h4 class="font-bold text-emerald-800 mb-3 uppercase text-xs tracking-widest"><i class="fa-solid fa-user-gear mr-2"></i> Curación Docente</h4>
+                                    <ul class="space-y-2 text-slate-700 font-medium">
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> Se segmentó el output de IA en una interfaz gráfica (Timeline) para respetar curvas de fatiga infantil.</li>
+                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-500 mt-1"></i> Se programó el 'Oráculo' para que no redacte respuestas cerradas, sino que obligue al estudiante a pensar (Enfoque Socrático).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h3 class="text-2xl font-bold text-indigo-900 flex items-center gap-3 mb-4"><i class="fa-solid fa-scale-balanced text-indigo-500"></i> 3. Reflexión Ética y Legal</h3>
+                            <div class="bg-amber-50 p-6 rounded-2xl border border-amber-200 text-slate-800 text-lg leading-relaxed shadow-sm">
+                                <p class="mb-4"><strong class="text-amber-900">Plagio Cero Algorítmico:</strong> La IA se utiliza estrictamente como <em>andamiaje estructural</em>. Inspira y tensiona las ideas, pero la resolución creativa, la redacción final y la apropiación del vocabulario recaen en la agencia epistémica del infante.</p>
+                                <p><strong class="text-amber-900">Protección de Datos (LOEI):</strong> Para cumplir con la normativa de protección a menores, los alumnos no interactúan directamente creando cuentas. La aplicación es autocontenida y operada bajo la supervisión del docente en la pizarra digital, garantizando un entorno seguro y lícito.</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    
+    <!-- Game Rules / Tutorial Modal -->
+    <div id="rules-modal" class="hidden-view fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-md transition-opacity" onclick="closeModal('rules-modal')"></div>
+        <div class="dark-glass rounded-[2.5rem] p-8 md:p-10 max-w-2xl w-full shadow-2xl relative z-10 animate-pop-in border border-indigo-500/50">
+            <h2 class="text-3xl font-black text-white font-nunito mb-6 text-center border-b border-white/10 pb-4"><i class="fa-solid fa-map-location-dot text-indigo-400 mr-2"></i> Misión: Lectoautores</h2>
+            
+            <div class="space-y-6 text-indigo-100 text-lg">
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center flex-shrink-0 font-black">1</div>
+                    <p><strong>Lean con atención:</strong> Naveguen por las escenas del cuento. Si ven una palabra resaltada, tóquenla para abrir el diccionario mágico.</p>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 font-black">2</div>
+                    <p><strong>Descubran Pistas:</strong> Usen los botones inferiores para revelar imágenes secretas o escuchar sonidos que les ayudarán a entender la historia.</p>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 bg-fuchsia-600 rounded-full flex items-center justify-center flex-shrink-0 font-black">3</div>
+                    <p><strong>Salven la Biblioteca:</strong> El cuento no tiene final. Al terminar de leer, usen el <span class="text-fuchsia-400 font-bold">Oráculo IA</span> para crear un final increíble y ganar todas las medallas.</p>
+                </div>
+            </div>
+            
+            <button onclick="closeModal('rules-modal')" class="mt-8 w-full py-4 rounded-2xl bg-white text-indigo-900 font-black text-xl shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:bg-indigo-50 transition-colors">
+                ¡Entendido, Capitán!
+            </button>
+        </div>
+    </div>
+
+    <!-- Interaction & Glossary Modal -->
+    <div id="interactive-modal" class="hidden-view fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" onclick="closeModal('interactive-modal')"></div>
+        <div id="modal-card" class="bg-white rounded-[2.5rem] p-8 md:p-12 max-w-md w-full shadow-2xl relative z-10 animate-pop-in border-4 border-white">
+            
+            <!-- Confetti Effect Container -->
+            <div id="modal-badge-effect" class="absolute -top-16 left-1/2 transform -translate-x-1/2 hidden flex-col items-center">
+                <i class="fa-solid fa-medal text-7xl text-amber-400 drop-shadow-[0_5px_15px_rgba(245,158,11,0.6)] animate-bounce"></i>
+                <span class="bg-amber-100 text-amber-800 text-xs font-black px-4 py-1 rounded-full mt-2 uppercase tracking-widest border border-amber-300 shadow-sm">+1 INSIGNIA</span>
+            </div>
+
+            <!-- Icon -->
+            <div id="modal-icon-bg" class="w-24 h-24 mx-auto rounded-3xl flex items-center justify-center text-5xl mb-6 shadow-lg transform rotate-3">
+                <i id="modal-icon" class="fa-solid fa-star text-white"></i>
+            </div>
+            
+            <h3 id="modal-title" class="text-2xl md:text-3xl font-black text-center mb-4 font-nunito text-slate-800">Título</h3>
+            <p id="modal-content" class="text-slate-600 text-xl text-center mb-8 font-medium leading-relaxed">Contenido...</p>
+            
+            <button id="modal-btn" onclick="closeModal('interactive-modal')" class="w-full py-4 rounded-2xl text-white font-black text-xl shadow-md transform transition hover:-translate-y-1">
+                Continuar <i class="fa-solid fa-check ml-2"></i>
+            </button>
+        </div>
+    </div>
+
     <script>
-        const config = {
-            phone: "593939161656",
-            btnText: "🟢 REDIRIGIENDO...",
-            btnSubtext: "Abriendo WhatsApp en un instante",
-            msgTemplate: "" // Se ha removido el mensaje predefinido
+        // --- 1. DATA & STATE ---
+        const gameState = {
+            teamName: "",
+            teamTheme: "",
+            badges: 0,
+            currentScene: 0,
+            audioEngineStarted: false
         };
 
-        // Se ejecuta cada vez que el usuario interactúa con el checkbox
-        function updateButtonState() {
-            const checkbox = document.getElementById('terms-checkbox');
-            const checkIcon = document.getElementById('check-icon');
-            const btn = document.getElementById('btn-main-action');
-            const btnText = document.getElementById('view-btn-text');
-            const btnSubtext = document.getElementById('view-btn-subtext');
+        const themeColors = {
+            red: { bg: 'bg-red-500', from: 'from-red-500', to: 'to-orange-500', text: 'text-red-900', light: 'bg-red-100' },
+            blue: { bg: 'bg-blue-500', from: 'from-blue-500', to: 'to-cyan-500', text: 'text-blue-900', light: 'bg-blue-100' },
+            emerald: { bg: 'bg-emerald-500', from: 'from-emerald-500', to: 'to-teal-500', text: 'text-emerald-900', light: 'bg-emerald-100' },
+            sky: { bg: 'bg-sky-500', from: 'from-sky-500', to: 'to-indigo-500', text: 'text-sky-900', light: 'bg-sky-100' },
+            amber: { bg: 'bg-amber-500', from: 'from-amber-400', to: 'to-orange-500', text: 'text-amber-900', light: 'bg-amber-100' },
+            purple: { bg: 'bg-purple-500', from: 'from-purple-500', to: 'to-fuchsia-500', text: 'text-purple-900', light: 'bg-purple-100' },
+            rose: { bg: 'bg-rose-500', from: 'from-rose-500', to: 'to-pink-500', text: 'text-rose-900', light: 'bg-rose-100' }
+        };
 
-            if (!checkbox.checked) {
-                // Estado bloqueado
-                checkIcon.classList.add('hidden');
-                btn.href = "#";
-                btn.onclick = function(e) {
-                    e.preventDefault();
-                    showToast("Por favor, marca el recuadro para continuar.");
-                };
-                
-                // Clases visuales apagadas
-                btn.className = "flex flex-col items-center justify-center w-full py-5 px-6 bg-slate-800 text-slate-500 rounded-2xl border-2 border-slate-700/50 cursor-not-allowed opacity-60 transition-all duration-200";
-                btnText.innerText = "🟢 ESPERANDO CONFIRMACIÓN";
-                btnSubtext.innerText = "Por favor, marca el recuadro arriba";
-                btnSubtext.className = "text-xs text-red-400 font-semibold mt-1";
-            } else {
-                // Estado activado
-                checkIcon.classList.remove('hidden');
-                const finalWaUrl = `https://wa.me/${config.phone}?text=${encodeURIComponent(config.msgTemplate)}`;
-                
-                btn.href = finalWaUrl;
-                btn.onclick = null;
-                
-                // Clases visuales encendidas (Neón verde)
-                btn.className = "btn-neon-glow animate-pulse-glow flex flex-col items-center justify-center w-full py-5 px-6 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 active:scale-95 text-slate-950 rounded-2xl transition-all duration-200 cursor-pointer";
-                btnText.innerText = config.btnText;
-                btnSubtext.innerText = config.btnSubtext;
-                btnSubtext.className = "text-xs text-slate-950/75 font-semibold mt-1";
-                
-                // Redirección automática instantánea tras 800ms
-                setTimeout(() => { window.location.href = finalWaUrl; }, 800);
-            }
-        }
+        const glossaryDB = {
+            "secreta": "Algo que está muy escondido y que casi nadie conoce. ¡Como un tesoro!",
+            "curioso": "Una persona que siempre tiene ganas de aprender, preguntar y descubrir cosas nuevas.",
+            "hechizo": "Palabras mágicas que cambian las cosas de forma sorprendente.",
+            "cristal": "Una piedra transparente y brillante que parece vidrio, ¡pero a veces tiene magia!"
+        };
 
-        // Sistema de notificaciones
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-msg').innerText = message;
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
-        }
-
-        // Inicialización
-        window.addEventListener('DOMContentLoaded', () => {
-            updateButtonState(); // Setea el botón como apagado al entrar
-            initParticles();
-            animateParticles();
-        });
-
-        // ================= SISTEMA DE PARTÍCULAS INTERACTIVO =================
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
-        let particlesArray = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height + canvas.height;
-                this.size = Math.random() * 3 + 0.5;
-                this.speedY = -(Math.random() * 0.8 + 0.2);
-                this.speedX = Math.random() * 0.4 - 0.2;
-                this.opacity = Math.random() * 0.5 + 0.1;
-            }
-
-            update() {
-                this.y += this.speedY;
-                this.x += this.speedX;
-                if (this.y < -10) {
-                    this.y = canvas.height + 10;
-                    this.x = Math.random() * canvas.width;
+        const storyData = [
+            {
+                title: "El Hallazgo",
+                text: "Había una vez una biblioteca secreta en el centro de la ciudad. Nadie sabía cómo entrar, hasta que Leo, un niño muy curioso de ocho años, encontró una llave dorada brillante debajo de una piedra en el parque.",
+                interaction: {
+                    type: "visual", label: "Inspeccionar Llave", icon: "fa-key", color: "amber",
+                    title: "¡Pista Visual!", content: "Es una llave dorada muy pesada. En el mango tiene tallada la forma de un pequeño dragón durmiendo."
+                }
+            },
+            {
+                title: "El Silencio",
+                text: "Al abrir la enorme puerta de madera, Leo descubrió algo terrible: todos los libros estaban en blanco. Las letras habían desaparecido por completo.",
+                interaction: {
+                    type: "audio", label: "Escuchar el salón", icon: "fa-headphones", color: "blue",
+                    title: "¡Pista Sonora!", content: "(Efecto de Audio activado) Se escucha el viento frío soplando entre miles de hojas vacías. Es un sonido muy solitario.",
+                    sound: "wind"
+                }
+            },
+            {
+                title: "El Encuentro",
+                text: "De repente, un pequeño dragón azul llamado Chispa salió volando de un estante.\n—Un hechizo borró todas nuestras historias —dijo Chispa llorando—. Solo el 'Cristal de la Imaginación' puede devolverlas. Pero está escondido en la cueva del Gigante de las Sombras.",
+                interaction: null
+            },
+            {
+                title: "El Bosque",
+                text: "Leo, que era muy valiente, decidió ayudar a Chispa. Caminaron juntos por el Bosque de los Susurros hasta llegar a la entrada de la cueva oscura.",
+                interaction: {
+                    type: "inferential", label: "Pregunta del Bosque", icon: "fa-brain", color: "purple",
+                    title: "Pausa Inferencial", content: "El texto dice que pasaron por el 'Bosque de los Susurros'. Dialoga con tu equipo: ¿Qué crees que hacían las hojas de los árboles cuando Leo pasaba? ¿Por qué se llamaba así?"
+                }
+            },
+            {
+                title: "El Despertar (Clímax)",
+                text: "Adentro, el Gigante estaba profundamente dormido. Su enorme mano tapaba la entrada, pero Leo vio el cristal brillando. Dio un paso adelante. ¡CRAC! Pisó una rama seca.\nEl gigante abrió sus grandes ojos brillantes y miró fijamente a Leo...",
+                interaction: {
+                    type: "end", label: "¡Se acabó el cuento!", icon: "fa-triangle-exclamation", color: "rose",
+                    title: "¡Misión Activa!", content: "¡El autor no escribió el final! El gigante ha despertado. Usa el simulador IA (El Oráculo) que está debajo para crear el mejor final."
                 }
             }
+        ];
 
-            draw() {
-                ctx.save();
-                ctx.globalAlpha = this.opacity;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = '#22c55e';
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = '#22c55e';
-                ctx.fill();
-                ctx.restore();
+        // --- 2. AUDIO ENGINE (Tone.js) ---
+        const audioSynths = {};
+        
+        async function initAudio() {
+            if (gameState.audioEngineStarted) return;
+            await Tone.start();
+            gameState.audioEngineStarted = true;
+            
+            // Simple synth for UI clicks
+            audioSynths.click = new Tone.Synth({ oscillator: { type: 'sine' }, envelope: { attack: 0.01, decay: 0.1, sustain: 0 } }).toDestination();
+            audioSynths.click.volume.value = -10;
+
+            // Synth for Badges/Success
+            audioSynths.badge = new Tone.PolySynth(Tone.Synth).toDestination();
+            audioSynths.badge.volume.value = -5;
+
+            // Noise for wind effect
+            audioSynths.wind = new Tone.NoiseSynth({ noise: { type: 'pink' }, envelope: { attack: 2, decay: 1, sustain: 1, release: 2 } }).toDestination();
+            audioSynths.wind.volume.value = -15;
+        }
+
+        function playSound(type) {
+            if (!gameState.audioEngineStarted) return;
+            if (type === 'click') audioSynths.click.triggerAttackRelease("C5", "8n");
+            if (type === 'badge') {
+                const now = Tone.now();
+                audioSynths.badge.triggerAttackRelease(["C4", "E4", "G4"], "4n", now);
+                audioSynths.badge.triggerAttackRelease(["C5"], "8n", now + 0.2);
+            }
+            if (type === 'wind') {
+                audioSynths.wind.triggerAttackRelease("4m");
             }
         }
 
-        function initParticles() {
-            particlesArray = [];
-            const numberOfParticles = Math.min(60, Math.floor(window.innerWidth / 15));
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
+        // --- 3. UI NAVIGATION & LOGIC ---
+
+        function loginTeam(name, theme) {
+            initAudio(); // Require user gesture
+            playSound('click');
+            
+            gameState.teamName = name;
+            gameState.teamTheme = theme;
+            
+            document.getElementById('hud-team-name').innerText = name;
+            
+            const themeClass = themeColors[theme];
+            document.getElementById('hud-icon-bg').className = `w-12 h-12 rounded-2xl flex items-center justify-center text-white shadow-lg border-2 border-white/50 bg-gradient-to-br ${themeClass.from} ${themeClass.to}`;
+            
+            document.getElementById('auth-screen').classList.add('hidden-view');
+            document.getElementById('main-app').classList.remove('hidden-view');
+            document.body.style.overflow = 'auto'; // allow scroll
+            
+            initThreeJS();
+            renderTimeline();
+            renderScene();
+        }
+
+        function loginTeacher() {
+            initAudio();
+            playSound('click');
+            document.getElementById('auth-screen').classList.add('hidden-view');
+            document.getElementById('main-app').classList.remove('hidden-view');
+            document.body.style.overflow = 'auto';
+            
+            document.getElementById('hud-team-name').innerText = "Modo Docente";
+            document.getElementById('hud-icon-bg').className = `w-12 h-12 rounded-2xl flex items-center justify-center text-white shadow-lg border-2 border-white/50 bg-slate-800`;
+            
+            switchTab('teacher');
+        }
+
+        function switchTab(tab) {
+            playSound('click');
+            const bS = document.getElementById('btn-tab-student');
+            const bT = document.getElementById('btn-tab-teacher');
+            const vS = document.getElementById('view-student');
+            const vT = document.getElementById('view-teacher');
+
+            if (tab === 'student') {
+                bS.className = "py-2 px-6 rounded-full font-bold text-sm transition-all duration-300 bg-indigo-600 text-white shadow-md";
+                bT.className = "py-2 px-6 rounded-full font-bold text-sm transition-all duration-300 text-slate-600 hover:bg-slate-200";
+                vS.classList.remove('hidden-view');
+                vT.classList.add('hidden-view');
+            } else {
+                bT.className = "py-2 px-6 rounded-full font-bold text-sm transition-all duration-300 bg-indigo-600 text-white shadow-md";
+                bS.className = "py-2 px-6 rounded-full font-bold text-sm transition-all duration-300 text-slate-600 hover:bg-slate-200";
+                vT.classList.remove('hidden-view');
+                vS.classList.add('hidden-view');
             }
         }
 
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-            }
-            requestAnimationFrame(animateParticles);
+        // --- 4. SCENE RENDERING & TIMELINE ---
+
+        function renderTimeline() {
+            const container = document.getElementById('timeline-nodes');
+            let html = '';
+            storyData.forEach((_, index) => {
+                const isActive = index === gameState.currentScene;
+                const isPast = index <= gameState.currentScene;
+                const color = isPast ? 'bg-indigo-500 border-indigo-300 text-white' : 'bg-slate-200 border-slate-300 text-slate-400';
+                html += `<div class="w-8 h-8 rounded-full border-4 flex items-center justify-center font-bold text-xs map-node ${color} ${isActive ? 'active' : ''}">${index + 1}</div>`;
+            });
+            container.innerHTML = html;
+            
+            // Update progress line
+            const progress = (gameState.currentScene / (storyData.length - 1)) * 100;
+            document.getElementById('timeline-progress').style.width = `${progress}%`;
         }
+
+        function processGlossary(text) {
+            let processed = text;
+            for (const word in glossaryDB) {
+                // simple replace for demo
+                const regex = new RegExp(`\\b${word}\\b`, 'gi');
+                processed = processed.replace(regex, match => 
+                    `<span class='glossary-word' onclick='openGlossary("${match}", "${glossaryDB[word]}")'>${match}</span>`
+                );
+            }
+            return processed.replace(/\n/g, '<br><br>');
+        }
+
+        function renderScene() {
+            const data = storyData[gameState.currentScene];
+            
+            document.getElementById('scene-number').innerText = gameState.currentScene + 1;
+            document.getElementById('scene-title').innerText = data.title;
+            
+            // Text formatting & glossary
+            document.getElementById('scene-text').innerHTML = processGlossary(data.text);
+
+            // Interaction Button
+            const btnContainer = document.getElementById('interaction-container');
+            btnContainer.innerHTML = '';
+            
+            if (data.interaction) {
+                const i = data.interaction;
+                const theme = themeColors[i.color];
+                btnContainer.innerHTML = `
+                    <button onclick="openInteractionModal()" class="w-full md:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-lg shadow-[0_10px_20px_rgba(0,0,0,0.15)] transform transition hover:-translate-y-1 bg-gradient-to-br ${theme.from} ${theme.to} animate-pulse-glow border-2 border-white/20">
+                        <i class="fa-solid ${i.icon} text-2xl"></i> ${i.label}
+                    </button>
+                `;
+            }
+
+            // Handle Last Scene
+            const btnNext = document.getElementById('btn-next');
+            if (gameState.currentScene === storyData.length - 1) {
+                btnNext.classList.add('hidden-view');
+                document.getElementById('challenge-content-area').classList.remove('hidden-view');
+                changeCrystalColor(0xf43f5e); // Turn crystal red/danger
+            } else {
+                btnNext.classList.remove('hidden-view');
+            }
+            
+            renderTimeline();
+        }
+
+        function nextScene() {
+            playSound('click');
+            if (gameState.currentScene < storyData.length - 1) {
+                gameState.currentScene++;
+                
+                // Retrigger animation
+                const panel = document.querySelector('.story-text').parentElement;
+                panel.classList.remove('animate-slide-up');
+                void panel.offsetWidth;
+                panel.classList.add('animate-slide-up');
+                
+                renderScene();
+            }
+        }
+
+        // --- 5. MODALS & GAMIFICATION ---
+
+        function openRulesModal() { playSound('click'); document.getElementById('rules-modal').classList.remove('hidden-view'); }
+        
+        function closeModal(id) { 
+            playSound('click'); 
+            document.getElementById(id).classList.add('hidden-view'); 
+            document.getElementById('modal-badge-effect').classList.add('hidden');
+        }
+
+        function openGlossary(word, meaning) {
+            playSound('click');
+            document.getElementById('modal-title').innerText = `📖 ${word.toUpperCase()}`;
+            document.getElementById('modal-content').innerText = meaning;
+            
+            const iconBg = document.getElementById('modal-icon-bg');
+            iconBg.className = `w-24 h-24 mx-auto rounded-3xl flex items-center justify-center text-5xl mb-6 shadow-lg bg-gradient-to-br from-indigo-500 to-purple-600 transform rotate-3 border-4 border-white`;
+            document.getElementById('modal-icon').className = `fa-solid fa-book-open text-white`;
+            document.getElementById('modal-btn').className = `w-full py-4 rounded-2xl text-white font-black text-xl shadow-md transform transition hover:-translate-y-1 bg-indigo-600 hover:bg-indigo-700`;
+            
+            document.getElementById('interactive-modal').classList.remove('hidden-view');
+        }
+
+        function openInteractionModal() {
+            const iData = storyData[gameState.currentScene].interaction;
+            const theme = themeColors[iData.color];
+
+            if (iData.sound) playSound(iData.sound);
+            else playSound('click');
+
+            document.getElementById('modal-title').innerText = iData.title;
+            document.getElementById('modal-content').innerText = iData.content;
+            
+            document.getElementById('modal-icon-bg').className = `w-24 h-24 mx-auto rounded-3xl flex items-center justify-center text-5xl mb-6 shadow-lg bg-gradient-to-br ${theme.from} ${theme.to} transform -rotate-3 border-4 border-white`;
+            document.getElementById('modal-icon').className = `fa-solid ${iData.icon} text-white`;
+            document.getElementById('modal-btn').className = `w-full py-4 rounded-2xl text-white font-black text-xl shadow-md transform transition hover:-translate-y-1 bg-gradient-to-r ${theme.from} ${theme.to}`;
+            
+            document.getElementById('interactive-modal').classList.remove('hidden-view');
+
+            // Badge Logic
+            if (!iData.claimed) {
+                iData.claimed = true;
+                setTimeout(awardBadge, 400);
+            }
+        }
+
+        function awardBadge() {
+            playSound('badge');
+            gameState.badges++;
+            
+            // Animate HUD
+            const hud = document.getElementById('hud-badges');
+            hud.innerText = gameState.badges;
+            hud.classList.add('text-amber-500', 'scale-150');
+            setTimeout(() => hud.classList.remove('text-amber-500', 'scale-150'), 500);
+            
+            // Show Confetti in Modal
+            const fx = document.getElementById('modal-badge-effect');
+            fx.classList.remove('hidden');
+            fx.classList.add('animate-slide-up');
+        }
+
+        // --- 6. ADVANCED AI SIMULATOR (THE ORACLE) ---
+        
+        function simulateAILogic() {
+            playSound('click');
+            const input = document.getElementById('ai-input').value.trim();
+            const errDiv = document.getElementById('ai-error');
+            
+            // No alerts! Inline validation
+            if (input.length < 15) {
+                errDiv.classList.remove('hidden-view');
+                errDiv.classList.add('animate-pop-in');
+                return;
+            }
+            errDiv.classList.add('hidden-view');
+
+            // Hide btn, show loading
+            document.getElementById('btn-ask-ai').classList.add('hidden-view');
+            document.getElementById('ai-loading').classList.remove('hidden-view');
+
+            // Basic Keyword Logic Engine
+            let q1 = "¿Qué pasaría si el gigante solo tiene hambre y no quiere hacerles daño?";
+            let q2 = "¿Qué objeto del parque de la primera escena podrían usar para distraerlo?";
+            
+            const lowerInput = input.toLowerCase();
+            if (lowerInput.includes('magia') || lowerInput.includes('hechizo') || lowerInput.includes('poder')) {
+                q1 = "La magia suena increíble. Pero, ¿qué pasaría si la magia no funciona dentro de la cueva oscura?";
+                q2 = "¿Qué tendría que sacrificar Leo para que el hechizo funcione correctamente?";
+            } else if (lowerInput.includes('pelear') || lowerInput.includes('atacar') || lowerInput.includes('espada') || lowerInput.includes('matar')) {
+                q1 = "El gigante es inmenso. Si deciden atacarlo, ¿cómo evitarán que el Cristal se rompa en la pelea?";
+                q2 = "¿Qué trampa inteligente podrían construir sin usar la fuerza bruta?";
+            } else if (lowerInput.includes('hablar') || lowerInput.includes('amigo') || lowerInput.includes('negociar')) {
+                q1 = "¡Gran idea! Pero el gigante habla un idioma muy antiguo. ¿Cómo logrará Leo comunicarse con él?";
+                q2 = "¿Qué promesa tendrían que hacerle al gigante para que les entregue el Cristal de la Imaginación?";
+            }
+
+            const responseText = `> Analizando variables...\n> Hipótesis detectada.\n\nPregunta 1: ${q1}\n\nPregunta 2: ${q2}\n\n> Fin de transmisión.`;
+
+            setTimeout(() => {
+                document.getElementById('ai-loading').classList.add('hidden-view');
+                document.getElementById('ai-response-area').classList.remove('hidden-view');
+                playSound('wind'); // robot sound proxy
+                awardBadge();
+                typeWriterEffect(responseText, 'ai-typewriter-text', 30);
+            }, 2500);
+        }
+
+        function typeWriterEffect(text, elementId, speed) {
+            let i = 0;
+            const el = document.getElementById(elementId);
+            el.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    const char = text.charAt(i);
+                    if(char === '\n') el.innerHTML += '<br>';
+                    else el.innerHTML += char;
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    // Finished typing, reveal script area
+                    setTimeout(() => {
+                        document.getElementById('final-script-area').classList.remove('hidden-view');
+                        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                    }, 500);
+                }
+            }
+            type();
+        }
+
+        function finishProject() {
+            playSound('badge');
+            const area = document.getElementById('challenge-content-area');
+            area.innerHTML = `
+                <div class="dark-glass rounded-[3rem] p-12 text-center border border-emerald-500/50 animate-pop-in">
+                    <div class="w-32 h-32 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_50px_rgba(52,211,153,0.6)] animate-float">
+                        <i class="fa-solid fa-medal text-7xl text-white"></i>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-black text-emerald-400 mb-4 font-nunito">¡Misión Cumplida!</h2>
+                    <p class="text-xl text-emerald-100 font-medium">El escuadrón ha salvado la Biblioteca. El guion ha sido transferido a los servidores del Cuartel General.</p>
+                </div>
+            `;
+        }
+
+        // --- 7. THREE.JS ADVANCED 3D ENGINE ---
+        let scene, camera, renderer, crystal, particles;
+        let mouseX = 0, mouseY = 0;
+        let targetRotationX = 0, targetRotationY = 0;
+
+        function initThreeJS() {
+            const container = document.getElementById('canvas-container');
+            if(!container) return;
+
+            scene = new THREE.Scene();
+            
+            // Camera
+            camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.z = 6;
+
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+
+            // Crystal Geometry & Material
+            const geometry = new THREE.OctahedronGeometry(2, 0);
+            const material = new THREE.MeshPhysicalMaterial({
+                color: 0x818cf8, // indigo-400
+                metalness: 0.1,
+                roughness: 0.1,
+                transmission: 0.9, 
+                thickness: 0.5,
+                emissive: 0x3730a3, // indigo-800
+                emissiveIntensity: 0.6,
+                wireframe: false
+            });
+
+            // Add Wireframe shell
+            crystal = new THREE.Mesh(geometry, material);
+            const wireframe = new THREE.LineSegments(
+                new THREE.WireframeGeometry(geometry),
+                new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.3 })
+            );
+            crystal.add(wireframe);
+            scene.add(crystal);
+
+            // Particle System
+            const particleGeo = new THREE.BufferGeometry();
+            const particleCount = 200;
+            const posArray = new Float32Array(particleCount * 3);
+            for(let i=0; i<particleCount*3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 10;
+            }
+            particleGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            const particleMat = new THREE.PointsMaterial({ size: 0.05, color: 0xc7d2fe, transparent: true, opacity: 0.6 });
+            particles = new THREE.Points(particleGeo, particleMat);
+            scene.add(particles);
+
+            // Lights
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            
+            const pointLight = new THREE.PointLight(0xa855f7, 2, 20); // purple
+            pointLight.position.set(5, 5, 5);
+            scene.add(pointLight);
+
+            // Mouse Interaction Tracking
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                mouseX = ((e.clientX - rect.left) / container.clientWidth) * 2 - 1;
+                mouseY = -((e.clientY - rect.top) / container.clientHeight) * 2 + 1;
+            });
+
+            // Touch support
+            container.addEventListener('touchmove', (e) => {
+                if(e.touches.length > 0) {
+                    const rect = container.getBoundingClientRect();
+                    mouseX = ((e.touches[0].clientX - rect.left) / container.clientWidth) * 2 - 1;
+                    mouseY = -((e.touches[0].clientY - rect.top) / container.clientHeight) * 2 + 1;
+                }
+            }, {passive: true});
+
+            window.addEventListener('resize', onWindowResize, false);
+            animate3D();
+        }
+
+        function changeCrystalColor(hexColor) {
+            if(crystal) {
+                crystal.material.color.setHex(hexColor);
+                crystal.material.emissive.setHex(0x9f1239); // dark rose
+            }
+        }
+
+        function onWindowResize() {
+            const container = document.getElementById('canvas-container');
+            if(container && camera && renderer) {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            }
+        }
+
+        function animate3D() {
+            requestAnimationFrame(animate3D);
+
+            if (crystal) {
+                // Base rotation
+                crystal.rotation.x += 0.002;
+                crystal.rotation.y += 0.005;
+                
+                // Interactive rotation targeting
+                targetRotationX = mouseY * 0.5;
+                targetRotationY = mouseX * 0.5;
+                
+                crystal.rotation.x += (targetRotationX - crystal.rotation.x) * 0.05;
+                crystal.rotation.y += (targetRotationY - crystal.rotation.y) * 0.05;
+
+                // Floating sine wave
+                crystal.position.y = Math.sin(Date.now() * 0.002) * 0.3;
+            }
+
+            if (particles) {
+                particles.rotation.y -= 0.001;
+            }
+
+            renderer.render(scene, camera);
+        }
+
     </script>
 </body>
 </html>
